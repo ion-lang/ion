@@ -1,5 +1,5 @@
 {
-  "name": "ion",
+  "name": "@ion-lang/ion",
   "version": "0.0.1",
   "description": "Ion programming language",
   "main": "index.js",
@@ -12,12 +12,9 @@
   "devDependencies": {
     "commander": "^2.9.0",
     "faucet": "0.0.1",
-    "optparse": "^1.0.5",
     "pegjs": "^0.9.0",
     "prettyjson": "^1.1.3",
     "ramda": "^0.22.0",
-    "standard": "^7.1.2",
-    "tape": "^4.6.0",
-    "vorpal": "^1.11.4"
+    "tape": "^4.6.0"
   }
 }
