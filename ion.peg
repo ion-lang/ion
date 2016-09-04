@@ -1,0 +1,377 @@
+/*
+ * Ion Grammar
+ */
+
+{
+  const TYPES_TO_PROPERTY_NAMES = { Call: "callee", Member: "object"}
+
+  const map = (fn, array) => {
+    var result = new Array(array.length), i
+
+    for (i = 0; i < array.length; i++)
+      result[i] = fn(array[i])
+
+    return result
+  }
+
+  const list = (head, tail, index) =>
+    [head].concat(map((item) => item[index], tail))
+
+  const reduce = (fn) => (init, array) => {
+    var result = init, i;
+
+    for (i = 0; i < array.length; i++)
+      result = fn(result, array[i])
+
+    return result
+  }
+
+  const member = reduce((result, element) => ({
+    type: "Member",
+    object: result,
+    property: element.property,
+    computed: element.computed
+  }))
+
+  const memberOrCall = reduce((result, element) => {
+    element[TYPES_TO_PROPERTY_NAMES[element.type]] = result
+    return element
+  })
+
+  const binary = reduce((result, element) => ({
+    type: "Binary",
+    operator: element[1],
+    left: result,
+    right: element[3]
+  }))
+
+  function r(type, location, rest) {
+    return Object.assign({ type, location: location() }, rest)
+  }
+}
+
+Start = __ program:Program __ { return program; }
+
+Program =
+  body:Statements?
+  { return r("Program", location, { body }) }
+
+Statements =
+  head:Statement tail:(__ Statement)*
+  { return list(head, tail, 1) }
+
+Statement =
+  Export / Call / Assignment / If / Cond
+
+Export =
+  ExportToken __ expression:Expression
+  { return r("Export", location, { expression }) }
+
+ExportToken = "export" !IdChar
+
+Call =
+  head:(
+    callee:Member args:Arguments
+    { return { type: "Call", callee, args } }
+  )
+  tail:(
+    args:Arguments
+    { return { type: "Call", args } }
+    / __ "[" __ property:Expression __ "]"
+    { return { type: "Member", property, computed: true } }
+    / __ "." __ property:IdName
+    { return { type: "Member", property, computed: false } }
+  )*
+  { return memberOrCall(head, tail) }
+
+
+
+
+
+Assignment =
+  left:Member __ "=" !"=" __ right:Expression
+  { return r("Assignment", location, { left, right }) }
+
+// Value must precede Op, 'cause of / (RegExp, division)
+Expression =
+  If / Cond / Lambda / Ternary / Testable
+Testable = Binary / Unary / Operable
+Operable = Call / OpCall / Member / Value
+
+Ternary =
+  test:Binary __ "?" __ consequent:Expression __ ':' __ alternate:Expression
+  { return r("Ternary", location, { test, consequent, alternate }) }
+
+OpCall =
+  op:Op args:Arguments
+  { return r("OpCall", location, { op, args }) }
+
+Binary =
+  head:BinaryUnit tail:(Ss Op Ss BinaryUnit)*
+  { return binary(head, tail) }
+
+BinaryUnit =
+  "(" __ expr:Binary __ ")" { return Object.assign({ parens: true }, expr) }
+  / Unary
+
+Unary =
+  Operable / operator:UnaryOp __ argument:Unary
+  { return r('Unary', location, { operator, argument }) }
+
+/* Member */
+Member =
+  head:Id
+  tail:(
+    __ "[" __ property:Expression __ "]"
+    { return { property, computed: true } }
+    / __ "." __ property:IdName
+    { return { property, computed: false } }
+  )*
+  { return member(head, tail) }
+
+Arguments =
+  "(" __ args:ArgumentList? __ ")"
+  { return args || [] }
+
+ArgumentList =
+  head:Expression tail:(__ "," __ Expression)*
+  { return list(head, tail, 3); }
+
+SourceChar = .
+
+S "whitespace" = "\t" / "\v" / "\f" / " " / "\u00A0" / "\uFEFF"
+
+LineTerminator = [\n\r\u2028\u2029]
+
+LineTerminatorSequence "end of line" = "\n" / "\r\n" / "\r" / "\u2028" / "\u2029"
+
+Comment "comment" = MultiLineComment / SingleLineComment
+
+MultiLineComment = "/*" (!"*/" SourceChar)* "*/"
+
+MultiLineCommentNoLineTerminator = "/*" (!("*/" / LineTerminator) SourceChar)* "*/"
+
+SingleLineComment = "//" (!LineTerminator SourceChar)*
+
+Id = !ReservedWord name:IdName { return name; }
+
+IdName "identifier" =
+  head:IdChar tail:IdRest*
+  { return r("Id", location, { name: head + tail.join("") }) }
+
+IdChar = [A-Za-z_]
+IdRest = IdChar / [0-9]
+
+ReservedWord = CondToken / ElseToken / IfToken / ExportToken / NullLiteral / BooleanLiteral
+
+/* Null */
+NullLiteral = NullToken { return r("Null", location) }
+NullToken = "null" !IdChar
+
+/* Bool */
+BooleanLiteral = TrueLiteral / FalseLiteral
+FalseLiteral = FalseToken { return r("False", location) }
+FalseToken = "false" !IdChar
+TrueLiteral  = TrueToken  { return r("True", location) }
+TrueToken = "true" !IdChar
+
+/*
+ * The "!(IdChar / DecimalDigit)" predicate is not part of the official
+ * grammar, it comes from text in section 7.8.3.
+ */
+NumericLiteral "number" =
+  literal:(HexIntLiteral / OctalIntLiteral / DecimalLiteral)  !(IdChar / DecimalDigit)
+  { return literal }
+
+OctalIntLiteral =
+  "0"+ OctalDigit+
+  { return r("Octal", location, { value: text() }) }
+
+// here it is diff from JS, doesn't allow '123.' or '.123'
+// in JS you can't have 123.func(), weird. Write about that!
+DecimalLiteral =
+  DecimalIntLiteral ("." DecimalDigit+)? ExponentPart?
+  { return r("Decimal", location, { value: text() }) }
+
+DecimalIntLiteral =
+  "0" / NonZeroDigit DecimalDigit* { return text() }
+
+DecimalDigit = [0-9]
+NonZeroDigit = [1-9]
+OctalDigit = [0-7]
+
+ExponentPart = ExponentIndicator SignedInt
+
+ExponentIndicator = "e"i
+
+SignedInt = [+-]? DecimalDigit+
+
+HexIntLiteral = "0x"i digits:$HexDigit+ { return r("Hex", location, { value: text() }) }
+
+HexDigit = [0-9a-f]i
+
+StringLiteral "string" =
+  '"' chars:DoubleStringChar* '"'
+  { return r("String", location, { value: chars.join("") }) }
+  / "'" chars:SingleStringChar* "'"
+  { return r("String", location, { value: chars.join("") }) }
+
+DoubleStringChar =
+  "\\" sequence:EscapeSequence { return sequence }
+  / !'"' SourceChar { return text() }
+  / LineContinuation
+
+SingleStringChar =
+  "\\" sequence:EscapeSequence { return sequence }
+  / !"'" SourceChar { return text() }
+  / LineContinuation
+
+LineContinuation = "\\" LineTerminatorSequence { return "" }
+
+EscapeSequence =
+  CharEscapeSequence
+  / "0" !DecimalDigit { return "\0" }
+  / HexEscapeSequence
+  / UnicodeEscapeSequence
+
+CharEscapeSequence = SingleEscapeChar / NonEscapeChar
+
+SingleEscapeChar =
+  "'"
+  / '"'
+  / "\\"
+  / "b"  { return "\b" }
+  / "f"  { return "\f" }
+  / "n"  { return "\n" }
+  / "r"  { return "\r" }
+  / "t"  { return "\t" }
+  / "v"  { return "\x0B" } // IE does not recognize "\v".
+
+HexEscapeSequence =
+  "x" digits:$(HexDigit HexDigit)
+  { return String.fromCharCode(parseInt(digits, 16)) }
+
+UnicodeEscapeSequence =
+  "u" digits:$(HexDigit HexDigit HexDigit HexDigit)
+  { return String.fromCharCode(parseInt(digits, 16)) }
+
+NonEscapeChar = !(EscapeChar / LineTerminator) SourceChar { return text() }
+
+EscapeChar = SingleEscapeChar / DecimalDigit / "x" / "u"
+
+/* RegExp */
+RegExp "regular expression" =
+  "/" pattern:$RegExpBody "/" flags:$RegExpFlags
+  { return r("RegExp", location, { value: text() }) }
+
+RegExpBody = RegExpFirstChar RegExpChar*
+
+RegExpFirstChar = ![*\\/[] RegExpNonTerminator / RegExpBackslashSequence / RegExpClass
+
+RegExpChar = ![\\/[] RegExpNonTerminator / RegExpBackslashSequence / RegExpClass
+
+RegExpBackslashSequence = "\\" RegExpNonTerminator
+
+RegExpNonTerminator = !LineTerminator SourceChar
+
+RegExpClass = "[" RegExpClassChar* "]"
+
+RegExpClassChar = ![\]\\] RegExpNonTerminator / RegExpBackslashSequence
+
+RegExpFlags = IdChar*
+
+__ = (S / LineTerminatorSequence / Comment)*
+Ss = (S / LineTerminatorSequence)+
+
+/* Value literals */
+Value =
+  Id / NullLiteral / BooleanLiteral / NumericLiteral / StringLiteral
+  / RegExp / Range / ArrayLiteral / ObjectLiteral
+
+/* Range */
+Range "range" =
+  "[" from:DecimalIntLiteral ".." to:DecimalIntLiteral "]"
+  { return { type: "Range", from, to } }
+
+/* Array */
+ArrayLiteral =
+  "[" __ elements:ElementList? __ "]"
+  { return { type: "Array", elements: elements || [] } }
+
+ElementList =
+  head:( element:Expression { return element } )
+  tail:( __ "," __ element:Expression { return element } )*
+  { return Array.prototype.concat.apply(head, tail) }
+
+/* Object */
+ObjectLiteral =
+  "{" __ properties:PropertyKeyAndValueList? __ "}"
+  { return { type: "Object", properties: properties || [] } }
+
+PropertyKeyAndValueList =
+  head:PropertyAssignment tail:(__ "," __ PropertyAssignment)*
+  { return list(head, tail, 3) }
+
+PropertyAssignment =
+  key:PropertyName __ ":" __ value:Expression
+  { return { key, value, kind: "init" } }
+
+PropertyName = IdName / StringLiteral
+
+/* Ops */
+UnaryOp = "!"
+FunctionalOp = "@?" / "|>" / "<|" / "!@" / "@s" / "@=" / $("@" ![?]) / "->" / "<-"
+MathOp = "**" / "*" / "/" / "%" / "+" / "-"
+RelationalOp = "<=" / ">=" / "<" / ">"
+EqualityOp = "==" / "!="
+BitwiseOp = ">>" / $("&" ![&=]) / "^" / $("|" ![>|])
+LogicalOp = "&&" / "||"
+
+Op = FunctionalOp / MathOp / RelationalOp / EqualityOp / BitwiseOp / LogicalOp
+
+/* If */
+If
+  = IfToken __ "(" __ test:Testable __ ")" __ then:Expression __ ElseToken __ else_:Expression
+  { return { type: "If", test, then, else: else_ } }
+  / IfToken __ "(" __ test:Testable __ ")" __ then:Expression
+  { return { type: "If", test, then, else: null } }
+
+IfExpression
+  = IfToken __ "(" __ test:Testable __ ")" __ then:Expression __ ElseToken __ else_:Expression
+  { return { type: "If", test, then, else: else_ } }
+
+IfToken = "if" !IdChar
+ElseToken = "else" !IdChar
+
+/* Cond */
+Cond =
+  CondToken __ "(" __ discriminant:Testable __ ")" __ cases:CaseBlock
+  { return { type: "Cond", discriminant, cases } }
+
+CondToken = 'cond' !IdChar
+
+CaseBlock =
+  before:CaseClauses? __ else_:ElseClause
+  { return before.concat(else_) }
+
+CaseClauses =
+  head:CaseClause tail:(__ CaseClause)*
+  { return list(head, tail, 1); }
+
+CaseClause =
+  test:(Call / OpCall) __ consequent:Expression
+  { return { test, consequent } }
+
+ElseClause =
+  ElseToken __ consequent:Expression
+  { return { consequent } }
+
+/* Lambda */
+Lambda =
+  params:Params __ ArrowToken __ body:Expression
+  { return { type: "Lambda", params, body } }
+
+Params = "(" __ params:ParamList? __ ")" { return params || [] }
+ParamList = head:Id tail:(__ "," __ Id)* { return list(head, tail, 3); }
+
+ArrowToken = "=>"

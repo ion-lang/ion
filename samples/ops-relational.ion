@@ -1,0 +1,22 @@
+a = 5
+b = 2
+
+put(a > b)
+put(5 > 2)
+put(5 > b)
+put(a > 2)
+
+put(a < b)
+put(5 < 2)
+put(5 < b)
+put(a < 2)
+
+put(a >= b)
+put(5 >= 2)
+put(5 >= b)
+put(a >= 2)
+
+put(a <= b)
+put(5 <= 2)
+put(5 <= b)
+put(a <= 2)

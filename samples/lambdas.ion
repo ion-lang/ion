@@ -1,0 +1,23 @@
+// just value
+foo = () => 'John'
+put(foo(), ' == John')
+
+// with params
+sum3 = (a, b, c) => a + b + c
+put(sum3(1,2,3), ' == 6')
+
+// curryied by default!
+put(sum3(5)(4)(3), ' == 12')
+
+// empty object
+empty = () => {}
+put(empty(), ' == {}')
+
+fnFn = () => () => 'double'
+put(fnFn()(), ' == double')
+
+fnFnFn = () => () => () => 'triple'
+put(fnFnFn()()(), ' == triple')
+
+sum2 = (x) => (y) => x + y
+put(sum2(1)(1), ' == 2')

@@ -1,0 +1,18 @@
+foo = {
+  foo: [
+    1,
+    2,
+    3
+  ],
+  bar: "bar",
+  baz: 1,
+  boom: 0x123,
+  bam: {
+    bam1: {
+      bam2: {
+        bam3: {
+        }
+      }
+    }
+  }
+}

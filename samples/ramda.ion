@@ -1,0 +1,29 @@
+
+add5Mult2 = compose(*(2), +(5))
+put(add5Mult2(2))
+
+bigger18 = >(__, 18)
+
+put(any(bigger18, [1,9,19,22]), '== false')
+put(all(bigger18, [1,9,19,22]), '== true')
+
+
+add5Mult3 = *(3) <| +(5)
+put(add5Mult3(2))
+
+path = ['a', 'b', 'c', '1']
+object = {a: {b: {c: [0, 1, 2]}}}
+
+secondC = @(path)
+b = @(['a', 'b'])
+a = @('a')
+put('a' @ object, path @ object, secondC(object), b(object), a(object))
+
+put(map(+(100) <| @('x'), [{x: 1}, {x: 2}, {x:3}]))
+
+/*
+object = {a: {b: {c: [0, 1, 2]}}}
+put('a' @? object)
+put(['a', 'b'] @? object)
+put('b' @? object)
+*/

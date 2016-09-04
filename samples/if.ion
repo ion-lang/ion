@@ -1,0 +1,32 @@
+coffeeTime = true
+
+// regular if with boolean
+if (coffeeTime)
+  put('It is coffee time!')
+else
+  put('Not coffee time...')
+
+fruits = ['banana', 'apple', 'plum']
+// regular if with op
+if (fruits.length > 3)
+  put("Lot's of fruits!")
+else
+  put('Some fruits')
+
+score = 5
+// if as expression
+status = if (score >= 6)
+  'passed'
+else
+  'bailed'
+
+put('status', status)
+
+// if as expression inline
+age = 22
+beer = if (age >= 21) 'can' else 'cannot'
+put('beer', beer)
+
+// ternary
+drive = age < 18 ? 'nope' : 'yep'
+put('drive', drive)

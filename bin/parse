@@ -1,0 +1,22 @@
+#!/usr/bin/env node
+
+const prettify = require('../helpers/prettify')
+const prettyjson = require('prettyjson')
+const peg = require('pegjs')
+const fs = require('fs')
+const ion = peg.buildParser(fs.readFileSync('./parser/ion.peg', 'utf8'))
+const program = fs.readFileSync(process.argv[2], 'utf8')
+try {
+  const parsed = ion.parse(program)
+  console.log(prettyjson.render(parsed))
+} catch (e) {
+  if (e.location) {
+    console.log(prettify(program, e.location))
+    console.log('---')
+    console.log(e.message)
+    console.log('---')
+    console.log(e.name)
+  } else {
+    console.log(e)
+  }
+}

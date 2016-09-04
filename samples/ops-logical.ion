@@ -1,0 +1,2 @@
+put(!true, '= false')
+put(!false, '= true')

@@ -1,0 +1,17 @@
+a = 'simple'
+
+b = "double"
+
+c = 'multiple
+lines
+are
+ok'
+
+d = "really
+ok
+see?"
+
+e = 'I \u2661 ion!'
+f = 'asd\'asd'
+
+put(a, b, c, d, e, f)
