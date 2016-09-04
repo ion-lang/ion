@@ -173,6 +173,16 @@ status = if (action)
   else               'unknown
 ```
 
+## Usage
+
+```
+ion -h                 // help
+ion file.ion           // compiles to JS, returns to stdout
+ion file.ion > file.js // compiles to JS, writes to file.js
+ion -e file.ion        // compiles to JS, executes with node (4+ will work)
+ion -a file.ion        // returns ion's AST
+```
+
 ## Status
 
 Ion is still a toy language and far from 1.0. Beware.
