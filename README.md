@@ -37,7 +37,7 @@ typeof /a/       // 'object`
 
 Ion (based on Ramda's `type`):
 
-```ion
+```js
 type(1)          // 'Number'
 type("a")        // 'String'
 type(null)       // 'Null'
@@ -51,7 +51,7 @@ type(/a/)        // 'Regexp`
 
 Based on Ramda's `equals`:
 
-```ion
+```js
 // All true
 1 == 1
 "1" == "1"
@@ -71,13 +71,13 @@ null == null
 
 ###### All variables are `consts`s
 
-```ion
+```js
 age = 22 // compiles to 'const age = 22'
 ```
 
 ###### All functions are curried
 
-```ion
+```js
 sayTo = (greet, name) => `${greet}, ${name}!`
 sayTo('Hello', 'John') // 'Hello, John!'
 sayTo('Hello')('John') // 'Hello, John!'
@@ -88,9 +88,9 @@ sayHelloTo('John') // 'Hello, John'
 
 ###### Blocks can have only one expression, and this is returned by default
 
-```ion
+```js
 age = 22
-status = if(age >= 18) 
+status = if(age >= 18)
   'adult'
 else
   'minor'
@@ -100,7 +100,7 @@ addFive = (n) => n + 5
 
 ###### Ramda is treated as the stdlib
 
-```ion
+```js
 map((a) => a + 1, [1, 2, 3, 4, 5, 6, 7, 8, 9])
 // => [2, 3, 4, 5, 6, 7, 8, 9, 10]
 ```
@@ -109,14 +109,14 @@ Once used, Ramda's `map` will be included by default.
 
 ###### Operators are seen as functions
 
-```ion
+```js
 map(+(1), [1, 2, 3, 4, 5, 6, 7, 8, 9])
 // => [2, 3, 4, 5, 6, 7, 8, 9, 10]
 ```
 
 ###### Range type (only for integers so far)
 
-```ion
+```js
 map(+(1), [1..9])
 // => [2, 3, 4, 5, 6, 7, 8, 9, 10]
 ```
@@ -125,28 +125,28 @@ map(+(1), [1..9])
 
 `->` is map
 
-```ion
+```js
 +(1) -> [1..9]
 // => [2, 3, 4, 5, 6, 7, 8, 9, 10]
 ```
 
 `|>` is pipe
 
-```ion
+```js
 add2AndThenMult3 = +(2) |> *(3)
 add2AndThenMult3(1) // => 9
 ```
 
 `<|` is compose
 
-```ion
+```js
 mult3AndThenAdd2 = +(2) <| *(3)
 mult3AndThenAdd2(1) // => 5
 ```
 
 `@` gets attribute of object, may be deep (works with Ramda's lens stuff)
 
-```ion
+```js
 'name' @ {name: 'John'} // => 'John'
 
 firstMovieName = ['movies', 0, 'name'] @ {movies: [{name: 'Rambo'}, ...]} // => 'Rambo'
@@ -157,7 +157,7 @@ dupAllPrices([{price: 1}, {price: 2}]) //  => [2, 4]
 
 `**` is Math.pow
 
-```ion
+```js
 3 ** 2 // => 9
 ```
 
@@ -168,7 +168,7 @@ Different than clojure's.
 ```
 status = if (action)
   ==('CLICK')  		 'clicked'
-  test(/_SUCCESS$/)  'worked' 
+  test(/_SUCCESS$/)  'worked'
   !=('HOVER)         'not hover'
   else               'unknown
 ```
