@@ -61,7 +61,7 @@ Statements =
   { return list(head, tail, 1) }
 
 Statement =
-  Export / Call / Assignment / If / Cond
+  Export / Call / Assignment / If
 
 Export =
   ExportToken __ expression:Expression
@@ -91,7 +91,7 @@ Assignment =
 // Value must precede Op, 'cause of / (RegExp, division)
 Expression =
   ExpressionWithWhere / ExpressionWithoutWhere
-ExpressionWithoutWhere = If / Cond / Lambda / Ternary / Testable
+ExpressionWithoutWhere = If / Lambda / Ternary / Testable
 Testable = Binary / Unary / Operable
 Operable = Call / OpCall / Member / Value
 
@@ -173,7 +173,7 @@ IdName "identifier" =
 IdChar = [A-Za-z_]
 IdRest = IdChar / [0-9]
 
-ReservedWord = CondToken / ElseToken / IfToken / ExportToken / NullLiteral / BooleanLiteral
+ReservedWord = ElseToken / IfToken / ExportToken / NullLiteral / BooleanLiteral
 
 /* Null */
 NullLiteral = NullToken { return r("Null", location) }
@@ -222,10 +222,17 @@ HexIntLiteral = "0x"i digits:$HexDigit+ { return r("Hex", location, { value: tex
 HexDigit = [0-9a-f]i
 
 StringLiteral "string" =
-  '"' chars:DoubleStringChar* '"'
+  '`' chars:BacktickStringChar* '`'
+  { return r("String", location, { value: chars.join("") }) }
+  / '"' chars:DoubleStringChar* '"'
   { return r("String", location, { value: chars.join("") }) }
   / "'" chars:SingleStringChar* "'"
   { return r("String", location, { value: chars.join("") }) }
+
+BacktickStringChar =
+  "\\" sequence:EscapeSequence { return sequence }
+  / !'`' SourceChar { return text() }
+  / LineContinuation
 
 DoubleStringChar =
   "\\" sequence:EscapeSequence { return sequence }
@@ -339,7 +346,7 @@ PropertyAssignment =
 PropertyName = IdName / StringLiteral
 
 /* Ops */
-UnaryOp = "!"
+UnaryOp = "!" / "->>"
 FunctionalOp = "@?" / "|>" / "<|" / "!@" / "@s" / "@=" / $("@" ![?]) / "->" / "<-"
 MathOp = "**" / "*" / "/" / "%" / "+" / "-"
 RelationalOp = "<=" / ">=" / "<" / ">"
@@ -362,29 +369,6 @@ IfExpression
 
 IfToken = "if" !IdChar
 ElseToken = "else" !IdChar
-
-/* Cond */
-Cond =
-  CondToken __ "(" __ discriminant:Testable __ ")" __ cases:CaseBlock
-  { return { type: "Cond", discriminant, cases } }
-
-CondToken = 'cond' !IdChar
-
-CaseBlock =
-  before:CaseClauses? __ else_:ElseClause
-  { return before.concat(else_) }
-
-CaseClauses =
-  head:CaseClause tail:(__ CaseClause)*
-  { return list(head, tail, 1); }
-
-CaseClause =
-  test:(Call / OpCall) __ consequent:Expression
-  { return { test, consequent } }
-
-ElseClause =
-  ElseToken __ consequent:Expression
-  { return { consequent } }
 
 /* Lambda */
 Lambda =

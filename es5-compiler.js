@@ -37,7 +37,8 @@ const opMap = {
   '**': 'pow',
   '==': 'equals',
   '|>': 'pipe',
-  '<|': 'compose'
+  '<|': 'compose',
+  '->>': 'always'
 }
 
 const specialOps = ['@', '@?']
@@ -47,6 +48,7 @@ const call = (fn, args) => `${fn}(${args.join ? args.join(',') : args})`
 
 let exportCount = 0
 let declaredVars = []
+let mapTo = null
 
 function c (e, assignmentId) {
   switch (e.type) {
@@ -132,8 +134,6 @@ function c (e, assignmentId) {
     case 'Range':
       includedHelpers.push('range')
       return call('range', [e.from, parseInt(e.to) + 1])
-    case 'Unary':
-      return `${e.operator}${c(e.argument)}`
     case 'Id':
       if (!~declaredVars.indexOf(e.name)) {
         const ramdaInclude = ~ramdaAutoIncludes.indexOf(e.name)
@@ -162,11 +162,21 @@ function c (e, assignmentId) {
     case 'String':
       return JSON.stringify(e.value)
     case 'Unary':
-      return `!${c(e.argument)}`
+      mapTo = opMap[e.operator]
+
+      if (mapTo) {
+        includedHelpers.push(mapTo)
+        return `${mapTo}(${c(e.argument)})`
+      // } else if (e.parens) {
+        // return `(${l}${e.operator}${r})`
+      } else {
+        return `${e.operator}${c(e.argument)}`
+      }
+
     case 'Binary':
       const l = c(e.left)
       const r = c(e.right)
-      const mapTo = opMap[e.operator]
+      mapTo = opMap[e.operator]
 
       if (e.operator === '@') {
         includedHelpers.concat('lensPath', 'view')

@@ -12,8 +12,7 @@ Main features:
 - Ramda is treated as the stdlib;
 - Operators are seen as functions;
 - Range type (only for integers so far);
-- Some new operators: `->`, `|>`, `<|`, `@`, `**` and more;
-- `cond` construct;
+- Some new operators: `->`, `|>`, `<|`, `@`, `**`, `->>` and more;
 - `where` construct;
 
 Things removed:
@@ -21,6 +20,7 @@ Things removed:
 - `this`, `class` and all things OO;
 - `function`: only lambdas;
 - `typeof`: use only `type` function;
+- `switch/case`: use `cond` function;
 - All mutable ops, like `-=`, `*=`, `++` ...;
 - All 3 char ops, like `===`, `!==`;
 - Many unknown JS features, like `>>`, `>>>`;
@@ -162,16 +162,11 @@ dupAllPrices([{price: 1}, {price: 2}]) //  => [2, 4]
 3 ** 2 // => 9
 ```
 
-###### `cond` construct
-
-Different than clojure's.
+`->>` is `always` (a function that always returns a determined value)
 
 ```js
-status = if (action)
-  ==('CLICK')  		 'clicked'
-  test(/_SUCCESS$/)  'worked'
-  !=('HOVER)         'not hover'
-  else               'unknown
+a = ->> 5
+a() // => 5
 ```
 
 ###### `where` construct
@@ -195,6 +190,18 @@ ion file.ion > file.js // compiles to JS, writes to file.js
 ion -e file.ion        // compiles to JS, executes with node (4+ will work)
 ion -a file.ion        // returns ion's AST
 ```
+
+## Credits
+
+ion is inspired by:
+
+- Ramda;
+- Haskell: operators as functions, currying by default, etc...;
+- Elm: nice operators for composition;
+- io: everything is a function / very few reserve words;
+- es6/7: spreads, template strings, lambda syntax...;
+- es5: everything else;
+- Cobol: just kidding;
 
 ## Status
 

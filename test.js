@@ -19,8 +19,8 @@ const compileError = (code, err, msg) => {
   })
 }
 
-invalidSyntax('a *= 1', 'no redefinition of variables')
-invalidSyntax('a += 1', 'no redefinition of variables')
+invalidSyntax('a *= 1', 'no redefinition of variables (*=)')
+invalidSyntax('a += 1', 'no redefinition of variables (+=)')
 invalidSyntax('012345678', 'no invalid octals')
 invalidSyntax('{ get foo () { 1 } }', 'no getters')
 invalidSyntax('{a: 1,}', 'no dangling commas')
@@ -29,9 +29,12 @@ invalidSyntax('function foo() {}', 'no function statement')
 invalidSyntax('export 1; a = 2', 'no semicolon')
 invalidSyntax('a = 1+1', 'no missing space in binary ops')
 
-compileError(`
-export 1
-export 2`, /Multiple exports/, 'no multiple export')
+// compileError(`
+// export 1
+// export 2`, /Multiple exports/, 'no multiple export')
+
+// a = 1
+// a = 2
 
 glob('samples/*.ion', (err, files) => {
   if (err) {
