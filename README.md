@@ -1,3 +1,5 @@
+![ion logo](logo.png)
+
 # ion language
 
 Ion is a little language that compiles to JavaScript. It doesn't try to be completely different than JavaScript, but it attemps to strip it to the minimal set of functional features of the language, while exteding it to have some more. It relies heavily on [Ramda](https://github.com/ramda/ramda).
