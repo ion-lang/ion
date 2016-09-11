@@ -3,11 +3,10 @@ foo = (x) =>
     a = x * 2,
     b = x * 3
 
-console.log(foo(5))
-
+put(foo(5))
 
 x = a + b where
   a = 5,
   b = 6
 
-console.log(x)
+put(x)

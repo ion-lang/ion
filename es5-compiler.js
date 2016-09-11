@@ -55,10 +55,10 @@ function c (e, assignmentId) {
         // TODO: validate duplicated vars
         declaredVars.push(e.left.name)
         var _assignmentId = c(e.left)
-        return `const ${_assignmentId}=${c(e.right, _assignmentId)}`
+        return `const ${_assignmentId} = ${c(e.right, _assignmentId)}`
       } else {
         var _assignmentId = c(e.left)
-        return `${_assignmentId}=${c(e.right, _assignmentId)}`
+        return `${_assignmentId} = ${c(e.right, _assignmentId)}`
       }
     case 'Export':
       if (exportCount > 0) {
@@ -80,13 +80,15 @@ function c (e, assignmentId) {
         ? `${c(e.test)}?${c(e.then)}:${c(e.else)}`
         : wrap(`if(${c(e.test)})return ${c(e.then)}`)
     case 'Object':
-      const props = []
-      var prop
-      for (var i = 0; i < e.properties.length; i++) {
-        prop = e.properties[i]
-        props.push(`${c(prop.key)}: ${c(prop.value)}`)
+      if (R.any((p) => p.type === 'Spread', e.properties)) {
+        includedHelpers.push('mergeAll')
+
+        return `mergeAll([${R.map((p) => p.type === 'Spread' ? c(p) : `{${c(p.key)}: ${c(p.value)}}`, e.properties).join(', ')}])`
+      } else {
+        const props = R.map((p) => `${c(p.key)}: ${c(p.value)}`, e.properties)
+        return `{${props.join(',')}}`
       }
-      return `{${props.join(',')}}`
+
     case 'Lambda':
       if (e.params.length) {
         const params = cAll(e.params).join(',')
@@ -177,7 +179,16 @@ function c (e, assignmentId) {
         return `${l}${e.operator}${r}`
       }
     case 'Array':
-      return `[${cAll(e.elements).join(', ')}]`
+      if (R.any((el) => el.type === 'Spread', e.elements)) {
+        includedHelpers.push('reduce')
+        includedHelpers.push('concat')
+
+        return `reduce(concat, [], [${R.map((el) => el.type === 'Spread' ? c(el) : `[${c(el)}]`, e.elements)}])`
+      } else {
+        return `[${cAll(e.elements).join(', ')}]`
+      }
+    case 'Spread':
+      return c(e.spreaded)
     case 'Ternary':
       return `${c(e.test)}?${c(e.consequent)}:${c(e.alternate)}`
     case 'Cond':

@@ -12,7 +12,7 @@ module.exports = function prettify (code, location) {
       location.start.line + 6 < idx) return
     return idx + 1 === location.start.line
       ? colors.red.inverse(` ${idx + 1} | ${line}`)
-        + "\n" + spaces(5).join('') + colors.dim(`${dots(location.start.column - 1).join('')}^`)
+        + "\n" + spaces(5).join('') + colors.dim(`${dots(location.start.column).join('')}^`)
       : colors.gray(` ${idx + 1} | `) +  line
   }, code.split('\n'))).join('\n') + '\n...'
 }

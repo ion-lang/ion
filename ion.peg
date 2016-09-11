@@ -309,9 +309,14 @@ ArrayLiteral =
   "[" __ elements:ElementList? __ "]"
   { return { type: "Array", elements: elements || [] } }
 
+ExpressionOrSpread =
+  Expression / SpreadArray
+
+SpreadArray = "..." spreaded:(Id / ArrayLiteral) { return r("Spread", location, {spreaded}) }
+
 ElementList =
-  head:( element:Expression { return element } )
-  tail:( __ "," __ element:Expression { return element } )*
+  head:( element:ExpressionOrSpread { return element } )
+  tail:( __ "," __ element:ExpressionOrSpread { return element } )*
   { return Array.prototype.concat.apply(head, tail) }
 
 /* Object */
@@ -319,8 +324,12 @@ ObjectLiteral =
   "{" __ properties:PropertyKeyAndValueList? __ "}"
   { return { type: "Object", properties: properties || [] } }
 
+PropertyAssignmentOrSpread =
+  PropertyAssignment / SpreadObject
+SpreadObject = "..." spreaded:(Id / ObjectLiteral) { return r("Spread", location, {spreaded}) }
+
 PropertyKeyAndValueList =
-  head:PropertyAssignment tail:(__ "," __ PropertyAssignment)*
+  head:PropertyAssignmentOrSpread tail:(__ "," __ PropertyAssignmentOrSpread)*
   { return list(head, tail, 3) }
 
 PropertyAssignment =
