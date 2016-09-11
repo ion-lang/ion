@@ -4,3 +4,10 @@ foo = (x) =>
     b = x * 3
 
 console.log(foo(5))
+
+
+x = a + b where
+  a = 5,
+  b = 6
+
+console.log(x)

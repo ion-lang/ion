@@ -14,6 +14,7 @@ Main features:
 - Range type (only for integers so far);
 - Some new operators: `->`, `|>`, `<|`, `@`, `**` and more;
 - `cond` construct;
+- `where` construct;
 
 Things removed:
 
@@ -165,13 +166,25 @@ dupAllPrices([{price: 1}, {price: 2}]) //  => [2, 4]
 
 Different than clojure's.
 
-```
+```js
 status = if (action)
   ==('CLICK')  		 'clicked'
   test(/_SUCCESS$/)  'worked'
   !=('HOVER)         'not hover'
   else               'unknown
 ```
+
+###### `where` construct
+
+Where makes sure variables are local, and they are part of an expression, so you can do things like:
+
+```js
+foo = (x) =>
+  a + b where
+    a = x * 2,
+    b = x * 3
+```
+
 
 ## Usage
 
