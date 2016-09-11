@@ -1,14 +1,14 @@
 'use strict'
 
 const R = require('ramda')
-const prettify = require('./helpers/prettify')
+const displayError = require('./helpers/displayError')
 
 let includedHelpers = []
 const parser = require('./parser')
 
 function CompileError (message, e) {
   this.message = message
-  this.name = message
+  this.name = 'CompileError'
   this.location = e.location
 }
 
@@ -52,8 +52,12 @@ function c (e, assignmentId) {
   switch (e.type) {
     case 'Assignment':
       if (e.left.type === 'Id') {
-        // TODO: validate duplicated vars
+        if (~declaredVars.indexOf(e.left.name)) {
+          throw new CompileError(`Variable '${e.left.name}' has already been declared.`, e)
+        }
+
         declaredVars.push(e.left.name)
+
         var _assignmentId = c(e.left)
         return `const ${_assignmentId} = ${c(e.right, _assignmentId)}`
       } else {
@@ -204,15 +208,6 @@ function c (e, assignmentId) {
   }
 }
 
-const err = (program, e) => {
-  console.log(prettify(program, e.location))
-  console.log('---')
-  console.log(e.message)
-  console.log('---')
-  console.log(e.name)
-  throw e
-}
-
 const cAll = R.map(c)
 const MAIN_FUNCTIONS = ['const put = console.log']
 const localIncludes = ['pow', 'diffs']
@@ -228,7 +223,7 @@ function compile (program) {
      compiled = c(ast)
   } catch (e) {
     if (e.location) {
-      err(program, e)
+      displayError(program, e)
     } else {
       console.log(e)
     }
