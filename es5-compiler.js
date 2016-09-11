@@ -67,6 +67,8 @@ function c (e, assignmentId) {
 
       exportCount++
       return `module.exports = ${c(e.expression)}`
+    case 'Where':
+      return wrap(`${cAll(e.assignments).join(';')};return ${c(e.expression)}`)
     case 'Program':
       return cAll(e.body)
     case 'Member':

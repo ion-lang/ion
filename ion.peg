@@ -84,19 +84,30 @@ Call =
   )*
   { return memberOrCall(head, tail) }
 
-
-
-
-
 Assignment =
   left:Member __ "=" !"=" __ right:Expression
   { return r("Assignment", location, { left, right }) }
 
 // Value must precede Op, 'cause of / (RegExp, division)
 Expression =
-  If / Cond / Lambda / Ternary / Testable
+  ExpressionWithWhere / ExpressionWithoutWhere
+ExpressionWithoutWhere = If / Cond / Lambda / Ternary / Testable
 Testable = Binary / Unary / Operable
 Operable = Call / OpCall / Member / Value
+
+ExpressionWithWhere =
+  expression:(ExpressionWithoutWhere) __ WhereToken __ assignments:AssignmentList {
+    return r("Where", location, {expression, assignments})
+  }
+
+AssignmentList =
+  head:Assignment tail:(__ "," __ Assignment)*
+  { return list(head, tail, 3) }
+
+  // Params = "(" __ params:ParamList? __ ")" { return params || [] }
+  // ParamList = head:Id tail:(__ "," __ Id)* { return list(head, tail, 3); }
+
+WhereToken = "where"
 
 Ternary =
   test:Binary __ "?" __ consequent:Expression __ ':' __ alternate:Expression

@@ -1,0 +1,6 @@
+foo = (x) =>
+  a + b where
+    a = x * 2,
+    b = x * 3
+
+console.log(foo(5))
