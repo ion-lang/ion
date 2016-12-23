@@ -38,7 +38,7 @@ const opMap = {
   '==': 'equals',
   '|>': 'pipe',
   '<|': 'compose',
-  '->>': 'always'
+  '<-': 'map',
 }
 
 const specialOps = ['@', '@?']
@@ -114,6 +114,7 @@ function c (e, assignmentId) {
             includedHelpers.push('lensPath')
             includedHelpers.push('view')
 
+            console.log('>>>>>>>', e.args)
             return call('view', call('lensPath', cAll(e.args)))
           case 'String':
             includedHelpers.push('prop')
@@ -179,9 +180,17 @@ function c (e, assignmentId) {
       mapTo = opMap[e.operator]
 
       if (e.operator === '@') {
-        includedHelpers.concat('lensPath', 'view')
 
-        return call('view', [call('lensPath', l), r])
+        if (e.left.type === 'Array') {
+          includedHelpers.push('lensPath')
+          includedHelpers.push('view')
+
+          return call('view', [call('lensPath', l), r])
+        } else {
+          includedHelpers.push('prop')
+
+          return call('prop', [l, r])
+        }
       }
 
       if (mapTo) {

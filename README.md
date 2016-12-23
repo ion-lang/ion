@@ -164,13 +164,6 @@ dupAllPrices([{price: 1}, {price: 2}]) //  => [2, 4]
 3 ** 2 // => 9
 ```
 
-`->>` is `always` (a function that always returns a determined value)
-
-```js
-a = ->> 5
-a() // => 5
-```
-
 ###### `where` construct
 
 Where makes sure variables are local, and they are part of an expression, so you can do things like:
@@ -181,6 +174,9 @@ foo = (x) =>
     a = x * 2,
     b = x * 3
 ```
+
+## Examples
+
 
 
 ## Usage
@@ -199,7 +195,7 @@ ion is inspired by:
 
 - Ramda;
 - Haskell: operators as functions, currying by default, etc...;
-- Elm: nice operators for composition;
+- Elm/Elixir: nice operators for composition;
 - io: everything is a function / very few reserve words;
 - es6/7: spreads, template strings, lambda syntax...;
 - es5: everything else;
