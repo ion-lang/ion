@@ -1,0 +1,9 @@
+name = 'name' @ {name: 'John'} // => 'John'
+put(name)
+
+firstMovieName = ['movies', 0, 'name'] @ {movies: [{name: 'Rambo'}]} // => 'Rambo'
+put(firstMovieName)
+
+dupAllPrices = map(@('price') |> *(2))
+dupdPrices = dupAllPrices([{price: 1}, {price: 2}]) //  => [2, 4]
+put(dupdPrices)
