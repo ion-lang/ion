@@ -1,4 +1,6 @@
-![ion logo](logo.png)
+<p align="center">
+ <img src="logo.png" /
+</p>
 
 # ion language
 
