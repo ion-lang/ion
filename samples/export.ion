@@ -1,7 +1,2 @@
 export (age) =>
-  cond([
-    [>=(65), ->> 'senior'],
-    [>=(21), ->> 'adult'],
-    [>=(13), ->> 'teen'],
-    [T, ->>'child']
-  ])(age)
+  age + 1

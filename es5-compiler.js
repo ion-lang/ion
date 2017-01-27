@@ -1,5 +1,4 @@
 'use strict'
-
 const R = require('ramda')
 const displayError = require('./helpers/displayError')
 
@@ -31,7 +30,14 @@ const opCallMap = {
   '!=': 'diffs'
 }
 
-const ramdaAutoIncludes = Object.keys(R)
+const autoIncludes = R.fromPairs(R.map((r) => [r, `ramda/src/${r}`], Object.keys(R)))
+autoIncludes['pow'] = './js/pow'
+autoIncludes['diffs'] = './js/diffs'
+autoIncludes['Task'] = 'data.task'
+autoIncludes['fs'] = 'fs'
+autoIncludes['path'] = 'path'
+
+const autoInstance = ['Task']
 
 const opMap = {
   '**': 'pow',
@@ -104,7 +110,10 @@ function c (e, assignmentId) {
         return `function() {return ${c(e.body)}}`
       }
     case 'Call':
-      return call(c(e.callee), cAll(e.args))
+      const callee = ~autoInstance.indexOf(e.callee.name)
+        ? `new ${c(e.callee)}`
+        : c(e.callee)
+      return call(callee, cAll(e.args))
     case 'OpCall':
       if (e.op === '@') {
         let path
@@ -137,8 +146,7 @@ function c (e, assignmentId) {
       return call('range', [e.from, parseInt(e.to) + 1])
     case 'Id':
       if (!~declaredVars.indexOf(e.name)) {
-        const ramdaInclude = ~ramdaAutoIncludes.indexOf(e.name)
-        if (ramdaInclude) {
+        if (autoIncludes[e.name]) {
           includedHelpers.push(e.name)
         }
       }
@@ -163,6 +171,7 @@ function c (e, assignmentId) {
     case 'String':
       return JSON.stringify(e.value)
     case 'Unary':
+      
       mapTo = opMap[e.operator]
 
       if (mapTo) {
@@ -229,7 +238,6 @@ function c (e, assignmentId) {
 
 const cAll = R.map(c)
 const MAIN_FUNCTIONS = ['const put = console.log']
-const localIncludes = ['pow', 'diffs']
 function compile (program) {
   includedHelpers = []
   exportCount = 0
@@ -248,11 +256,7 @@ function compile (program) {
     }
   }
 
-  const includes = R.map((helper) => (
-    ~R.indexOf(helper, localIncludes)
-      ? `const ${helper} = require('./js/${helper}')`
-      : `const ${helper} = require('ramda/src/${helper}')`
-  ), R.uniq(includedHelpers))
+  const includes = R.map((helper) => `const ${helper} = require('${autoIncludes[helper]}')`, R.uniq(includedHelpers))
 
   return MAIN_FUNCTIONS.concat(includes).concat(compiled).join(';\n')
 }
