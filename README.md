@@ -1,15 +1,49 @@
 <p align="center">
- <img src="logo.png" /
-</p>
+ <img src="logo.png" />
 
 # ion language
 
-Ion is a little language that compiles to JavaScript. It doesn't try to be completely different than JavaScript, but it attemps to strip it to the minimal set of functional features of the language, while exteding it to have some more. It relies heavily on [Ramda](https://github.com/ramda/ramda).
+Ion is a little language that compiles to JavaScript. It doesn't try to be
+completely different than JavaScript, but it attemps to strip it to the minimal
+set of functional features of the language, while extending it to have some
+more. It relies heavily on libraries supporting
+[Fantasy Land](https://github.com/fantasyland/fantasy-land), such as
+[Ramda](https://github.com/ramda/ramda),
+[Santuary](https://github.com/sanctuary-js/sanctuary) and
+[Folktale](https://github.com/folktale/)
 
-Main features:
+##### One example
 
-- Improved type detection;
-- Improved comparisons;
+The following example is a solution to the
+["async problem"](https://github.com/plaid/async-problem), using the same tools
+behind the scenes as the
+[Task solution](https://github.com/plaid/async-problem/blob/master/tasks.js).
+
+```js
+path = require('path')
+
+readFile = (filename) =>
+  Task((rej, res) =>
+    fs.readFile(path.resolve(filename), {encoding: 'utf8'}, (err, data) =>
+      err ? rej(err) : res(data)))
+
+concatFiles = fs.readFile
+  | map(trim)
+  | map(split('\n'))
+  | map(map(fs.readFile))
+  | chain(sequence(Task.of))
+  | map(map(trim))
+  | map(join(','))
+
+concatFiles('./samples/task/index.txt').fork(
+  (err) => put('Error: ', err),
+  (data) => put('Result: ', data)
+)
+```
+
+##### Features
+
+- Improved type detection and comparisons;
 - All variables are `const`s;
 - All functions are curried;
 - Blocks can have only one expression, and this is returned by default;
@@ -31,26 +65,38 @@ Things removed:
 
 ###### Improved type detection
 
-JavaScript:
-
-```js
+<table>
+  <tr>
+    <th>JavaScript</th>
+    <th>Ion</th>
+  </tr>
+  <tr>
+    <td>
+      <code>
+      <pre>
 typeof null      // 'object'
 typeof []        // 'object'
 typeof {}        // 'object'
 typeof /a/       // 'object`
-```
-
-Ion (based on Ramda's `type`):
-
-```js
-type(1)          // 'Number'
-type("a")        // 'String'
+    </pre>
+      </code>
+    </td>
+    <td>
+	 	<code>
+    		<pre>
 type(null)       // 'Null'
 type([])         // 'Array'
 type({})         // 'Object'
+type(1)          // 'Number'
+type("a")        // 'String'
 type(() => 1)    // 'Function'
-type(/a/)        // 'Regexp`
-```
+type(/a/)        // 'Regexp'    		
+    		</pre>
+      </code>
+    </td>
+  </tr>
+</table>
+
 
 ###### Improved comparisons
 
@@ -135,18 +181,11 @@ map(+(1), [1..9])
 // => [2, 3, 4, 5, 6, 7, 8, 9, 10]
 ```
 
-`|>` is pipe
+`|` is pipe (sorta like in bash)
 
 ```js
-add2AndThenMult3 = +(2) |> *(3)
+add2AndThenMult3 = +(2) | *(3)
 add2AndThenMult3(1) // => 9
-```
-
-`<|` is compose
-
-```js
-mult3AndThenAdd2 = +(2) <| *(3)
-mult3AndThenAdd2(1) // => 5
 ```
 
 `@` gets attribute of object, may be deep (works with Ramda's lens stuff)
@@ -156,7 +195,7 @@ mult3AndThenAdd2(1) // => 5
 
 firstMovieName = ['movies', 0, 'name'] @ {movies: [{name: 'Rambo'}, ...]} // => 'Rambo'
 
-dupAllPrices = map(@('price') |> *(2))
+dupAllPrices = map(@('price') | *(2))
 dupAllPrices([{price: 1}, {price: 2}]) //  => [2, 4]
 ```
 
@@ -176,6 +215,46 @@ foo = (x) =>
     a = x * 2,
     b = x * 3
 ```
+
+### Extended types
+
+###### Maybe
+
+```js
+userName = undefined
+put(Maybe.fromNullable(userName).getOrElse("anonymous"))
+```
+
+###### Either
+
+```js
+put(
+  Either
+    .fromNullable(null)
+    .map(+(1))
+    .getOrElse(1)
+)
+
+put(
+  Either
+    .fromNullable(5)
+    .map(+(1))
+    .getOrElse(1)
+)
+```
+
+###### Task
+
+```js
+Task.of(10).fork(
+  concat('Err! ') | put,
+  concat('Ok! ') | put
+)
+```
+
+
+
+
 
 ## Examples
 
