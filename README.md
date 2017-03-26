@@ -72,18 +72,15 @@ Things removed:
   </tr>
   <tr>
     <td>
-      <code>
-      <pre>
+<pre lang="js>
 typeof null      // 'object'
 typeof []        // 'object'
 typeof {}        // 'object'
-typeof /a/       // 'object`
-    </pre>
-      </code>
+typeof /a/       // 'object'
+</pre>
     </td>
     <td>
-	 	<code>
-    		<pre>
+<pre lang="js">
 type(null)       // 'Null'
 type([])         // 'Array'
 type({})         // 'Object'
@@ -91,9 +88,8 @@ type(1)          // 'Number'
 type("a")        // 'String'
 type(() => 1)    // 'Function'
 type(/a/)        // 'Regexp'    		
-    		</pre>
-      </code>
-    </td>
+</pre>
+    </td>    
   </tr>
 </table>
 
