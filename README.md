@@ -64,33 +64,42 @@ Things removed:
 - Many unknown JS features, like `>>`, `>>>`;
 
 
+##### Improved type detection
 ```js
-// Improved type detection
 
-// JS                          |   // Ion
-typeof null      // 'object'   |   type(null)       // 'Null'
-typeof []        // 'object'   |   type([])         // 'Array'
-typeof {}        // 'object'   |   type({})         // 'Object'  
-typeof /a/       // 'object'.  |   type(/a/)        // 'Regexp'
-
-// Improved comparisons
-
-// JS                          |   // Ion
-1 == "1"         // true       |   1 == "1"         // false
-NaN == NaN       // false      |   NaN == NaN       // true
-[] == []         // false      |   [] == []         // true
-{} == {}         // false      |   {} == {}         // true      
-/a/ == /a/       // false.     |   /a/ == /a/       // true
-
-// All variables are `consts`s
-
-// JS                          |   // Ion
-const age = 22                 | age = 22
-let age = 22                   | // check "where" below
-var age = 22                   | // check "where" below
-
-// All functions are curried
-
+// JS          |   // Ion
+typeof null    |   type(null)
+// 'object'    |   // 'Null'
+typeof []      |   type([])
+// 'object'    |   // 'Array'
+typeof {}      |   type({})
+// 'object'    |   // 'Object'
+typeof /a/     |   type(/a/)
+// 'object'    |   // 'Regexp'
+```
+##### Improved comparisons
+```js
+// JS          |   // Ion
+1 == "1"       |   1 == "1"
+// true        |   // false
+NaN == NaN     |   NaN == NaN
+// false       |   // true
+[] == []       |   [] == []
+// false       |   // true
+{} == {}       |   {} == {}
+// false       |   // true
+/a/ == /a/     |   /a/ == /a/
+// false       |   // true
+```
+##### All variables are `consts`s
+```js
+// JS          |   // Ion
+const age = 22 | age = 22
+let age = 22   | // check "where" below
+var age = 22   | // check "where" below
+```
+##### All functions are curried
+```js
 sayTo = (greet, name) =>
   `${greet}, ${name}!`
 sayTo('Hello', 'John') // 'Hello, John!'
@@ -98,9 +107,9 @@ sayTo('Hello')('John') // 'Hello, John!'
 
 sayHelloTo = sayTo('Hello')
 sayHelloTo('John') // 'Hello, John'
-
-// Blocks can have only one expression, and this is returned by default
-
+```
+##### Blocks can have only one expression, and this is returned by default
+```js
 age = 22
 status = if(age >= 18)
   'adult'
@@ -108,21 +117,21 @@ else
   'minor'
 
 addFive = (n) => n + 5  
-
-// Ramda is treated as the stdlib
-
+```
+##### Ramda is treated as the stdlib
+```js
 map((a) => a + 1, [1, 2, 3]) // => [2, 3, 4]
-
-// Operators are seen as functions
-
+```
+##### Operators are seen as functions
+```js
 map(+(1), [1, 2, 3]) // => [2, 3, 4]
-
-// Range type (only for integers so far)
-
+```
+##### Range type (only for integers so far)
+```js
 map(+(1), [1..3]) // => [2, 3, 4]
-
-// Some new operators: `->`, `|>`, `<|`, `@`, `**`, `->>` and more;
-
+```
+##### Some new operators:
+```js
 // `<-` is map
 
 +(1) <- [1..3] // => [2, 3, 4]
@@ -140,11 +149,11 @@ add2AndThenMult3(1) // => 9
 
 dupAllPrices = map(@('price') | *(2))
 dupAllPrices([{price: 1}, {price: 2}]) //  => [2, 4]
-
-// `where` construct
-// Where makes sure variables are local, and they are part of an expression.
-// It's a safe substitute for var/let:
-
+```
+##### `where` construct
+Where makes sure variables are local, and they are part of an expression.
+It's a safe substitute for var/let:
+```js
 foo = (x) =>
   a + b where
     a = x * 2,
@@ -156,25 +165,15 @@ foo = (x) =>
 ```js
 // Maybe
 
-Maybe
-  .fromNullable(undefined)
-  .getOrElse('anonymous') // 'anonymous'
+Maybe.of(undefined).getOrElse('anonymous') // 'anonymous'
 
-Maybe
-  .fromNullable('john')
-  .getOrElse('anonymous') // 'john'
+Maybe.of('john').getOrElse('anonymous') // 'john'
 
 // Either
 
-Either
-  .fromNullable(null)
-  .map(+(1))
-  .getOrElse(1) // 1
+Either.of(null).map(+(1)).getOrElse(1) // 1
 
-Either
-  .fromNullable(5)
-  .map(+(1))
-  .getOrElse(1) // 6
+Either.of(5).map(+(1)).getOrElse(1) // 6
 
 // Task (equivalent of Promise)
 
