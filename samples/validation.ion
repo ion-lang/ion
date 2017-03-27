@@ -1,0 +1,30 @@
+// check: http://robotlolita.me/2013/12/08/a-monad-in-practicality-first-class-failures.html
+
+check = (fn, error, value) => fn(value)
+  ? Validation.Success()
+  : Validation.Failure([error])
+
+passwordTooShort = check( length | flip(gte)(8), 'password too short')
+
+passwordLacksNumber = check(test(/\d/), 'password needs to contain a number')
+
+passwordLacksWordChar = check(test(/[a-z]/), 'password needs to contain a word char')
+
+validName = check(test(/\w+/), 'name is invalid')
+
+validAccount = (name, password) =>
+  Validation.Success(curryN(4, () => [name, password]))
+     .ap(validName(name))
+     .ap(passwordTooShort(password))
+     .ap(passwordLacksNumber(password))
+     .ap(passwordLacksWordChar(password))
+
+put(
+  validAccount('', ''),
+  validAccount('', '').isSuccess
+)
+
+put(
+  validAccount('Joe', 'aaaa1111'),
+  validAccount('Joe', 'aaaa1111').isSuccess
+)

@@ -1,0 +1,13 @@
+userName = undefined
+put(Maybe.fromNullable(userName).getOrElse("anonymous"))
+
+put('/////')
+get = (prop, obj) => Maybe.of(obj[prop])
+transform = pipeK(
+  get('a'),
+  get('b'),
+  get('c')
+)
+
+put(transform(Maybe.of({a: {b: {c: 1}}})).isJust)
+put(transform(Maybe.of({a: {b: {d: 1}}})).isJust)

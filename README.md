@@ -63,79 +63,44 @@ Things removed:
 - All 3 char ops, like `===`, `!==`;
 - Many unknown JS features, like `>>`, `>>>`;
 
-###### Improved type detection
-
-<table>
-  <tr>
-    <th>JavaScript</th>
-    <th>Ion</th>
-  </tr>
-  <tr>
-    <td>
-<pre lang="js>
-typeof null      // 'object'
-typeof []        // 'object'
-typeof {}        // 'object'
-typeof /a/       // 'object'
-</pre>
-    </td>
-    <td>
-<pre lang="js">
-type(null)       // 'Null'
-type([])         // 'Array'
-type({})         // 'Object'
-type(1)          // 'Number'
-type("a")        // 'String'
-type(() => 1)    // 'Function'
-type(/a/)        // 'Regexp'    		
-</pre>
-    </td>    
-  </tr>
-</table>
-
-
-###### Improved comparisons
-
-Based on Ramda's `equals`:
 
 ```js
-// All true
-1 == 1
-"1" == "1"
-null == null
-[] == []
-[1, 2, 3] == [1, 2, 3]
-{} == {}
-{a: 1} == {a: 1}
-/a/ == /a/
+// Improved type detection
 
-// All false
-1 == "1"
-[3, 2, 1] == [1, 2, 3]
-{a: 1} == {a: "1"}
-/a/ == /ab/
-```
+// JS                          |   // Ion
+typeof null      // 'object'   |   type(null)       // 'Null'
+typeof []        // 'object'   |   type([])         // 'Array'
+typeof {}        // 'object'   |   type({})         // 'Object'  
+typeof /a/       // 'object'.  |   type(/a/)        // 'Regexp'
 
-###### All variables are `consts`s
+// Improved comparisons
 
-```js
-age = 22 // compiles to 'const age = 22'
-```
+// JS                          |   // Ion
+1 == "1"         // true       |   1 == "1"         // false
+NaN == NaN       // false      |   NaN == NaN       // true
+[] == []         // false      |   [] == []         // true
+{} == {}         // false      |   {} == {}         // true      
+/a/ == /a/       // false.     |   /a/ == /a/       // true
 
-###### All functions are curried
+// All variables are `consts`s
 
-```js
-sayTo = (greet, name) => `${greet}, ${name}!`
+// JS                          |   // Ion
+const age = 22                 | age = 22
+let age = 22                   | // check "where" below
+var age = 22                   | // check "where" below
+
+// All functions are curried
+
+sayTo = (greet, name) =>
+  `${greet}, ${name}!`
 sayTo('Hello', 'John') // 'Hello, John!'
 sayTo('Hello')('John') // 'Hello, John!'
 
 sayHelloTo = sayTo('Hello')
 sayHelloTo('John') // 'Hello, John'
-```
 
-###### Blocks can have only one expression, and this is returned by default
+// Blocks can have only one expression, and this is returned by default
 
-```js
 age = 22
 status = if(age >= 18)
   'adult'
@@ -143,69 +108,43 @@ else
   'minor'
 
 addFive = (n) => n + 5  
-```
 
-###### Ramda is treated as the stdlib
+// Ramda is treated as the stdlib
 
-```js
-map((a) => a + 1, [1, 2, 3, 4, 5, 6, 7, 8, 9])
-// => [2, 3, 4, 5, 6, 7, 8, 9, 10]
-```
+map((a) => a + 1, [1, 2, 3]) // => [2, 3, 4]
 
-Once used, Ramda's `map` will be included by default.
+// Operators are seen as functions
 
-###### Operators are seen as functions
+map(+(1), [1, 2, 3]) // => [2, 3, 4]
 
-```js
-map(+(1), [1, 2, 3, 4, 5, 6, 7, 8, 9])
-// => [2, 3, 4, 5, 6, 7, 8, 9, 10]
-```
+// Range type (only for integers so far)
 
-###### Range type (only for integers so far)
+map(+(1), [1..3]) // => [2, 3, 4]
 
-```js
-map(+(1), [1..9])
-// => [2, 3, 4, 5, 6, 7, 8, 9, 10]
-```
+// Some new operators: `->`, `|>`, `<|`, `@`, `**`, `->>` and more;
 
-###### Some new operators: `->`, `|>`, `<|`, `@`, `**`, `->>` and more;
+// `<-` is map
 
-`<-` is map
++(1) <- [1..3] // => [2, 3, 4]
 
-```js
-+(1) <- [1..9]
-// => [2, 3, 4, 5, 6, 7, 8, 9, 10]
-```
+// `|` is pipe (sorta like in bash)
 
-`|` is pipe (sorta like in bash)
-
-```js
 add2AndThenMult3 = +(2) | *(3)
 add2AndThenMult3(1) // => 9
-```
 
-`@` gets attribute of object, may be deep (works with Ramda's lens stuff)
+// `@` gets attribute of object, may be deep
 
-```js
 'name' @ {name: 'John'} // => 'John'
 
-firstMovieName = ['movies', 0, 'name'] @ {movies: [{name: 'Rambo'}, ...]} // => 'Rambo'
+['movies', 0, 'name'] @ {movies: [{name: 'Rambo'}, ...]} // => 'Rambo'
 
 dupAllPrices = map(@('price') | *(2))
 dupAllPrices([{price: 1}, {price: 2}]) //  => [2, 4]
-```
 
-`**` is Math.pow
+// `where` construct
+// Where makes sure variables are local, and they are part of an expression.
+// It's a safe substitute for var/let:
 
-```js
-3 ** 2 // => 9
-```
-
-###### `where` construct
-
-Where makes sure variables are local, and they are part of an expression, so you can do things like:
-
-```js
 foo = (x) =>
   a + b where
     a = x * 2,
@@ -214,47 +153,37 @@ foo = (x) =>
 
 ### Extended types
 
-###### Maybe
-
 ```js
-userName = undefined
-put(Maybe.fromNullable(userName).getOrElse("anonymous"))
-```
+// Maybe
 
-###### Either
+Maybe
+  .fromNullable(undefined)
+  .getOrElse('anonymous') // 'anonymous'
 
-```js
-put(
-  Either
-    .fromNullable(null)
-    .map(+(1))
-    .getOrElse(1)
-)
+Maybe
+  .fromNullable('john')
+  .getOrElse('anonymous') // 'john'
 
-put(
-  Either
-    .fromNullable(5)
-    .map(+(1))
-    .getOrElse(1)
-)
-```
+// Either
 
-###### Task
+Either
+  .fromNullable(null)
+  .map(+(1))
+  .getOrElse(1) // 1
 
-```js
+Either
+  .fromNullable(5)
+  .map(+(1))
+  .getOrElse(1) // 6
+
+// Task (equivalent of Promise)
+
 Task.of(10).fork(
-  concat('Err! ') | put,
-  concat('Ok! ') | put
+  concat('Error: ') | put,
+  concat('Result: ') | put
 )
+
 ```
-
-
-
-
-
-## Examples
-
-
 
 ## Usage
 
