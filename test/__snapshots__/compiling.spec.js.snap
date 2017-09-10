@@ -1,0 +1,532 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`compile succeeds for async.ion 1`] = `
+"const put = console.log;
+const Task = require('data.task');
+const of = require('ramda/src/of');
+const Async = require(\\"control.async\\")(Task);
+const wait = Async.delay;
+Async.parallel([wait(5000), wait(4000), wait(3000)]).fork(put,put);
+Async.choice([wait(5000), wait(4000), wait(3000)]).fork(put,put);
+const ok = Task.of(true);
+const meh = Task.rejected(false);
+Async.tryAll([meh, meh, ok]).fork(put,put)"
+`;
+
+exports[`compile succeeds for bash.ion 1`] = `
+"const put = console.log;
+const Task = require('data.task');
+const curry = require('ramda/src/curry');
+const fs = require('fs');
+const diffs = require('../js/diffs');
+const of = require('ramda/src/of');
+const Async = require(\\"control.async\\")(Task);
+const readFile = function(filename) {return new Task(curry(function(rej,res) {return fs.readFile(filename,{encoding: \\"utf8\\"},curry(function(err,data) {return diffs(err, null)?rej(err):res(data)}))}))};
+const wait = Async.delay;
+Async.parallel([wait(5000), wait(4000), wait(3000)]).fork(put,put);
+Async.choice([wait(5000), wait(4000), wait(3000)]).fork(put,put);
+const ok = Task.of(true);
+const meh = Task.rejected(false);
+Async.tryAll([meh, meh, ok]).fork(put,put)"
+`;
+
+exports[`compile succeeds for compose.ion 1`] = `
+"const put = console.log;
+const add = require('ramda/src/add');
+const multiply = require('ramda/src/multiply');
+const pipe = require('ramda/src/pipe');
+const moreOneMultTwo = pipe(add(1), multiply(2));
+put(moreOneMultTwo(1))"
+`;
+
+exports[`compile succeeds for either.ion 1`] = `
+"const put = console.log;
+const Either = require('data.either');
+const of = require('ramda/src/of');
+const map = require('ramda/src/map');
+const add = require('ramda/src/add');
+const multiply = require('ramda/src/multiply');
+put(Either.of(null).map(add(1)).getOrElse(1));
+put(Either.of(5).map(add(1)).getOrElse(1));
+put(Either.of(null).bimap(function() {return 0},function(x) {return multiply(x, 2)}));
+put(Either.of(5).bimap(function() {return 0},function(x) {return multiply(x, 2)}))"
+`;
+
+exports[`compile succeeds for empty.ion 1`] = `"const put = console.log"`;
+
+exports[`compile succeeds for equality.ion 1`] = `
+"const put = console.log;
+const equals = require('ramda/src/equals');
+put(equals(1, 1));
+put(equals(\\"1\\", \\"1\\"));
+put(equals(null, null));
+put(equals([], []));
+put(equals([1, 2, 3], [1, 2, 3]));
+put(equals({}, {}));
+put(equals({a: 1}, {a: 1}));
+put(equals(/a/, /a/));
+const a = function() {return 1};
+const b = function() {return 2};
+put(equals(a, a));
+put(\\"---\\");
+put(equals(1, \\"1\\"));
+put(equals([3, 2, 1], [1, 2, 3]));
+put(equals({a: 1}, {a: \\"1\\"}));
+put(equals(/a/, /ab/));
+put(equals(a, b))"
+`;
+
+exports[`compile succeeds for export.ion 1`] = `
+"const put = console.log;
+const add = require('ramda/src/add');
+module.exports = function(age) {return add(age, 1)}"
+`;
+
+exports[`compile succeeds for fract.ion 1`] = `"const put = console.log"`;
+
+exports[`compile succeeds for fs-task.ion 1`] = `
+"const put = console.log;
+const Task = require('data.task');
+const curry = require('ramda/src/curry');
+const fs = require('fs');
+const diffs = require('../js/diffs');
+const invoker = require('ramda/src/invoker');
+const pipe = require('ramda/src/pipe');
+const map = require('ramda/src/map');
+const match = require('ramda/src/match');
+const Async = require(\\"control.async\\")(Task);
+const read = function(filename) {return new Task(curry(function(rej,res) {return fs.readFile(filename,{encoding: \\"utf8\\"},curry(function(err,data) {return diffs(err, null)?rej(err):res(data)}))}))};
+const fork = invoker(2,\\"fork\\");
+const z = pipe(map(read),map(match(\\"a\\")),map(fork(console.error,console.log)));
+z([\\"a.js\\"])"
+`;
+
+exports[`compile succeeds for if.ion 1`] = `
+"const put = console.log;
+const length = require('ramda/src/length');
+const gt = require('ramda/src/gt');
+const gte = require('ramda/src/gte');
+const lt = require('ramda/src/lt');
+const coffeeTime = true;
+coffeeTime?put(\\"It is coffee time!\\"):put(\\"Not coffee time...\\");
+const fruits = [\\"banana\\", \\"apple\\", \\"plum\\"];
+gt(fruits.length, 3)?put(\\"Lot's of fruits!\\"):put(\\"Some fruits\\");
+const score = 5;
+const status = gte(score, 6)?\\"passed\\":\\"bailed\\";
+put(\\"status\\",status);
+const age = 22;
+const beer = gte(age, 21)?\\"can\\":\\"cannot\\";
+put(\\"beer\\",beer);
+const drive = lt(age, 18)?\\"nope\\":\\"yep\\";
+put(\\"drive\\",drive)"
+`;
+
+exports[`compile succeeds for json.ion 1`] = `
+"const put = console.log;
+const foo = {foo: [1, 2, 3],bar: \\"bar\\",baz: 1,boom: 0x123,bam: {bam1: {bam2: {bam3: {}}}}}"
+`;
+
+exports[`compile succeeds for lambdas.ion 1`] = `
+"const put = console.log;
+const curry = require('ramda/src/curry');
+const add = require('ramda/src/add');
+const foo = function() {return \\"John\\"};
+put(foo(),\\" == John\\");
+const sum3 = curry(function(a,b,c) {return add(add(a, b), c)});
+put(sum3(1,2,3),\\" == 6\\");
+put(sum3(5)(4)(3),\\" == 12\\");
+const empty = function() {return {}};
+put(empty(),\\" == {}\\");
+const fnFn = function() {return function() {return \\"double\\"}};
+put(fnFn()(),\\" == double\\");
+const fnFnFn = function() {return function() {return function() {return \\"triple\\"}}};
+put(fnFnFn()()(),\\" == triple\\");
+const sum2 = function(x) {return function(y) {return add(x, y)}};
+put(sum2(1)(1),\\" == 2\\")"
+`;
+
+exports[`compile succeeds for map.ion 1`] = `
+"const put = console.log;
+const add = require('ramda/src/add');
+const map = require('ramda/src/map');
+const ns = map(add(1), [1, 2, 3]);
+put(ns)"
+`;
+
+exports[`compile succeeds for maybe.ion 1`] = `
+"const put = console.log;
+const Maybe = require('data.maybe');
+const prop = require('ramda/src/prop');
+const curry = require('ramda/src/curry');
+const of = require('ramda/src/of');
+const pipeK = require('ramda/src/pipeK');
+const userName = undefined;
+put(Maybe.fromNullable(userName).getOrElse(\\"anonymous\\"));
+put(\\"/////\\");
+const get = curry(function(prop,obj) {return Maybe.of(obj[prop])});
+const transform = pipeK(get(\\"a\\"),get(\\"b\\"),get(\\"c\\"));
+put(transform(Maybe.of({a: {b: {c: 1}}})).isJust);
+put(transform(Maybe.of({a: {b: {d: 1}}})).isJust)"
+`;
+
+exports[`compile succeeds for obj-calls.ion 1`] = `
+"const put = console.log;
+const a = {a: 1};
+put(a.a,\\"== 1\\");
+const b = {b: function() {return 2}};
+put(b.b(),\\"== 2\\");
+const c = [1, 2, 3];
+put(c[2],\\"== 3\\");
+const d = [[1, 2], [3, 4], [5, 6, [5]]];
+put(d[1][1],\\"== 4\\");
+put(d[2][2][0],\\"== 5\\");
+const e = {e: function() {return {e: 6}}};
+put(e.e().e,\\"== 6\\");
+const f = [[[function() {return {f: function() {return {f: [[[7]]]}}}}]]];
+put(f[0][0][0]().f().f[0][0][0],\\"== 7\\")"
+`;
+
+exports[`compile succeeds for ops-as-functions.ion 1`] = `
+"const put = console.log;
+const add = require('ramda/src/add');
+const map = require('ramda/src/map');
+const subtract = require('ramda/src/subtract');
+const __ = require('ramda/src/__');
+const multiply = require('ramda/src/multiply');
+const divide = require('ramda/src/divide');
+const pow = require('../js/pow');
+const filter = require('ramda/src/filter');
+const gt = require('ramda/src/gt');
+const equals = require('ramda/src/equals');
+const diffs = require('../js/diffs');
+const curry = require('ramda/src/curry');
+const add1 = add(1);
+put(map(add1,[1, 2, 3]),\\" == [ 2, 3, 4 ]\\");
+put(\\"---\\");
+put(map(subtract(1),[1, 2, 3]),\\" == [ 0, -1, -2 ]\\");
+put(map(subtract(__,1),[1, 2, 3]),\\" == [ 0, 1, 2 ]\\");
+put(\\"---\\");
+put(map(multiply(2),[1, 2, 3]),\\" == [ 2, 4, 6 ]\\");
+put(map(multiply(__,2),[1, 2, 3]),\\" == [ 2, 4, 6 ]\\");
+put(\\"---\\");
+put(map(divide(2),[4, 8, 16]),\\" == [ 0.5, 0.25, 0.125 ]\\");
+put(map(divide(__,2),[4, 8, 16]),\\" == [ 2, 4, 8 ]\\");
+put(\\"---\\");
+put(map(pow(2),[1, 2, 3, 4, 5]),\\" == [ 2, 4, 8, 16, 32 ]\\");
+put(map(pow(__,2),[1, 2, 3, 4, 5]),\\" == [ 1, 4, 9, 16, 25 ]\\");
+put(\\"---\\");
+put(filter(gt(__,10),[7, 9, 11, 13]),\\" == [ 11, 13 ]\\");
+put(filter(equals(5),[4, 5, 6, 5, 4, 5]),\\" == [ 5, 5, 5 ]\\");
+put(filter(diffs(5),[4, 5, 6, 5, 4, 5]),\\" == [ 4, 6, 4 ]\\");
+const addAndMult = curry(function(y,x) {return multiply(add(x, y), y)});
+const add2AndMult2 = addAndMult(2);
+put(add2AndMult2(5),\\" == 14\\")"
+`;
+
+exports[`compile succeeds for ops-bitwise.ion 1`] = `
+"const put = console.log;
+const pipe = require('ramda/src/pipe');
+put(1&1);
+put(1&0);
+put(0&0);
+put(\\"---\\");
+put(1^1);
+put(1^0);
+put(0^0);
+put(\\"---\\");
+put(pipe(1, 1));
+put(pipe(1, 0));
+put(pipe(0, 0))"
+`;
+
+exports[`compile succeeds for ops-logical.ion 1`] = `
+"const put = console.log;
+put(!true,\\"= false\\");
+put(!false,\\"= true\\")"
+`;
+
+exports[`compile succeeds for ops-math.ion 1`] = `
+"const put = console.log;
+const add = require('ramda/src/add');
+const subtract = require('ramda/src/subtract');
+const multiply = require('ramda/src/multiply');
+const divide = require('ramda/src/divide');
+const gt = require('ramda/src/gt');
+const equals = require('ramda/src/equals');
+const pow = require('../js/pow');
+const modulo = require('ramda/src/modulo');
+const a = 10;
+const b = 2;
+put(add(a, b),\\" == 12\\");
+put(add(10, 2),\\" == 12\\");
+put(add(10, b),\\" == 12\\");
+put(add(a, 2),\\" == 12\\");
+put(subtract(a, b),\\" == 8\\");
+put(subtract(10, 2),\\" == 8\\");
+put(subtract(10, b),\\" == 8\\");
+put(subtract(a, 2),\\" == 8\\");
+put(multiply(a, b),\\" == 20\\");
+put(multiply(10, 2),\\" == 20\\");
+put(multiply(10, b),\\" == 20\\");
+put(multiply(a, 2),\\" == 20\\");
+put(divide(a, b),\\" == 5\\");
+put(divide(10, 2),\\" == 5\\");
+put(divide(10, b),\\" == 5\\");
+put(divide(a, 2),\\" == 5\\");
+put(multiply(add(multiply(a, b), a), b),\\" == 40\\");
+put(gt(multiply(add(multiply(a, b), a), b), 39),\\" == true\\");
+put(gt(multiply(add(multiply(a, b), a), b), 40),\\" == false\\");
+put(equals(gt(multiply(add(multiply(a, b), a), b), 40), false),\\" == true\\");
+put(pow(a, b),\\" == 100\\");
+put(pow(10, 2),\\" == 100\\");
+put(pow(10, b),\\" == 100\\");
+put(pow(a, 2),\\" == 100\\");
+put(modulo(a, b),\\" == 0\\");
+put(modulo(a, 3),\\" == 1\\");
+put(modulo(a, 4),\\" == 2\\")"
+`;
+
+exports[`compile succeeds for ops-relational.ion 1`] = `
+"const put = console.log;
+const gt = require('ramda/src/gt');
+const lt = require('ramda/src/lt');
+const gte = require('ramda/src/gte');
+const a = 5;
+const b = 2;
+put(gt(a, b));
+put(gt(5, 2));
+put(gt(5, b));
+put(gt(a, 2));
+put(lt(a, b));
+put(lt(5, 2));
+put(lt(5, b));
+put(lt(a, 2));
+put(gte(a, b));
+put(gte(5, 2));
+put(gte(5, b));
+put(gte(a, 2));
+put(a<=b);
+put(5<=2);
+put(5<=b);
+put(a<=2)"
+`;
+
+exports[`compile succeeds for promise.ion 1`] = `
+"const put = console.log;
+const curry = require('ramda/src/curry');
+const then = require('../js/then');
+const add = require('ramda/src/add');
+const pipe = require('ramda/src/pipe');
+const returnWithDelay = curry(function(time,val) {return new Promise(curry(function(res,rej) {return setTimeout(function() {return res(val)},time)}))});
+const x = pipe(pipe(pipe(pipe(pipe(returnWithDelay(4000), then(add(1))), then(add(1))), then(add(1))), then(add(1))), then(put));
+x(1)"
+`;
+
+exports[`compile succeeds for promise-catch.ion 1`] = `
+"const put = console.log;
+const curry = require('ramda/src/curry');
+const then = require('../js/then');
+const add = require('ramda/src/add');
+const pipe = require('ramda/src/pipe');
+const err = curry(function(time,val) {return new Promise(curry(function(res,rej) {return throw(\\"err\\")}))});
+const x = pipe(pipe(pipe(pipe(pipe(err(4000), then(add(1))), then(add(1))), then(add(1))), then(add(1))), then(put));
+x(1)"
+`;
+
+exports[`compile succeeds for ramda.ion 1`] = `
+"const put = console.log;
+const compose = require('ramda/src/compose');
+const multiply = require('ramda/src/multiply');
+const add = require('ramda/src/add');
+const gt = require('ramda/src/gt');
+const __ = require('ramda/src/__');
+const any = require('ramda/src/any');
+const all = require('ramda/src/all');
+const pipe = require('ramda/src/pipe');
+const lensPath = require('ramda/src/lensPath');
+const view = require('ramda/src/view');
+const prop = require('ramda/src/prop');
+const map = require('ramda/src/map');
+const add5Mult2 = compose(multiply(2),add(5));
+put(add5Mult2(2));
+const bigger18 = gt(__,18);
+put(any(bigger18,[1, 9, 19, 22]),\\"== false\\");
+put(all(bigger18,[1, 9, 19, 22]),\\"== true\\");
+const mult3Add5 = pipe(multiply(3), add(5));
+put(mult3Add5(2));
+const path = [\\"a\\", \\"b\\", \\"c\\", \\"1\\"];
+const object = {a: {b: {c: [0, 1, 2]}}};
+const secondC = view(lensPath(path));
+const b = view(lensPath([\\"a\\", \\"b\\"]));
+const a = prop(\\"a\\");
+put(prop(\\"a\\",object),\\"||\\",secondC(object),\\"||\\",b(object),\\"||\\",a(object),\\"||\\",view(lensPath([\\"d\\"]),object));
+put(map(pipe(prop(\\"x\\"), add(100)),[{x: 1}, {x: 2}, {x: 3}]))"
+`;
+
+exports[`compile succeeds for readFile.ion 1`] = `
+"const put = console.log;
+const Task = require('data.task');
+const curry = require('ramda/src/curry');
+const fs = require('fs');
+const diffs = require('../js/diffs');
+const readFile = function(filename) {return new Task(curry(function(rej,res) {return fs.readFile(filename,{encoding: \\"utf8\\"},curry(function(err,data) {return diffs(err, null)?rej(err):res(data)}))}))};
+module.exports = readFile"
+`;
+
+exports[`compile succeeds for spreads.ion 1`] = `
+"const put = console.log;
+const reduce = require('ramda/src/reduce');
+const concat = require('ramda/src/concat');
+const mergeAll = require('ramda/src/mergeAll');
+const a = [1, 2, 3];
+const b = reduce(concat, [], [a,[4],[5],[6]]);
+put(b);
+const c = reduce(concat, [], [b,[[7, 8, 9]],[10, 11, 12]]);
+put(c);
+const d = {a: 1,b: 2,c: 3};
+const e = mergeAll([d, {c: 4}, {d: 5}]);
+put(e);
+const f = mergeAll([e, {x: {e: 6,f: reduce(concat, [], [b,[7]])}}, {g: 8,h: 9}]);
+put(f)"
+`;
+
+exports[`compile succeeds for strings.ion 1`] = `
+"const put = console.log;
+const a = \\"simple\\";
+const b = \\"double\\";
+const c = \\"multiple\\\\nlines\\\\nare\\\\nok\\";
+const d = \\"really\\\\nok\\\\nsee?\\";
+const e = \\"I ♡ ion!\\";
+const f = \\"asd'asd\\";
+put(a,b,c,d,e,f)"
+`;
+
+exports[`compile succeeds for strudel.ion 1`] = `
+"const put = console.log;
+const prop = require('ramda/src/prop');
+const lensPath = require('ramda/src/lensPath');
+const view = require('ramda/src/view');
+const map = require('ramda/src/map');
+const multiply = require('ramda/src/multiply');
+const pipe = require('ramda/src/pipe');
+const name = prop(\\"name\\",{name: \\"John\\"});
+put(name);
+const firstMovieName = view(lensPath([\\"movies\\", 0, \\"name\\"]),{movies: [{name: \\"Rambo\\"}]});
+put(firstMovieName);
+const dupAllPrices = map(pipe(prop(\\"price\\"), multiply(2)));
+const dupdPrices = dupAllPrices([{price: 1}, {price: 2}]);
+put(dupdPrices)"
+`;
+
+exports[`compile succeeds for task.ion 1`] = `
+"const put = console.log;
+const Task = require('data.task');
+const curry = require('ramda/src/curry');
+const fs = require('fs');
+const map = require('ramda/src/map');
+const trim = require('ramda/src/trim');
+const pipe = require('ramda/src/pipe');
+const split = require('ramda/src/split');
+const chain = require('ramda/src/chain');
+const sequence = require('ramda/src/sequence');
+const of = require('ramda/src/of');
+const join = require('ramda/src/join');
+const path = require(\\"path\\");
+const readFile = function(filename) {return new Task(curry(function(rej,res) {return fs.readFile(path.resolve(filename),{encoding: \\"utf8\\"},curry(function(err,data) {return err?rej(err):res(data)}))}))};
+const concatFiles = pipe(pipe(pipe(pipe(pipe(pipe(readFile, map(trim)), map(split(\\"\\\\n\\"))), map(map(readFile))), chain(sequence(Task.of))), map(map(trim))), map(join(\\",\\")));
+concatFiles(\\"./samples/task/index.txt\\").fork(function(err) {return put(\\"Error: \\",err)},function(data) {return put(\\"Result: \\",data)})"
+`;
+
+exports[`compile succeeds for task-simple.ion 1`] = `
+"const put = console.log;
+const Task = require('data.task');
+const of = require('ramda/src/of');
+const concat = require('ramda/src/concat');
+const pipe = require('ramda/src/pipe');
+Task.of(10).fork(pipe(concat(\\"Err! \\"), put),pipe(concat(\\"Ok! \\"), put))"
+`;
+
+exports[`compile succeeds for type.ion 1`] = `
+"const put = console.log;
+const map = require('ramda/src/map');
+const type = require('ramda/src/type');
+put(map(type,[1, \\"a\\", null, [], {}, function() {return 1}, /a/, type]))"
+`;
+
+exports[`compile succeeds for type-safe.ion 1`] = `
+"const put = console.log;
+const inc = require('ramda/src/inc');
+put(inc(\\"d\\"))"
+`;
+
+exports[`compile succeeds for validation.ion 1`] = `
+"const put = console.log;
+const curry = require('ramda/src/curry');
+const Validation = require('data.validation');
+const length = require('ramda/src/length');
+const flip = require('ramda/src/flip');
+const gte = require('ramda/src/gte');
+const pipe = require('ramda/src/pipe');
+const test = require('ramda/src/test');
+const curryN = require('ramda/src/curryN');
+const ap = require('ramda/src/ap');
+const check = curry(function(fn,error,value) {return fn(value)?Validation.Success():Validation.Failure([error])});
+const passwordTooShort = check(pipe(length, flip(gte)(8)),\\"password too short\\");
+const passwordLacksNumber = check(test(/\\\\d/),\\"password needs to contain a number\\");
+const passwordLacksWordChar = check(test(/[a-z]/),\\"password needs to contain a word char\\");
+const validName = check(test(/\\\\w+/),\\"name is invalid\\");
+const validAccount = curry(function(name,password) {return Validation.Success(curryN(4,function() {return [name, password]})).ap(validName(name)).ap(passwordTooShort(password)).ap(passwordLacksNumber(password)).ap(passwordLacksWordChar(password))});
+put(validAccount(\\"\\",\\"\\"),validAccount(\\"\\",\\"\\").isSuccess);
+put(validAccount(\\"Joe\\",\\"aaaa1111\\"),validAccount(\\"Joe\\",\\"aaaa1111\\").isSuccess)"
+`;
+
+exports[`compile succeeds for vars.ion 1`] = `
+"const put = console.log;
+const equals = require('ramda/src/equals');
+const range = require('ramda/src/range');
+const n = null;
+put(\\"null\\",n);
+const b1 = true;
+const b2 = false;
+put(\\"bools\\",b1,b2);
+const n1 = 1;
+const n2 = 2;
+const n3 = equals(n1, 1)?3:0;
+const n4 = 0x123;
+const n5 = 0123;
+const n6 = 0.123;
+const n7 = 2e3;
+put(\\"nums\\",n1,n2,n3,n4,n5,n6,n7);
+const s1 = \\"\\";
+const s2 = \\"Hello\\";
+put(\\"strings\\",s1,s2);
+const re1 = /a/;
+const re2 = /[a-z]/;
+const re3 = /a?b+c*/;
+const re4 = /(a|bc)/g;
+put(\\"regexps\\",re1,re2,re3,re4);
+const a1 = [];
+const a2 = [1, 2, 3];
+const a3 = [\\"a\\", \\"b\\", \\"c\\"];
+put(\\"arrays\\",a1,a2,a3);
+const r1 = range(1,10);
+put(\\"ranges\\",r1);
+const o1 = {};
+const o2 = {a: 1};
+const o3 = {b: 2};
+const o4 = {c: 3};
+const o5 = {\\"d\\": 4};
+const o6 = {\\"e\\": 5,\\"f\\": \\"6\\"};
+o6.g = 7;
+put(\\"objects\\",o1,o2,o3,o4,o5,o6)"
+`;
+
+exports[`compile succeeds for where.ion 1`] = `
+"const put = console.log;
+const multiply = require('ramda/src/multiply');
+const add = require('ramda/src/add');
+const foo = function(x) {return (function(){const a = multiply(x, 2);const b = multiply(x, 3);return add(a, b)})()};
+put(foo(5));
+const x = (function(){const a = 5;const b = 6;return add(a, b)})();
+put(x)"
+`;

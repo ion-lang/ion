@@ -4,9 +4,9 @@
 // TODO: use latest folktale
 'use strict'
 const R = require('ramda')
-const displayError = require('./helpers/displayError')
-const parse = require('./parse')
-const CompileError = require('./helpers/CompileError')
+const displayError = require('../helpers/displayError')
+const parse = require('../parse')
+const CompileError = require('../helpers/CompileError')
 let includedHelpers = []
 
 const opCallMap = {

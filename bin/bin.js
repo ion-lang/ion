@@ -1,7 +1,7 @@
 const fs = require('fs')
 const prettyjson = require('prettyjson')
 const program = require('commander')
-const compiler = require('../es5-compiler')
+const compiler = require('../compilers/es5-manual')
 const parse = require('../parse')
 
 const bin = (parser) => {

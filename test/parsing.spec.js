@@ -15,6 +15,7 @@ files.forEach((file) => {
   test(`parse succeeds for ${path.basename(file)}`, () => {
     const [err, ast] = testable(fs.readFileSync(file, 'utf8'), ion.parser)
 
+    expect(ast).toMatchSnapshot()
     expect(err).toBe(null)
   })
 })

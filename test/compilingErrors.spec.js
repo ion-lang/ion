@@ -3,7 +3,7 @@ const path = require('path')
 const fs = require('fs')
 const glob = require('glob')
 const ion = peg.buildParser(fs.readFileSync('./ion.peg', 'utf8'))
-const compile = require('../es5-compiler')
+const compile = require('../compilers/es5-manual')
 const files = glob.sync(path.join(__dirname, 'fixtures/compile_errors/*.ion'))
 
 const expectedFiles = 4
