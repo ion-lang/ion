@@ -110,7 +110,7 @@ AssignmentList =
 WhereToken = "where"
 
 Ternary =
-  test:Binary __ "?" __ consequent:Expression __ ':' __ alternate:Expression
+  test:Binary __ '?' __ consequent:Expression __ ':' __ alternate:Expression
   { return r("Ternary", location, { test, consequent, alternate }) }
 
 OpCall =
