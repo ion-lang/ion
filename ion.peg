@@ -54,7 +54,7 @@ Start = __ program:Program __ { return program; }
 
 Program =
   body:Statements?
-  { return r("Program", location, { body }) }
+  { return r("Program", location, { body: body || [] }) }
 
 Statements =
   head:Statement tail:(__ Statement)*
