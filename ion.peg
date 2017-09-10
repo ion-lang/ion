@@ -60,8 +60,17 @@ Statements =
   head:Statement tail:(__ Statement)*
   { return list(head, tail, 1) }
 
-Statement =
-  Export / Call / Assignment / If
+Statement "statement" =
+  Header / WrongHeader / Export / Call / Assignment / If
+
+IonPath =
+  "./bin/ion" / "./bin/dion" / "ion"
+
+Header =
+  "#!/usr/bin/env " path:IonPath { return r("Header", location, { path }) }
+
+WrongHeader =
+  "#!/usr/bin/env " path:([a-z/.] +) { return r("WrongHeader", location, { path: path.join('') }) }
 
 Export =
   ExportToken __ expression:Expression
