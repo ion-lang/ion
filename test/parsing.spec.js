@@ -7,7 +7,7 @@ const testable = require('../parse').testable
 
 const files = glob.sync(path.join(__dirname, 'fixtures/samples/*.ion'))
 
-const expectedFiles = 34
+const expectedFiles = 35
 
 if(files.length !== expectedFiles) throw(`Expected ${expectedFiles} files`)
 

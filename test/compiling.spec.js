@@ -7,7 +7,7 @@ const ion = peg.buildParser(fs.readFileSync('./ion.peg', 'utf8'))
 const compile = require('../compilers/es5-manual')
 const files = glob.sync(path.join(__dirname, 'fixtures/samples/*.ion'))
 
-const expectedFiles = 34
+const expectedFiles = 35
 if(files.length !== expectedFiles) throw(`Expected ${expectedFiles} files`)
 
 files.forEach((file) => {
