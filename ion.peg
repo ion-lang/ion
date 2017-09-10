@@ -351,7 +351,8 @@ FunctionalOp =  $("|" ![>|]) / "@?" / "!@" / "@s" / "@=" / $("@" ![?]) / "->" / 
 MathOp = "**" / "*" / "/" / "%" / "+" / "-"
 RelationalOp = "<=" / ">=" / "<" / ">"
 EqualityOp = "==" / "!="
-BitwiseOp = ">>" / $("&" ![&=]) / "^" / $("|" ![>|])
+// TODO: rethink bitwise ops, specially OR
+BitwiseOp = ">>" / $("&" ![&=]) / "^"
 LogicalOp = "&&" / "||"
 
 Op = FunctionalOp / MathOp / RelationalOp / EqualityOp / BitwiseOp / LogicalOp
