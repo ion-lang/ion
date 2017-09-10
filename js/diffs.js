@@ -1,9 +1,5 @@
 const equals = require('ramda/src/equals')
 const not = require('ramda/src/not')
-const curry = require('ramda/src/curry')
+const pipe = require('ramda/src/pipe')
 
-const diffs = curry(function (a, b) {
-  return not(equals(a, b))
-})
-
-module.exports = diffs
+module.exports = diffs = pipe(not, equals)
