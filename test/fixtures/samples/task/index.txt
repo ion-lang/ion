@@ -1,0 +1,3 @@
+./test/fixtures/samples/task/a.txt
+./test/fixtures/samples/task/b.txt
+./test/fixtures/samples/task/c.txt

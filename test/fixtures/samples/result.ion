@@ -1,0 +1,9 @@
+put(Result.try(() => 4 / 2))
+put(Result.try(() => foo))
+
+put(Result.Ok(1) == Result.Ok(1))
+put(Result.Error(1) == Result.Error(1))
+
+put(Result.Error(1) == Result.Ok(1))
+put(Result.Ok(1) == Result.Ok(2))
+put(Result.Error(1) == Result.Error(2))

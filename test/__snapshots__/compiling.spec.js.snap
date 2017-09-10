@@ -2,7 +2,6 @@
 
 exports[`compile succeeds for async.ion 1`] = `
 "const put = console.log;
-const Task = require('data.task');
 const of = require('ramda/src/of');
 const Async = require(\\"control.async\\")(Task);
 const wait = Async.delay;
@@ -15,13 +14,12 @@ Async.tryAll([meh, meh, ok]).fork(put,put)"
 
 exports[`compile succeeds for bash.ion 1`] = `
 "const put = console.log;
-const Task = require('data.task');
 const curry = require('ramda/src/curry');
-const fs = require('fs');
+const fs = require('../js/fs');
 const diffs = require('../js/diffs');
 const of = require('ramda/src/of');
 const Async = require(\\"control.async\\")(Task);
-const readFile = function(filename) {return new Task(curry(function(rej,res) {return fs.readFile(filename,{encoding: \\"utf8\\"},curry(function(err,data) {return diffs(err, null)?rej(err):res(data)}))}))};
+const readFile = function(filename) {return Task(curry(function(rej,res) {return fs.readFile(filename,{encoding: \\"utf8\\"},curry(function(err,data) {return diffs(err, null)?rej(err):res(data)}))}))};
 const wait = Async.delay;
 Async.parallel([wait(5000), wait(4000), wait(3000)]).fork(put,put);
 Async.choice([wait(5000), wait(4000), wait(3000)]).fork(put,put);
@@ -37,19 +35,6 @@ const multiply = require('ramda/src/multiply');
 const pipe = require('ramda/src/pipe');
 const moreOneMultTwo = pipe(add(1), multiply(2));
 put(moreOneMultTwo(1))"
-`;
-
-exports[`compile succeeds for either.ion 1`] = `
-"const put = console.log;
-const Either = require('data.either');
-const of = require('ramda/src/of');
-const map = require('ramda/src/map');
-const add = require('ramda/src/add');
-const multiply = require('ramda/src/multiply');
-put(Either.of(null).map(add(1)).getOrElse(1));
-put(Either.of(5).map(add(1)).getOrElse(1));
-put(Either.of(null).bimap(function() {return 0},function(x) {return multiply(x, 2)}));
-put(Either.of(5).bimap(function() {return 0},function(x) {return multiply(x, 2)}))"
 `;
 
 exports[`compile succeeds for empty.ion 1`] = `"const put = console.log"`;
@@ -86,16 +71,15 @@ exports[`compile succeeds for fract.ion 1`] = `"const put = console.log"`;
 
 exports[`compile succeeds for fs-task.ion 1`] = `
 "const put = console.log;
-const Task = require('data.task');
 const curry = require('ramda/src/curry');
-const fs = require('fs');
+const fs = require('../js/fs');
 const diffs = require('../js/diffs');
 const invoker = require('ramda/src/invoker');
 const pipe = require('ramda/src/pipe');
 const map = require('ramda/src/map');
 const match = require('ramda/src/match');
 const Async = require(\\"control.async\\")(Task);
-const read = function(filename) {return new Task(curry(function(rej,res) {return fs.readFile(filename,{encoding: \\"utf8\\"},curry(function(err,data) {return diffs(err, null)?rej(err):res(data)}))}))};
+const read = function(filename) {return Task(curry(function(rej,res) {return fs.readFile(filename,{encoding: \\"utf8\\"},curry(function(err,data) {return diffs(err, null)?rej(err):res(data)}))}))};
 const fork = invoker(2,\\"fork\\");
 const z = pipe(map(read),map(match(\\"a\\")),map(fork(console.error,console.log)));
 z([\\"a.js\\"])"
@@ -155,18 +139,23 @@ put(ns)"
 
 exports[`compile succeeds for maybe.ion 1`] = `
 "const put = console.log;
-const Maybe = require('data.maybe');
+const Maybe = require('folktale/maybe');
 const prop = require('ramda/src/prop');
 const curry = require('ramda/src/curry');
 const of = require('ramda/src/of');
 const pipeK = require('ramda/src/pipeK');
+const map = require('ramda/src/map');
+const pipe = require('ramda/src/pipe');
 const userName = undefined;
 put(Maybe.fromNullable(userName).getOrElse(\\"anonymous\\"));
-put(\\"/////\\");
 const get = curry(function(prop,obj) {return Maybe.of(obj[prop])});
 const transform = pipeK(get(\\"a\\"),get(\\"b\\"),get(\\"c\\"));
-put(transform(Maybe.of({a: {b: {c: 1}}})).isJust);
-put(transform(Maybe.of({a: {b: {d: 1}}})).isJust)"
+put(transform(Maybe.of({a: {b: {c: 1}}})));
+put(transform(Maybe.of({a: {b: {d: 1}}})));
+const transform2 = pipe(pipe(pipe(Maybe.fromNullable, map(prop(\\"a\\"))), map(prop(\\"b\\"))), map(prop(\\"c\\")));
+put(transform2({a: {b: {c: 1}}}));
+put(transform2({a: {b: {d: 1}}}));
+put(transform2(null))"
 `;
 
 exports[`compile succeeds for obj-calls.ion 1`] = `
@@ -317,7 +306,7 @@ const curry = require('ramda/src/curry');
 const then = require('../js/then');
 const add = require('ramda/src/add');
 const pipe = require('ramda/src/pipe');
-const returnWithDelay = curry(function(time,val) {return new Promise(curry(function(res,rej) {return setTimeout(function() {return res(val)},time)}))});
+const returnWithDelay = curry(function(time,val) {return Promise(curry(function(res,rej) {return setTimeout(function() {return res(val)},time)}))});
 const x = pipe(pipe(pipe(pipe(pipe(returnWithDelay(4000), then(add(1))), then(add(1))), then(add(1))), then(add(1))), then(put));
 x(1)"
 `;
@@ -328,7 +317,7 @@ const curry = require('ramda/src/curry');
 const then = require('../js/then');
 const add = require('ramda/src/add');
 const pipe = require('ramda/src/pipe');
-const err = curry(function(time,val) {return new Promise(curry(function(res,rej) {return throw(\\"err\\")}))});
+const err = curry(function(time,val) {return Promise(curry(function(res,rej) {return throw(\\"err\\")}))});
 const x = pipe(pipe(pipe(pipe(pipe(err(4000), then(add(1))), then(add(1))), then(add(1))), then(add(1))), then(put));
 x(1)"
 `;
@@ -365,12 +354,25 @@ put(map(pipe(prop(\\"x\\"), add(100)),[{x: 1}, {x: 2}, {x: 3}]))"
 
 exports[`compile succeeds for readFile.ion 1`] = `
 "const put = console.log;
-const Task = require('data.task');
 const curry = require('ramda/src/curry');
-const fs = require('fs');
+const fs = require('../js/fs');
 const diffs = require('../js/diffs');
-const readFile = function(filename) {return new Task(curry(function(rej,res) {return fs.readFile(filename,{encoding: \\"utf8\\"},curry(function(err,data) {return diffs(err, null)?rej(err):res(data)}))}))};
+const readFile = function(filename) {return Task(curry(function(rej,res) {return fs.readFile(filename,{encoding: \\"utf8\\"},curry(function(err,data) {return diffs(err, null)?rej(err):res(data)}))}))};
 module.exports = readFile"
+`;
+
+exports[`compile succeeds for result.ion 1`] = `
+"const put = console.log;
+const Result = require('folktale/result');
+const divide = require('ramda/src/divide');
+const equals = require('ramda/src/equals');
+put(Result.try(function() {return divide(4, 2)}));
+put(Result.try(function() {return foo}));
+put(equals(Result.Ok(1), Result.Ok(1)));
+put(equals(Result.Error(1), Result.Error(1)));
+put(equals(Result.Error(1), Result.Ok(1)));
+put(equals(Result.Ok(1), Result.Ok(2)));
+put(equals(Result.Error(1), Result.Error(2)))"
 `;
 
 exports[`compile succeeds for spreads.ion 1`] = `
@@ -420,30 +422,25 @@ put(dupdPrices)"
 
 exports[`compile succeeds for task.ion 1`] = `
 "const put = console.log;
-const Task = require('data.task');
-const curry = require('ramda/src/curry');
-const fs = require('fs');
-const map = require('ramda/src/map');
-const trim = require('ramda/src/trim');
+const fs = require('../js/fs');
 const pipe = require('ramda/src/pipe');
+const map = require('ramda/src/map');
+const toString = require('ramda/src/toString');
 const split = require('ramda/src/split');
 const chain = require('ramda/src/chain');
-const sequence = require('ramda/src/sequence');
-const of = require('ramda/src/of');
+const task = require('folktale/concurrency/task');
 const join = require('ramda/src/join');
 const path = require(\\"path\\");
-const readFile = function(filename) {return new Task(curry(function(rej,res) {return fs.readFile(path.resolve(filename),{encoding: \\"utf8\\"},curry(function(err,data) {return err?rej(err):res(data)}))}))};
-const concatFiles = pipe(pipe(pipe(pipe(pipe(pipe(readFile, map(trim)), map(split(\\"\\\\n\\"))), map(map(readFile))), chain(sequence(Task.of))), map(map(trim))), map(join(\\",\\")));
-concatFiles(\\"./samples/task/index.txt\\").fork(function(err) {return put(\\"Error: \\",err)},function(data) {return put(\\"Result: \\",data)})"
+const read = pipe(pipe(pipe(pipe(pipe(pipe(pipe(pipe(path.resolve, fs.readFile), map(toString)), map(split(\\"\\\\n\\"))), map(map(fs.readFile))), chain(task.waitAll)), map(map(toString))), map(join(\\",\\"))), map(put));
+read(\\"./test/fixtures/samples/task/index.txt\\").mapRejected(put).run()"
 `;
 
 exports[`compile succeeds for task-simple.ion 1`] = `
 "const put = console.log;
-const Task = require('data.task');
+const task = require('folktale/concurrency/task');
 const of = require('ramda/src/of');
-const concat = require('ramda/src/concat');
-const pipe = require('ramda/src/pipe');
-Task.of(10).fork(pipe(concat(\\"Err! \\"), put),pipe(concat(\\"Ok! \\"), put))"
+const map = require('ramda/src/map');
+task.of(10).map(put).run()"
 `;
 
 exports[`compile succeeds for type.ion 1`] = `
@@ -462,7 +459,7 @@ put(inc(\\"d\\"))"
 exports[`compile succeeds for validation.ion 1`] = `
 "const put = console.log;
 const curry = require('ramda/src/curry');
-const Validation = require('data.validation');
+const Validation = require('folktale/validation');
 const length = require('ramda/src/length');
 const flip = require('ramda/src/flip');
 const gte = require('ramda/src/gte');

@@ -31,14 +31,13 @@ autoIncludes['pow'] = '../js/pow'
 autoIncludes['then'] = '../js/then'
 autoIncludes['catch'] = '../js/catch'
 autoIncludes['diffs'] = '../js/diffs'
-autoIncludes['Task'] = 'data.task'
-autoIncludes['Maybe'] = 'data.maybe'
-autoIncludes['Either'] = 'data.either'
-autoIncludes['Validation'] = 'data.validation'
-autoIncludes['fs'] = 'fs'
-autoIncludes['path'] = 'path'
+autoIncludes['fs'] = '../js/fs'
 
-const autoInstance = ['Task', 'Promise']
+autoIncludes['task'] = 'folktale/concurrency/task'
+autoIncludes['Maybe'] = 'folktale/maybe'
+autoIncludes['Result'] = 'folktale/result'
+autoIncludes['Validation'] = 'folktale/validation'
+autoIncludes['path'] = 'path'
 
 const opMap = opCallMap
 // {
@@ -122,8 +121,7 @@ function c(e, assignmentContext = {id:'global', line:1}) {
         return `function(${params}) {return ${c(e.body)}}`
       }
     case 'Call':
-      const callee = ~autoInstance.indexOf(e.callee.name) ? `new ${c(e.callee)}` : c(e.callee)
-      return call(callee, cAll(e.args))
+      return call(c(e.callee), cAll(e.args))
     case 'OpCall':
       if (e.op === '@') {
         let path

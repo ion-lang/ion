@@ -1,19 +1,13 @@
 path = require('path')
 
-readFile = (filename) =>
-  Task((rej, res) =>
-    fs.readFile(path.resolve(filename), {encoding: 'utf8'}, (err, data) =>
-      err ? rej(err) : res(data)))
-
-concatFiles = readFile
-  | map(trim)
+read = path.resolve
+  | fs.readFile
+  | map(toString)
   | map(split('\n'))
-  | map(map(readFile))
-  | chain(sequence(Task.of))
-  | map(map(trim))
+  | map(map(fs.readFile))
+  | chain(task.waitAll)
+  | map(map(toString))
   | map(join(','))
+  | map(put)
 
-concatFiles('./samples/task/index.txt').fork(
-  (err) => put('Error: ', err),
-  (data) => put('Result: ', data)
-)
+read('./test/fixtures/samples/task/index.txt').mapRejected(put).run()

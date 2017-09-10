@@ -1,4 +1,1 @@
-Task.of(10).fork(
-  concat('Err! ') | put,
-  concat('Ok! ') | put
-)
+task.of(10).map(put).run()

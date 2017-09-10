@@ -2407,740 +2407,6 @@ Object {
 }
 `;
 
-exports[`parse succeeds for either.ion 1`] = `
-Object {
-  "body": Array [
-    Object {
-      "args": Array [
-        Object {
-          "args": Array [
-            Object {
-              "location": Object {
-                "end": Object {
-                  "column": 17,
-                  "line": 5,
-                  "offset": 59,
-                },
-                "start": Object {
-                  "column": 16,
-                  "line": 5,
-                  "offset": 58,
-                },
-              },
-              "type": "Decimal",
-              "value": "1",
-            },
-          ],
-          "callee": Object {
-            "computed": false,
-            "object": Object {
-              "args": Array [
-                Object {
-                  "args": Array [
-                    Object {
-                      "location": Object {
-                        "end": Object {
-                          "column": 13,
-                          "line": 4,
-                          "offset": 40,
-                        },
-                        "start": Object {
-                          "column": 12,
-                          "line": 4,
-                          "offset": 39,
-                        },
-                      },
-                      "type": "Decimal",
-                      "value": "1",
-                    },
-                  ],
-                  "location": Object {
-                    "end": Object {
-                      "column": 14,
-                      "line": 4,
-                      "offset": 41,
-                    },
-                    "start": Object {
-                      "column": 10,
-                      "line": 4,
-                      "offset": 37,
-                    },
-                  },
-                  "op": "+",
-                  "type": "OpCall",
-                },
-              ],
-              "callee": Object {
-                "computed": false,
-                "object": Object {
-                  "args": Array [
-                    Object {
-                      "location": Object {
-                        "end": Object {
-                          "column": 13,
-                          "line": 3,
-                          "offset": 26,
-                        },
-                        "start": Object {
-                          "column": 9,
-                          "line": 3,
-                          "offset": 22,
-                        },
-                      },
-                      "type": "Null",
-                    },
-                  ],
-                  "callee": Object {
-                    "computed": false,
-                    "object": Object {
-                      "location": Object {
-                        "end": Object {
-                          "column": 9,
-                          "line": 2,
-                          "offset": 13,
-                        },
-                        "start": Object {
-                          "column": 3,
-                          "line": 2,
-                          "offset": 7,
-                        },
-                      },
-                      "name": "Either",
-                      "type": "Id",
-                    },
-                    "property": Object {
-                      "location": Object {
-                        "end": Object {
-                          "column": 8,
-                          "line": 3,
-                          "offset": 21,
-                        },
-                        "start": Object {
-                          "column": 6,
-                          "line": 3,
-                          "offset": 19,
-                        },
-                      },
-                      "name": "of",
-                      "type": "Id",
-                    },
-                    "type": "Member",
-                  },
-                  "type": "Call",
-                },
-                "property": Object {
-                  "location": Object {
-                    "end": Object {
-                      "column": 9,
-                      "line": 4,
-                      "offset": 36,
-                    },
-                    "start": Object {
-                      "column": 6,
-                      "line": 4,
-                      "offset": 33,
-                    },
-                  },
-                  "name": "map",
-                  "type": "Id",
-                },
-                "type": "Member",
-              },
-              "type": "Call",
-            },
-            "property": Object {
-              "location": Object {
-                "end": Object {
-                  "column": 15,
-                  "line": 5,
-                  "offset": 57,
-                },
-                "start": Object {
-                  "column": 6,
-                  "line": 5,
-                  "offset": 48,
-                },
-              },
-              "name": "getOrElse",
-              "type": "Id",
-            },
-            "type": "Member",
-          },
-          "type": "Call",
-        },
-      ],
-      "callee": Object {
-        "location": Object {
-          "end": Object {
-            "column": 4,
-            "line": 1,
-            "offset": 3,
-          },
-          "start": Object {
-            "column": 1,
-            "line": 1,
-            "offset": 0,
-          },
-        },
-        "name": "put",
-        "type": "Id",
-      },
-      "type": "Call",
-    },
-    Object {
-      "args": Array [
-        Object {
-          "args": Array [
-            Object {
-              "location": Object {
-                "end": Object {
-                  "column": 17,
-                  "line": 12,
-                  "offset": 120,
-                },
-                "start": Object {
-                  "column": 16,
-                  "line": 12,
-                  "offset": 119,
-                },
-              },
-              "type": "Decimal",
-              "value": "1",
-            },
-          ],
-          "callee": Object {
-            "computed": false,
-            "object": Object {
-              "args": Array [
-                Object {
-                  "args": Array [
-                    Object {
-                      "location": Object {
-                        "end": Object {
-                          "column": 13,
-                          "line": 11,
-                          "offset": 101,
-                        },
-                        "start": Object {
-                          "column": 12,
-                          "line": 11,
-                          "offset": 100,
-                        },
-                      },
-                      "type": "Decimal",
-                      "value": "1",
-                    },
-                  ],
-                  "location": Object {
-                    "end": Object {
-                      "column": 14,
-                      "line": 11,
-                      "offset": 102,
-                    },
-                    "start": Object {
-                      "column": 10,
-                      "line": 11,
-                      "offset": 98,
-                    },
-                  },
-                  "op": "+",
-                  "type": "OpCall",
-                },
-              ],
-              "callee": Object {
-                "computed": false,
-                "object": Object {
-                  "args": Array [
-                    Object {
-                      "location": Object {
-                        "end": Object {
-                          "column": 10,
-                          "line": 10,
-                          "offset": 87,
-                        },
-                        "start": Object {
-                          "column": 9,
-                          "line": 10,
-                          "offset": 86,
-                        },
-                      },
-                      "type": "Decimal",
-                      "value": "5",
-                    },
-                  ],
-                  "callee": Object {
-                    "computed": false,
-                    "object": Object {
-                      "location": Object {
-                        "end": Object {
-                          "column": 9,
-                          "line": 9,
-                          "offset": 77,
-                        },
-                        "start": Object {
-                          "column": 3,
-                          "line": 9,
-                          "offset": 71,
-                        },
-                      },
-                      "name": "Either",
-                      "type": "Id",
-                    },
-                    "property": Object {
-                      "location": Object {
-                        "end": Object {
-                          "column": 8,
-                          "line": 10,
-                          "offset": 85,
-                        },
-                        "start": Object {
-                          "column": 6,
-                          "line": 10,
-                          "offset": 83,
-                        },
-                      },
-                      "name": "of",
-                      "type": "Id",
-                    },
-                    "type": "Member",
-                  },
-                  "type": "Call",
-                },
-                "property": Object {
-                  "location": Object {
-                    "end": Object {
-                      "column": 9,
-                      "line": 11,
-                      "offset": 97,
-                    },
-                    "start": Object {
-                      "column": 6,
-                      "line": 11,
-                      "offset": 94,
-                    },
-                  },
-                  "name": "map",
-                  "type": "Id",
-                },
-                "type": "Member",
-              },
-              "type": "Call",
-            },
-            "property": Object {
-              "location": Object {
-                "end": Object {
-                  "column": 15,
-                  "line": 12,
-                  "offset": 118,
-                },
-                "start": Object {
-                  "column": 6,
-                  "line": 12,
-                  "offset": 109,
-                },
-              },
-              "name": "getOrElse",
-              "type": "Id",
-            },
-            "type": "Member",
-          },
-          "type": "Call",
-        },
-      ],
-      "callee": Object {
-        "location": Object {
-          "end": Object {
-            "column": 4,
-            "line": 8,
-            "offset": 67,
-          },
-          "start": Object {
-            "column": 1,
-            "line": 8,
-            "offset": 64,
-          },
-        },
-        "name": "put",
-        "type": "Id",
-      },
-      "type": "Call",
-    },
-    Object {
-      "args": Array [
-        Object {
-          "args": Array [
-            Object {
-              "body": Object {
-                "location": Object {
-                  "end": Object {
-                    "column": 19,
-                    "line": 18,
-                    "offset": 171,
-                  },
-                  "start": Object {
-                    "column": 18,
-                    "line": 18,
-                    "offset": 170,
-                  },
-                },
-                "type": "Decimal",
-                "value": "0",
-              },
-              "params": Array [],
-              "type": "Lambda",
-            },
-            Object {
-              "body": Object {
-                "left": Object {
-                  "location": Object {
-                    "end": Object {
-                      "column": 29,
-                      "line": 18,
-                      "offset": 181,
-                    },
-                    "start": Object {
-                      "column": 28,
-                      "line": 18,
-                      "offset": 180,
-                    },
-                  },
-                  "name": "x",
-                  "type": "Id",
-                },
-                "operator": "*",
-                "right": Object {
-                  "location": Object {
-                    "end": Object {
-                      "column": 33,
-                      "line": 18,
-                      "offset": 185,
-                    },
-                    "start": Object {
-                      "column": 32,
-                      "line": 18,
-                      "offset": 184,
-                    },
-                  },
-                  "type": "Decimal",
-                  "value": "2",
-                },
-                "type": "Binary",
-              },
-              "params": Array [
-                Object {
-                  "location": Object {
-                    "end": Object {
-                      "column": 23,
-                      "line": 18,
-                      "offset": 175,
-                    },
-                    "start": Object {
-                      "column": 22,
-                      "line": 18,
-                      "offset": 174,
-                    },
-                  },
-                  "name": "x",
-                  "type": "Id",
-                },
-              ],
-              "type": "Lambda",
-            },
-          ],
-          "callee": Object {
-            "computed": false,
-            "object": Object {
-              "args": Array [
-                Object {
-                  "location": Object {
-                    "end": Object {
-                      "column": 13,
-                      "line": 17,
-                      "offset": 151,
-                    },
-                    "start": Object {
-                      "column": 9,
-                      "line": 17,
-                      "offset": 147,
-                    },
-                  },
-                  "type": "Null",
-                },
-              ],
-              "callee": Object {
-                "computed": false,
-                "object": Object {
-                  "location": Object {
-                    "end": Object {
-                      "column": 9,
-                      "line": 16,
-                      "offset": 138,
-                    },
-                    "start": Object {
-                      "column": 3,
-                      "line": 16,
-                      "offset": 132,
-                    },
-                  },
-                  "name": "Either",
-                  "type": "Id",
-                },
-                "property": Object {
-                  "location": Object {
-                    "end": Object {
-                      "column": 8,
-                      "line": 17,
-                      "offset": 146,
-                    },
-                    "start": Object {
-                      "column": 6,
-                      "line": 17,
-                      "offset": 144,
-                    },
-                  },
-                  "name": "of",
-                  "type": "Id",
-                },
-                "type": "Member",
-              },
-              "type": "Call",
-            },
-            "property": Object {
-              "location": Object {
-                "end": Object {
-                  "column": 11,
-                  "line": 18,
-                  "offset": 163,
-                },
-                "start": Object {
-                  "column": 6,
-                  "line": 18,
-                  "offset": 158,
-                },
-              },
-              "name": "bimap",
-              "type": "Id",
-            },
-            "type": "Member",
-          },
-          "type": "Call",
-        },
-      ],
-      "callee": Object {
-        "location": Object {
-          "end": Object {
-            "column": 4,
-            "line": 15,
-            "offset": 128,
-          },
-          "start": Object {
-            "column": 1,
-            "line": 15,
-            "offset": 125,
-          },
-        },
-        "name": "put",
-        "type": "Id",
-      },
-      "type": "Call",
-    },
-    Object {
-      "args": Array [
-        Object {
-          "args": Array [
-            Object {
-              "body": Object {
-                "location": Object {
-                  "end": Object {
-                    "column": 19,
-                    "line": 24,
-                    "offset": 233,
-                  },
-                  "start": Object {
-                    "column": 18,
-                    "line": 24,
-                    "offset": 232,
-                  },
-                },
-                "type": "Decimal",
-                "value": "0",
-              },
-              "params": Array [],
-              "type": "Lambda",
-            },
-            Object {
-              "body": Object {
-                "left": Object {
-                  "location": Object {
-                    "end": Object {
-                      "column": 29,
-                      "line": 24,
-                      "offset": 243,
-                    },
-                    "start": Object {
-                      "column": 28,
-                      "line": 24,
-                      "offset": 242,
-                    },
-                  },
-                  "name": "x",
-                  "type": "Id",
-                },
-                "operator": "*",
-                "right": Object {
-                  "location": Object {
-                    "end": Object {
-                      "column": 33,
-                      "line": 24,
-                      "offset": 247,
-                    },
-                    "start": Object {
-                      "column": 32,
-                      "line": 24,
-                      "offset": 246,
-                    },
-                  },
-                  "type": "Decimal",
-                  "value": "2",
-                },
-                "type": "Binary",
-              },
-              "params": Array [
-                Object {
-                  "location": Object {
-                    "end": Object {
-                      "column": 23,
-                      "line": 24,
-                      "offset": 237,
-                    },
-                    "start": Object {
-                      "column": 22,
-                      "line": 24,
-                      "offset": 236,
-                    },
-                  },
-                  "name": "x",
-                  "type": "Id",
-                },
-              ],
-              "type": "Lambda",
-            },
-          ],
-          "callee": Object {
-            "computed": false,
-            "object": Object {
-              "args": Array [
-                Object {
-                  "location": Object {
-                    "end": Object {
-                      "column": 10,
-                      "line": 23,
-                      "offset": 213,
-                    },
-                    "start": Object {
-                      "column": 9,
-                      "line": 23,
-                      "offset": 212,
-                    },
-                  },
-                  "type": "Decimal",
-                  "value": "5",
-                },
-              ],
-              "callee": Object {
-                "computed": false,
-                "object": Object {
-                  "location": Object {
-                    "end": Object {
-                      "column": 9,
-                      "line": 22,
-                      "offset": 203,
-                    },
-                    "start": Object {
-                      "column": 3,
-                      "line": 22,
-                      "offset": 197,
-                    },
-                  },
-                  "name": "Either",
-                  "type": "Id",
-                },
-                "property": Object {
-                  "location": Object {
-                    "end": Object {
-                      "column": 8,
-                      "line": 23,
-                      "offset": 211,
-                    },
-                    "start": Object {
-                      "column": 6,
-                      "line": 23,
-                      "offset": 209,
-                    },
-                  },
-                  "name": "of",
-                  "type": "Id",
-                },
-                "type": "Member",
-              },
-              "type": "Call",
-            },
-            "property": Object {
-              "location": Object {
-                "end": Object {
-                  "column": 11,
-                  "line": 24,
-                  "offset": 225,
-                },
-                "start": Object {
-                  "column": 6,
-                  "line": 24,
-                  "offset": 220,
-                },
-              },
-              "name": "bimap",
-              "type": "Id",
-            },
-            "type": "Member",
-          },
-          "type": "Call",
-        },
-      ],
-      "callee": Object {
-        "location": Object {
-          "end": Object {
-            "column": 4,
-            "line": 21,
-            "offset": 193,
-          },
-          "start": Object {
-            "column": 1,
-            "line": 21,
-            "offset": 190,
-          },
-        },
-        "name": "put",
-        "type": "Id",
-      },
-      "type": "Call",
-    },
-  ],
-  "location": Object {
-    "end": Object {
-      "column": 2,
-      "line": 25,
-      "offset": 250,
-    },
-    "start": Object {
-      "column": 1,
-      "line": 1,
-      "offset": 0,
-    },
-  },
-  "type": "Program",
-}
-`;
-
 exports[`parse succeeds for empty.ion 1`] = `
 Object {
   "body": null,
@@ -7940,25 +7206,7 @@ Object {
       "type": "Call",
     },
     Object {
-      "args": Array [
-        Object {
-          "location": Object {
-            "end": Object {
-              "column": 12,
-              "line": 4,
-              "offset": 90,
-            },
-            "start": Object {
-              "column": 5,
-              "line": 4,
-              "offset": 83,
-            },
-          },
-          "type": "String",
-          "value": "/////",
-        },
-      ],
-      "callee": Object {
+      "left": Object {
         "location": Object {
           "end": Object {
             "column": 4,
@@ -7971,38 +7219,19 @@ Object {
             "offset": 79,
           },
         },
-        "name": "put",
-        "type": "Id",
-      },
-      "type": "Call",
-    },
-    Object {
-      "left": Object {
-        "location": Object {
-          "end": Object {
-            "column": 4,
-            "line": 5,
-            "offset": 95,
-          },
-          "start": Object {
-            "column": 1,
-            "line": 5,
-            "offset": 92,
-          },
-        },
         "name": "get",
         "type": "Id",
       },
       "location": Object {
         "end": Object {
           "column": 41,
-          "line": 5,
-          "offset": 132,
+          "line": 4,
+          "offset": 119,
         },
         "start": Object {
           "column": 1,
-          "line": 5,
-          "offset": 92,
+          "line": 4,
+          "offset": 79,
         },
       },
       "right": Object {
@@ -8014,13 +7243,13 @@ Object {
                 "location": Object {
                   "end": Object {
                     "column": 34,
-                    "line": 5,
-                    "offset": 125,
+                    "line": 4,
+                    "offset": 112,
                   },
                   "start": Object {
                     "column": 31,
-                    "line": 5,
-                    "offset": 122,
+                    "line": 4,
+                    "offset": 109,
                   },
                 },
                 "name": "obj",
@@ -8030,13 +7259,13 @@ Object {
                 "location": Object {
                   "end": Object {
                     "column": 39,
-                    "line": 5,
-                    "offset": 130,
+                    "line": 4,
+                    "offset": 117,
                   },
                   "start": Object {
                     "column": 35,
-                    "line": 5,
-                    "offset": 126,
+                    "line": 4,
+                    "offset": 113,
                   },
                 },
                 "name": "prop",
@@ -8051,13 +7280,13 @@ Object {
               "location": Object {
                 "end": Object {
                   "column": 27,
-                  "line": 5,
-                  "offset": 118,
+                  "line": 4,
+                  "offset": 105,
                 },
                 "start": Object {
                   "column": 22,
-                  "line": 5,
-                  "offset": 113,
+                  "line": 4,
+                  "offset": 100,
                 },
               },
               "name": "Maybe",
@@ -8067,13 +7296,13 @@ Object {
               "location": Object {
                 "end": Object {
                   "column": 30,
-                  "line": 5,
-                  "offset": 121,
+                  "line": 4,
+                  "offset": 108,
                 },
                 "start": Object {
                   "column": 28,
-                  "line": 5,
-                  "offset": 119,
+                  "line": 4,
+                  "offset": 106,
                 },
               },
               "name": "of",
@@ -8088,13 +7317,13 @@ Object {
             "location": Object {
               "end": Object {
                 "column": 12,
-                "line": 5,
-                "offset": 103,
+                "line": 4,
+                "offset": 90,
               },
               "start": Object {
                 "column": 8,
-                "line": 5,
-                "offset": 99,
+                "line": 4,
+                "offset": 86,
               },
             },
             "name": "prop",
@@ -8104,13 +7333,13 @@ Object {
             "location": Object {
               "end": Object {
                 "column": 17,
-                "line": 5,
-                "offset": 108,
+                "line": 4,
+                "offset": 95,
               },
               "start": Object {
                 "column": 14,
-                "line": 5,
-                "offset": 105,
+                "line": 4,
+                "offset": 92,
               },
             },
             "name": "obj",
@@ -8126,13 +7355,13 @@ Object {
         "location": Object {
           "end": Object {
             "column": 10,
-            "line": 6,
-            "offset": 142,
+            "line": 5,
+            "offset": 129,
           },
           "start": Object {
             "column": 1,
-            "line": 6,
-            "offset": 133,
+            "line": 5,
+            "offset": 120,
           },
         },
         "name": "transform",
@@ -8141,13 +7370,13 @@ Object {
       "location": Object {
         "end": Object {
           "column": 2,
-          "line": 10,
-          "offset": 188,
+          "line": 9,
+          "offset": 175,
         },
         "start": Object {
           "column": 1,
-          "line": 6,
-          "offset": 133,
+          "line": 5,
+          "offset": 120,
         },
       },
       "right": Object {
@@ -8158,13 +7387,13 @@ Object {
                 "location": Object {
                   "end": Object {
                     "column": 10,
-                    "line": 7,
-                    "offset": 161,
+                    "line": 6,
+                    "offset": 148,
                   },
                   "start": Object {
                     "column": 7,
-                    "line": 7,
-                    "offset": 158,
+                    "line": 6,
+                    "offset": 145,
                   },
                 },
                 "type": "String",
@@ -8175,13 +7404,13 @@ Object {
               "location": Object {
                 "end": Object {
                   "column": 6,
-                  "line": 7,
-                  "offset": 157,
+                  "line": 6,
+                  "offset": 144,
                 },
                 "start": Object {
                   "column": 3,
-                  "line": 7,
-                  "offset": 154,
+                  "line": 6,
+                  "offset": 141,
                 },
               },
               "name": "get",
@@ -8195,13 +7424,13 @@ Object {
                 "location": Object {
                   "end": Object {
                     "column": 10,
-                    "line": 8,
-                    "offset": 173,
+                    "line": 7,
+                    "offset": 160,
                   },
                   "start": Object {
                     "column": 7,
-                    "line": 8,
-                    "offset": 170,
+                    "line": 7,
+                    "offset": 157,
                   },
                 },
                 "type": "String",
@@ -8212,13 +7441,13 @@ Object {
               "location": Object {
                 "end": Object {
                   "column": 6,
-                  "line": 8,
-                  "offset": 169,
+                  "line": 7,
+                  "offset": 156,
                 },
                 "start": Object {
                   "column": 3,
-                  "line": 8,
-                  "offset": 166,
+                  "line": 7,
+                  "offset": 153,
                 },
               },
               "name": "get",
@@ -8232,13 +7461,13 @@ Object {
                 "location": Object {
                   "end": Object {
                     "column": 10,
-                    "line": 9,
-                    "offset": 185,
+                    "line": 8,
+                    "offset": 172,
                   },
                   "start": Object {
                     "column": 7,
-                    "line": 9,
-                    "offset": 182,
+                    "line": 8,
+                    "offset": 169,
                   },
                 },
                 "type": "String",
@@ -8249,13 +7478,13 @@ Object {
               "location": Object {
                 "end": Object {
                   "column": 6,
-                  "line": 9,
-                  "offset": 181,
+                  "line": 8,
+                  "offset": 168,
                 },
                 "start": Object {
                   "column": 3,
-                  "line": 9,
-                  "offset": 178,
+                  "line": 8,
+                  "offset": 165,
                 },
               },
               "name": "get",
@@ -8268,13 +7497,13 @@ Object {
           "location": Object {
             "end": Object {
               "column": 18,
-              "line": 6,
-              "offset": 150,
+              "line": 5,
+              "offset": 137,
             },
             "start": Object {
               "column": 13,
-              "line": 6,
-              "offset": 145,
+              "line": 5,
+              "offset": 132,
             },
           },
           "name": "pipeK",
@@ -8287,187 +7516,167 @@ Object {
     Object {
       "args": Array [
         Object {
-          "computed": false,
-          "object": Object {
-            "args": Array [
-              Object {
-                "args": Array [
-                  Object {
-                    "properties": Array [
-                      Object {
-                        "key": Object {
-                          "location": Object {
-                            "end": Object {
-                              "column": 26,
-                              "line": 12,
-                              "offset": 215,
-                            },
-                            "start": Object {
-                              "column": 25,
-                              "line": 12,
-                              "offset": 214,
-                            },
+          "args": Array [
+            Object {
+              "args": Array [
+                Object {
+                  "properties": Array [
+                    Object {
+                      "key": Object {
+                        "location": Object {
+                          "end": Object {
+                            "column": 26,
+                            "line": 11,
+                            "offset": 202,
                           },
-                          "name": "a",
-                          "type": "Id",
+                          "start": Object {
+                            "column": 25,
+                            "line": 11,
+                            "offset": 201,
+                          },
                         },
-                        "kind": "init",
-                        "value": Object {
-                          "properties": Array [
-                            Object {
-                              "key": Object {
-                                "location": Object {
-                                  "end": Object {
-                                    "column": 30,
-                                    "line": 12,
-                                    "offset": 219,
+                        "name": "a",
+                        "type": "Id",
+                      },
+                      "kind": "init",
+                      "value": Object {
+                        "properties": Array [
+                          Object {
+                            "key": Object {
+                              "location": Object {
+                                "end": Object {
+                                  "column": 30,
+                                  "line": 11,
+                                  "offset": 206,
+                                },
+                                "start": Object {
+                                  "column": 29,
+                                  "line": 11,
+                                  "offset": 205,
+                                },
+                              },
+                              "name": "b",
+                              "type": "Id",
+                            },
+                            "kind": "init",
+                            "value": Object {
+                              "properties": Array [
+                                Object {
+                                  "key": Object {
+                                    "location": Object {
+                                      "end": Object {
+                                        "column": 34,
+                                        "line": 11,
+                                        "offset": 210,
+                                      },
+                                      "start": Object {
+                                        "column": 33,
+                                        "line": 11,
+                                        "offset": 209,
+                                      },
+                                    },
+                                    "name": "c",
+                                    "type": "Id",
                                   },
-                                  "start": Object {
-                                    "column": 29,
-                                    "line": 12,
-                                    "offset": 218,
+                                  "kind": "init",
+                                  "value": Object {
+                                    "location": Object {
+                                      "end": Object {
+                                        "column": 37,
+                                        "line": 11,
+                                        "offset": 213,
+                                      },
+                                      "start": Object {
+                                        "column": 36,
+                                        "line": 11,
+                                        "offset": 212,
+                                      },
+                                    },
+                                    "type": "Decimal",
+                                    "value": "1",
                                   },
                                 },
-                                "name": "b",
-                                "type": "Id",
-                              },
-                              "kind": "init",
-                              "value": Object {
-                                "properties": Array [
-                                  Object {
-                                    "key": Object {
-                                      "location": Object {
-                                        "end": Object {
-                                          "column": 34,
-                                          "line": 12,
-                                          "offset": 223,
-                                        },
-                                        "start": Object {
-                                          "column": 33,
-                                          "line": 12,
-                                          "offset": 222,
-                                        },
-                                      },
-                                      "name": "c",
-                                      "type": "Id",
-                                    },
-                                    "kind": "init",
-                                    "value": Object {
-                                      "location": Object {
-                                        "end": Object {
-                                          "column": 37,
-                                          "line": 12,
-                                          "offset": 226,
-                                        },
-                                        "start": Object {
-                                          "column": 36,
-                                          "line": 12,
-                                          "offset": 225,
-                                        },
-                                      },
-                                      "type": "Decimal",
-                                      "value": "1",
-                                    },
-                                  },
-                                ],
-                                "type": "Object",
-                              },
+                              ],
+                              "type": "Object",
                             },
-                          ],
-                          "type": "Object",
-                        },
-                      },
-                    ],
-                    "type": "Object",
-                  },
-                ],
-                "callee": Object {
-                  "computed": false,
-                  "object": Object {
-                    "location": Object {
-                      "end": Object {
-                        "column": 20,
-                        "line": 12,
-                        "offset": 209,
-                      },
-                      "start": Object {
-                        "column": 15,
-                        "line": 12,
-                        "offset": 204,
+                          },
+                        ],
+                        "type": "Object",
                       },
                     },
-                    "name": "Maybe",
-                    "type": "Id",
-                  },
-                  "property": Object {
-                    "location": Object {
-                      "end": Object {
-                        "column": 23,
-                        "line": 12,
-                        "offset": 212,
-                      },
-                      "start": Object {
-                        "column": 21,
-                        "line": 12,
-                        "offset": 210,
-                      },
+                  ],
+                  "type": "Object",
+                },
+              ],
+              "callee": Object {
+                "computed": false,
+                "object": Object {
+                  "location": Object {
+                    "end": Object {
+                      "column": 20,
+                      "line": 11,
+                      "offset": 196,
                     },
-                    "name": "of",
-                    "type": "Id",
+                    "start": Object {
+                      "column": 15,
+                      "line": 11,
+                      "offset": 191,
+                    },
                   },
-                  "type": "Member",
+                  "name": "Maybe",
+                  "type": "Id",
                 },
-                "type": "Call",
+                "property": Object {
+                  "location": Object {
+                    "end": Object {
+                      "column": 23,
+                      "line": 11,
+                      "offset": 199,
+                    },
+                    "start": Object {
+                      "column": 21,
+                      "line": 11,
+                      "offset": 197,
+                    },
+                  },
+                  "name": "of",
+                  "type": "Id",
+                },
+                "type": "Member",
               },
-            ],
-            "callee": Object {
-              "location": Object {
-                "end": Object {
-                  "column": 14,
-                  "line": 12,
-                  "offset": 203,
-                },
-                "start": Object {
-                  "column": 5,
-                  "line": 12,
-                  "offset": 194,
-                },
-              },
-              "name": "transform",
-              "type": "Id",
+              "type": "Call",
             },
-            "type": "Call",
-          },
-          "property": Object {
+          ],
+          "callee": Object {
             "location": Object {
               "end": Object {
-                "column": 49,
-                "line": 12,
-                "offset": 238,
+                "column": 14,
+                "line": 11,
+                "offset": 190,
               },
               "start": Object {
-                "column": 43,
-                "line": 12,
-                "offset": 232,
+                "column": 5,
+                "line": 11,
+                "offset": 181,
               },
             },
-            "name": "isJust",
+            "name": "transform",
             "type": "Id",
           },
-          "type": "Member",
+          "type": "Call",
         },
       ],
       "callee": Object {
         "location": Object {
           "end": Object {
             "column": 4,
-            "line": 12,
-            "offset": 193,
+            "line": 11,
+            "offset": 180,
           },
           "start": Object {
             "column": 1,
-            "line": 12,
-            "offset": 190,
+            "line": 11,
+            "offset": 177,
           },
         },
         "name": "put",
@@ -8478,28 +7687,468 @@ Object {
     Object {
       "args": Array [
         Object {
-          "computed": false,
-          "object": Object {
+          "args": Array [
+            Object {
+              "args": Array [
+                Object {
+                  "properties": Array [
+                    Object {
+                      "key": Object {
+                        "location": Object {
+                          "end": Object {
+                            "column": 26,
+                            "line": 12,
+                            "offset": 245,
+                          },
+                          "start": Object {
+                            "column": 25,
+                            "line": 12,
+                            "offset": 244,
+                          },
+                        },
+                        "name": "a",
+                        "type": "Id",
+                      },
+                      "kind": "init",
+                      "value": Object {
+                        "properties": Array [
+                          Object {
+                            "key": Object {
+                              "location": Object {
+                                "end": Object {
+                                  "column": 30,
+                                  "line": 12,
+                                  "offset": 249,
+                                },
+                                "start": Object {
+                                  "column": 29,
+                                  "line": 12,
+                                  "offset": 248,
+                                },
+                              },
+                              "name": "b",
+                              "type": "Id",
+                            },
+                            "kind": "init",
+                            "value": Object {
+                              "properties": Array [
+                                Object {
+                                  "key": Object {
+                                    "location": Object {
+                                      "end": Object {
+                                        "column": 34,
+                                        "line": 12,
+                                        "offset": 253,
+                                      },
+                                      "start": Object {
+                                        "column": 33,
+                                        "line": 12,
+                                        "offset": 252,
+                                      },
+                                    },
+                                    "name": "d",
+                                    "type": "Id",
+                                  },
+                                  "kind": "init",
+                                  "value": Object {
+                                    "location": Object {
+                                      "end": Object {
+                                        "column": 37,
+                                        "line": 12,
+                                        "offset": 256,
+                                      },
+                                      "start": Object {
+                                        "column": 36,
+                                        "line": 12,
+                                        "offset": 255,
+                                      },
+                                    },
+                                    "type": "Decimal",
+                                    "value": "1",
+                                  },
+                                },
+                              ],
+                              "type": "Object",
+                            },
+                          },
+                        ],
+                        "type": "Object",
+                      },
+                    },
+                  ],
+                  "type": "Object",
+                },
+              ],
+              "callee": Object {
+                "computed": false,
+                "object": Object {
+                  "location": Object {
+                    "end": Object {
+                      "column": 20,
+                      "line": 12,
+                      "offset": 239,
+                    },
+                    "start": Object {
+                      "column": 15,
+                      "line": 12,
+                      "offset": 234,
+                    },
+                  },
+                  "name": "Maybe",
+                  "type": "Id",
+                },
+                "property": Object {
+                  "location": Object {
+                    "end": Object {
+                      "column": 23,
+                      "line": 12,
+                      "offset": 242,
+                    },
+                    "start": Object {
+                      "column": 21,
+                      "line": 12,
+                      "offset": 240,
+                    },
+                  },
+                  "name": "of",
+                  "type": "Id",
+                },
+                "type": "Member",
+              },
+              "type": "Call",
+            },
+          ],
+          "callee": Object {
+            "location": Object {
+              "end": Object {
+                "column": 14,
+                "line": 12,
+                "offset": 233,
+              },
+              "start": Object {
+                "column": 5,
+                "line": 12,
+                "offset": 224,
+              },
+            },
+            "name": "transform",
+            "type": "Id",
+          },
+          "type": "Call",
+        },
+      ],
+      "callee": Object {
+        "location": Object {
+          "end": Object {
+            "column": 4,
+            "line": 12,
+            "offset": 223,
+          },
+          "start": Object {
+            "column": 1,
+            "line": 12,
+            "offset": 220,
+          },
+        },
+        "name": "put",
+        "type": "Id",
+      },
+      "type": "Call",
+    },
+    Object {
+      "left": Object {
+        "location": Object {
+          "end": Object {
+            "column": 11,
+            "line": 14,
+            "offset": 274,
+          },
+          "start": Object {
+            "column": 1,
+            "line": 14,
+            "offset": 264,
+          },
+        },
+        "name": "transform2",
+        "type": "Id",
+      },
+      "location": Object {
+        "end": Object {
+          "column": 19,
+          "line": 17,
+          "offset": 352,
+        },
+        "start": Object {
+          "column": 1,
+          "line": 14,
+          "offset": 264,
+        },
+      },
+      "right": Object {
+        "left": Object {
+          "left": Object {
+            "left": Object {
+              "computed": false,
+              "object": Object {
+                "location": Object {
+                  "end": Object {
+                    "column": 19,
+                    "line": 14,
+                    "offset": 282,
+                  },
+                  "start": Object {
+                    "column": 14,
+                    "line": 14,
+                    "offset": 277,
+                  },
+                },
+                "name": "Maybe",
+                "type": "Id",
+              },
+              "property": Object {
+                "location": Object {
+                  "end": Object {
+                    "column": 32,
+                    "line": 14,
+                    "offset": 295,
+                  },
+                  "start": Object {
+                    "column": 20,
+                    "line": 14,
+                    "offset": 283,
+                  },
+                },
+                "name": "fromNullable",
+                "type": "Id",
+              },
+              "type": "Member",
+            },
+            "operator": "|",
+            "right": Object {
+              "args": Array [
+                Object {
+                  "args": Array [
+                    Object {
+                      "location": Object {
+                        "end": Object {
+                          "column": 17,
+                          "line": 15,
+                          "offset": 312,
+                        },
+                        "start": Object {
+                          "column": 14,
+                          "line": 15,
+                          "offset": 309,
+                        },
+                      },
+                      "type": "String",
+                      "value": "a",
+                    },
+                  ],
+                  "callee": Object {
+                    "location": Object {
+                      "end": Object {
+                        "column": 13,
+                        "line": 15,
+                        "offset": 308,
+                      },
+                      "start": Object {
+                        "column": 9,
+                        "line": 15,
+                        "offset": 304,
+                      },
+                    },
+                    "name": "prop",
+                    "type": "Id",
+                  },
+                  "type": "Call",
+                },
+              ],
+              "callee": Object {
+                "location": Object {
+                  "end": Object {
+                    "column": 8,
+                    "line": 15,
+                    "offset": 303,
+                  },
+                  "start": Object {
+                    "column": 5,
+                    "line": 15,
+                    "offset": 300,
+                  },
+                },
+                "name": "map",
+                "type": "Id",
+              },
+              "type": "Call",
+            },
+            "type": "Binary",
+          },
+          "operator": "|",
+          "right": Object {
             "args": Array [
               Object {
                 "args": Array [
                   Object {
+                    "location": Object {
+                      "end": Object {
+                        "column": 17,
+                        "line": 16,
+                        "offset": 331,
+                      },
+                      "start": Object {
+                        "column": 14,
+                        "line": 16,
+                        "offset": 328,
+                      },
+                    },
+                    "type": "String",
+                    "value": "b",
+                  },
+                ],
+                "callee": Object {
+                  "location": Object {
+                    "end": Object {
+                      "column": 13,
+                      "line": 16,
+                      "offset": 327,
+                    },
+                    "start": Object {
+                      "column": 9,
+                      "line": 16,
+                      "offset": 323,
+                    },
+                  },
+                  "name": "prop",
+                  "type": "Id",
+                },
+                "type": "Call",
+              },
+            ],
+            "callee": Object {
+              "location": Object {
+                "end": Object {
+                  "column": 8,
+                  "line": 16,
+                  "offset": 322,
+                },
+                "start": Object {
+                  "column": 5,
+                  "line": 16,
+                  "offset": 319,
+                },
+              },
+              "name": "map",
+              "type": "Id",
+            },
+            "type": "Call",
+          },
+          "type": "Binary",
+        },
+        "operator": "|",
+        "right": Object {
+          "args": Array [
+            Object {
+              "args": Array [
+                Object {
+                  "location": Object {
+                    "end": Object {
+                      "column": 17,
+                      "line": 17,
+                      "offset": 350,
+                    },
+                    "start": Object {
+                      "column": 14,
+                      "line": 17,
+                      "offset": 347,
+                    },
+                  },
+                  "type": "String",
+                  "value": "c",
+                },
+              ],
+              "callee": Object {
+                "location": Object {
+                  "end": Object {
+                    "column": 13,
+                    "line": 17,
+                    "offset": 346,
+                  },
+                  "start": Object {
+                    "column": 9,
+                    "line": 17,
+                    "offset": 342,
+                  },
+                },
+                "name": "prop",
+                "type": "Id",
+              },
+              "type": "Call",
+            },
+          ],
+          "callee": Object {
+            "location": Object {
+              "end": Object {
+                "column": 8,
+                "line": 17,
+                "offset": 341,
+              },
+              "start": Object {
+                "column": 5,
+                "line": 17,
+                "offset": 338,
+              },
+            },
+            "name": "map",
+            "type": "Id",
+          },
+          "type": "Call",
+        },
+        "type": "Binary",
+      },
+      "type": "Assignment",
+    },
+    Object {
+      "args": Array [
+        Object {
+          "args": Array [
+            Object {
+              "properties": Array [
+                Object {
+                  "key": Object {
+                    "location": Object {
+                      "end": Object {
+                        "column": 18,
+                        "line": 19,
+                        "offset": 371,
+                      },
+                      "start": Object {
+                        "column": 17,
+                        "line": 19,
+                        "offset": 370,
+                      },
+                    },
+                    "name": "a",
+                    "type": "Id",
+                  },
+                  "kind": "init",
+                  "value": Object {
                     "properties": Array [
                       Object {
                         "key": Object {
                           "location": Object {
                             "end": Object {
-                              "column": 26,
-                              "line": 13,
-                              "offset": 265,
+                              "column": 22,
+                              "line": 19,
+                              "offset": 375,
                             },
                             "start": Object {
-                              "column": 25,
-                              "line": 13,
-                              "offset": 264,
+                              "column": 21,
+                              "line": 19,
+                              "offset": 374,
                             },
                           },
-                          "name": "a",
+                          "name": "b",
                           "type": "Id",
                         },
                         "kind": "init",
@@ -8509,59 +8158,35 @@ Object {
                               "key": Object {
                                 "location": Object {
                                   "end": Object {
-                                    "column": 30,
-                                    "line": 13,
-                                    "offset": 269,
+                                    "column": 26,
+                                    "line": 19,
+                                    "offset": 379,
                                   },
                                   "start": Object {
-                                    "column": 29,
-                                    "line": 13,
-                                    "offset": 268,
+                                    "column": 25,
+                                    "line": 19,
+                                    "offset": 378,
                                   },
                                 },
-                                "name": "b",
+                                "name": "c",
                                 "type": "Id",
                               },
                               "kind": "init",
                               "value": Object {
-                                "properties": Array [
-                                  Object {
-                                    "key": Object {
-                                      "location": Object {
-                                        "end": Object {
-                                          "column": 34,
-                                          "line": 13,
-                                          "offset": 273,
-                                        },
-                                        "start": Object {
-                                          "column": 33,
-                                          "line": 13,
-                                          "offset": 272,
-                                        },
-                                      },
-                                      "name": "d",
-                                      "type": "Id",
-                                    },
-                                    "kind": "init",
-                                    "value": Object {
-                                      "location": Object {
-                                        "end": Object {
-                                          "column": 37,
-                                          "line": 13,
-                                          "offset": 276,
-                                        },
-                                        "start": Object {
-                                          "column": 36,
-                                          "line": 13,
-                                          "offset": 275,
-                                        },
-                                      },
-                                      "type": "Decimal",
-                                      "value": "1",
-                                    },
+                                "location": Object {
+                                  "end": Object {
+                                    "column": 29,
+                                    "line": 19,
+                                    "offset": 382,
                                   },
-                                ],
-                                "type": "Object",
+                                  "start": Object {
+                                    "column": 28,
+                                    "line": 19,
+                                    "offset": 381,
+                                  },
+                                },
+                                "type": "Decimal",
+                                "value": "1",
                               },
                             },
                           ],
@@ -8571,94 +8196,228 @@ Object {
                     ],
                     "type": "Object",
                   },
-                ],
-                "callee": Object {
-                  "computed": false,
-                  "object": Object {
-                    "location": Object {
-                      "end": Object {
-                        "column": 20,
-                        "line": 13,
-                        "offset": 259,
-                      },
-                      "start": Object {
-                        "column": 15,
-                        "line": 13,
-                        "offset": 254,
-                      },
-                    },
-                    "name": "Maybe",
-                    "type": "Id",
-                  },
-                  "property": Object {
-                    "location": Object {
-                      "end": Object {
-                        "column": 23,
-                        "line": 13,
-                        "offset": 262,
-                      },
-                      "start": Object {
-                        "column": 21,
-                        "line": 13,
-                        "offset": 260,
-                      },
-                    },
-                    "name": "of",
-                    "type": "Id",
-                  },
-                  "type": "Member",
                 },
-                "type": "Call",
-              },
-            ],
-            "callee": Object {
-              "location": Object {
-                "end": Object {
-                  "column": 14,
-                  "line": 13,
-                  "offset": 253,
-                },
-                "start": Object {
-                  "column": 5,
-                  "line": 13,
-                  "offset": 244,
-                },
-              },
-              "name": "transform",
-              "type": "Id",
+              ],
+              "type": "Object",
             },
-            "type": "Call",
-          },
-          "property": Object {
+          ],
+          "callee": Object {
             "location": Object {
               "end": Object {
-                "column": 49,
-                "line": 13,
-                "offset": 288,
+                "column": 15,
+                "line": 19,
+                "offset": 368,
               },
               "start": Object {
-                "column": 43,
-                "line": 13,
-                "offset": 282,
+                "column": 5,
+                "line": 19,
+                "offset": 358,
               },
             },
-            "name": "isJust",
+            "name": "transform2",
             "type": "Id",
           },
-          "type": "Member",
+          "type": "Call",
         },
       ],
       "callee": Object {
         "location": Object {
           "end": Object {
             "column": 4,
-            "line": 13,
-            "offset": 243,
+            "line": 19,
+            "offset": 357,
           },
           "start": Object {
             "column": 1,
-            "line": 13,
-            "offset": 240,
+            "line": 19,
+            "offset": 354,
+          },
+        },
+        "name": "put",
+        "type": "Id",
+      },
+      "type": "Call",
+    },
+    Object {
+      "args": Array [
+        Object {
+          "args": Array [
+            Object {
+              "properties": Array [
+                Object {
+                  "key": Object {
+                    "location": Object {
+                      "end": Object {
+                        "column": 18,
+                        "line": 20,
+                        "offset": 405,
+                      },
+                      "start": Object {
+                        "column": 17,
+                        "line": 20,
+                        "offset": 404,
+                      },
+                    },
+                    "name": "a",
+                    "type": "Id",
+                  },
+                  "kind": "init",
+                  "value": Object {
+                    "properties": Array [
+                      Object {
+                        "key": Object {
+                          "location": Object {
+                            "end": Object {
+                              "column": 22,
+                              "line": 20,
+                              "offset": 409,
+                            },
+                            "start": Object {
+                              "column": 21,
+                              "line": 20,
+                              "offset": 408,
+                            },
+                          },
+                          "name": "b",
+                          "type": "Id",
+                        },
+                        "kind": "init",
+                        "value": Object {
+                          "properties": Array [
+                            Object {
+                              "key": Object {
+                                "location": Object {
+                                  "end": Object {
+                                    "column": 26,
+                                    "line": 20,
+                                    "offset": 413,
+                                  },
+                                  "start": Object {
+                                    "column": 25,
+                                    "line": 20,
+                                    "offset": 412,
+                                  },
+                                },
+                                "name": "d",
+                                "type": "Id",
+                              },
+                              "kind": "init",
+                              "value": Object {
+                                "location": Object {
+                                  "end": Object {
+                                    "column": 29,
+                                    "line": 20,
+                                    "offset": 416,
+                                  },
+                                  "start": Object {
+                                    "column": 28,
+                                    "line": 20,
+                                    "offset": 415,
+                                  },
+                                },
+                                "type": "Decimal",
+                                "value": "1",
+                              },
+                            },
+                          ],
+                          "type": "Object",
+                        },
+                      },
+                    ],
+                    "type": "Object",
+                  },
+                },
+              ],
+              "type": "Object",
+            },
+          ],
+          "callee": Object {
+            "location": Object {
+              "end": Object {
+                "column": 15,
+                "line": 20,
+                "offset": 402,
+              },
+              "start": Object {
+                "column": 5,
+                "line": 20,
+                "offset": 392,
+              },
+            },
+            "name": "transform2",
+            "type": "Id",
+          },
+          "type": "Call",
+        },
+      ],
+      "callee": Object {
+        "location": Object {
+          "end": Object {
+            "column": 4,
+            "line": 20,
+            "offset": 391,
+          },
+          "start": Object {
+            "column": 1,
+            "line": 20,
+            "offset": 388,
+          },
+        },
+        "name": "put",
+        "type": "Id",
+      },
+      "type": "Call",
+    },
+    Object {
+      "args": Array [
+        Object {
+          "args": Array [
+            Object {
+              "location": Object {
+                "end": Object {
+                  "column": 20,
+                  "line": 21,
+                  "offset": 441,
+                },
+                "start": Object {
+                  "column": 16,
+                  "line": 21,
+                  "offset": 437,
+                },
+              },
+              "type": "Null",
+            },
+          ],
+          "callee": Object {
+            "location": Object {
+              "end": Object {
+                "column": 15,
+                "line": 21,
+                "offset": 436,
+              },
+              "start": Object {
+                "column": 5,
+                "line": 21,
+                "offset": 426,
+              },
+            },
+            "name": "transform2",
+            "type": "Id",
+          },
+          "type": "Call",
+        },
+      ],
+      "callee": Object {
+        "location": Object {
+          "end": Object {
+            "column": 4,
+            "line": 21,
+            "offset": 425,
+          },
+          "start": Object {
+            "column": 1,
+            "line": 21,
+            "offset": 422,
           },
         },
         "name": "put",
@@ -8669,9 +8428,9 @@ Object {
   ],
   "location": Object {
     "end": Object {
-      "column": 50,
-      "line": 13,
-      "offset": 289,
+      "column": 22,
+      "line": 21,
+      "offset": 443,
     },
     "start": Object {
       "column": 1,
@@ -20008,6 +19767,905 @@ Object {
 }
 `;
 
+exports[`parse succeeds for result.ion 1`] = `
+Object {
+  "body": Array [
+    Object {
+      "args": Array [
+        Object {
+          "args": Array [
+            Object {
+              "body": Object {
+                "left": Object {
+                  "location": Object {
+                    "end": Object {
+                      "column": 23,
+                      "line": 1,
+                      "offset": 22,
+                    },
+                    "start": Object {
+                      "column": 22,
+                      "line": 1,
+                      "offset": 21,
+                    },
+                  },
+                  "type": "Decimal",
+                  "value": "4",
+                },
+                "operator": "/",
+                "right": Object {
+                  "location": Object {
+                    "end": Object {
+                      "column": 27,
+                      "line": 1,
+                      "offset": 26,
+                    },
+                    "start": Object {
+                      "column": 26,
+                      "line": 1,
+                      "offset": 25,
+                    },
+                  },
+                  "type": "Decimal",
+                  "value": "2",
+                },
+                "type": "Binary",
+              },
+              "params": Array [],
+              "type": "Lambda",
+            },
+          ],
+          "callee": Object {
+            "computed": false,
+            "object": Object {
+              "location": Object {
+                "end": Object {
+                  "column": 11,
+                  "line": 1,
+                  "offset": 10,
+                },
+                "start": Object {
+                  "column": 5,
+                  "line": 1,
+                  "offset": 4,
+                },
+              },
+              "name": "Result",
+              "type": "Id",
+            },
+            "property": Object {
+              "location": Object {
+                "end": Object {
+                  "column": 15,
+                  "line": 1,
+                  "offset": 14,
+                },
+                "start": Object {
+                  "column": 12,
+                  "line": 1,
+                  "offset": 11,
+                },
+              },
+              "name": "try",
+              "type": "Id",
+            },
+            "type": "Member",
+          },
+          "type": "Call",
+        },
+      ],
+      "callee": Object {
+        "location": Object {
+          "end": Object {
+            "column": 4,
+            "line": 1,
+            "offset": 3,
+          },
+          "start": Object {
+            "column": 1,
+            "line": 1,
+            "offset": 0,
+          },
+        },
+        "name": "put",
+        "type": "Id",
+      },
+      "type": "Call",
+    },
+    Object {
+      "args": Array [
+        Object {
+          "args": Array [
+            Object {
+              "body": Object {
+                "location": Object {
+                  "end": Object {
+                    "column": 25,
+                    "line": 2,
+                    "offset": 53,
+                  },
+                  "start": Object {
+                    "column": 22,
+                    "line": 2,
+                    "offset": 50,
+                  },
+                },
+                "name": "foo",
+                "type": "Id",
+              },
+              "params": Array [],
+              "type": "Lambda",
+            },
+          ],
+          "callee": Object {
+            "computed": false,
+            "object": Object {
+              "location": Object {
+                "end": Object {
+                  "column": 11,
+                  "line": 2,
+                  "offset": 39,
+                },
+                "start": Object {
+                  "column": 5,
+                  "line": 2,
+                  "offset": 33,
+                },
+              },
+              "name": "Result",
+              "type": "Id",
+            },
+            "property": Object {
+              "location": Object {
+                "end": Object {
+                  "column": 15,
+                  "line": 2,
+                  "offset": 43,
+                },
+                "start": Object {
+                  "column": 12,
+                  "line": 2,
+                  "offset": 40,
+                },
+              },
+              "name": "try",
+              "type": "Id",
+            },
+            "type": "Member",
+          },
+          "type": "Call",
+        },
+      ],
+      "callee": Object {
+        "location": Object {
+          "end": Object {
+            "column": 4,
+            "line": 2,
+            "offset": 32,
+          },
+          "start": Object {
+            "column": 1,
+            "line": 2,
+            "offset": 29,
+          },
+        },
+        "name": "put",
+        "type": "Id",
+      },
+      "type": "Call",
+    },
+    Object {
+      "args": Array [
+        Object {
+          "left": Object {
+            "args": Array [
+              Object {
+                "location": Object {
+                  "end": Object {
+                    "column": 16,
+                    "line": 4,
+                    "offset": 72,
+                  },
+                  "start": Object {
+                    "column": 15,
+                    "line": 4,
+                    "offset": 71,
+                  },
+                },
+                "type": "Decimal",
+                "value": "1",
+              },
+            ],
+            "callee": Object {
+              "computed": false,
+              "object": Object {
+                "location": Object {
+                  "end": Object {
+                    "column": 11,
+                    "line": 4,
+                    "offset": 67,
+                  },
+                  "start": Object {
+                    "column": 5,
+                    "line": 4,
+                    "offset": 61,
+                  },
+                },
+                "name": "Result",
+                "type": "Id",
+              },
+              "property": Object {
+                "location": Object {
+                  "end": Object {
+                    "column": 14,
+                    "line": 4,
+                    "offset": 70,
+                  },
+                  "start": Object {
+                    "column": 12,
+                    "line": 4,
+                    "offset": 68,
+                  },
+                },
+                "name": "Ok",
+                "type": "Id",
+              },
+              "type": "Member",
+            },
+            "type": "Call",
+          },
+          "operator": "==",
+          "right": Object {
+            "args": Array [
+              Object {
+                "location": Object {
+                  "end": Object {
+                    "column": 32,
+                    "line": 4,
+                    "offset": 88,
+                  },
+                  "start": Object {
+                    "column": 31,
+                    "line": 4,
+                    "offset": 87,
+                  },
+                },
+                "type": "Decimal",
+                "value": "1",
+              },
+            ],
+            "callee": Object {
+              "computed": false,
+              "object": Object {
+                "location": Object {
+                  "end": Object {
+                    "column": 27,
+                    "line": 4,
+                    "offset": 83,
+                  },
+                  "start": Object {
+                    "column": 21,
+                    "line": 4,
+                    "offset": 77,
+                  },
+                },
+                "name": "Result",
+                "type": "Id",
+              },
+              "property": Object {
+                "location": Object {
+                  "end": Object {
+                    "column": 30,
+                    "line": 4,
+                    "offset": 86,
+                  },
+                  "start": Object {
+                    "column": 28,
+                    "line": 4,
+                    "offset": 84,
+                  },
+                },
+                "name": "Ok",
+                "type": "Id",
+              },
+              "type": "Member",
+            },
+            "type": "Call",
+          },
+          "type": "Binary",
+        },
+      ],
+      "callee": Object {
+        "location": Object {
+          "end": Object {
+            "column": 4,
+            "line": 4,
+            "offset": 60,
+          },
+          "start": Object {
+            "column": 1,
+            "line": 4,
+            "offset": 57,
+          },
+        },
+        "name": "put",
+        "type": "Id",
+      },
+      "type": "Call",
+    },
+    Object {
+      "args": Array [
+        Object {
+          "left": Object {
+            "args": Array [
+              Object {
+                "location": Object {
+                  "end": Object {
+                    "column": 19,
+                    "line": 5,
+                    "offset": 109,
+                  },
+                  "start": Object {
+                    "column": 18,
+                    "line": 5,
+                    "offset": 108,
+                  },
+                },
+                "type": "Decimal",
+                "value": "1",
+              },
+            ],
+            "callee": Object {
+              "computed": false,
+              "object": Object {
+                "location": Object {
+                  "end": Object {
+                    "column": 11,
+                    "line": 5,
+                    "offset": 101,
+                  },
+                  "start": Object {
+                    "column": 5,
+                    "line": 5,
+                    "offset": 95,
+                  },
+                },
+                "name": "Result",
+                "type": "Id",
+              },
+              "property": Object {
+                "location": Object {
+                  "end": Object {
+                    "column": 17,
+                    "line": 5,
+                    "offset": 107,
+                  },
+                  "start": Object {
+                    "column": 12,
+                    "line": 5,
+                    "offset": 102,
+                  },
+                },
+                "name": "Error",
+                "type": "Id",
+              },
+              "type": "Member",
+            },
+            "type": "Call",
+          },
+          "operator": "==",
+          "right": Object {
+            "args": Array [
+              Object {
+                "location": Object {
+                  "end": Object {
+                    "column": 38,
+                    "line": 5,
+                    "offset": 128,
+                  },
+                  "start": Object {
+                    "column": 37,
+                    "line": 5,
+                    "offset": 127,
+                  },
+                },
+                "type": "Decimal",
+                "value": "1",
+              },
+            ],
+            "callee": Object {
+              "computed": false,
+              "object": Object {
+                "location": Object {
+                  "end": Object {
+                    "column": 30,
+                    "line": 5,
+                    "offset": 120,
+                  },
+                  "start": Object {
+                    "column": 24,
+                    "line": 5,
+                    "offset": 114,
+                  },
+                },
+                "name": "Result",
+                "type": "Id",
+              },
+              "property": Object {
+                "location": Object {
+                  "end": Object {
+                    "column": 36,
+                    "line": 5,
+                    "offset": 126,
+                  },
+                  "start": Object {
+                    "column": 31,
+                    "line": 5,
+                    "offset": 121,
+                  },
+                },
+                "name": "Error",
+                "type": "Id",
+              },
+              "type": "Member",
+            },
+            "type": "Call",
+          },
+          "type": "Binary",
+        },
+      ],
+      "callee": Object {
+        "location": Object {
+          "end": Object {
+            "column": 4,
+            "line": 5,
+            "offset": 94,
+          },
+          "start": Object {
+            "column": 1,
+            "line": 5,
+            "offset": 91,
+          },
+        },
+        "name": "put",
+        "type": "Id",
+      },
+      "type": "Call",
+    },
+    Object {
+      "args": Array [
+        Object {
+          "left": Object {
+            "args": Array [
+              Object {
+                "location": Object {
+                  "end": Object {
+                    "column": 19,
+                    "line": 7,
+                    "offset": 150,
+                  },
+                  "start": Object {
+                    "column": 18,
+                    "line": 7,
+                    "offset": 149,
+                  },
+                },
+                "type": "Decimal",
+                "value": "1",
+              },
+            ],
+            "callee": Object {
+              "computed": false,
+              "object": Object {
+                "location": Object {
+                  "end": Object {
+                    "column": 11,
+                    "line": 7,
+                    "offset": 142,
+                  },
+                  "start": Object {
+                    "column": 5,
+                    "line": 7,
+                    "offset": 136,
+                  },
+                },
+                "name": "Result",
+                "type": "Id",
+              },
+              "property": Object {
+                "location": Object {
+                  "end": Object {
+                    "column": 17,
+                    "line": 7,
+                    "offset": 148,
+                  },
+                  "start": Object {
+                    "column": 12,
+                    "line": 7,
+                    "offset": 143,
+                  },
+                },
+                "name": "Error",
+                "type": "Id",
+              },
+              "type": "Member",
+            },
+            "type": "Call",
+          },
+          "operator": "==",
+          "right": Object {
+            "args": Array [
+              Object {
+                "location": Object {
+                  "end": Object {
+                    "column": 35,
+                    "line": 7,
+                    "offset": 166,
+                  },
+                  "start": Object {
+                    "column": 34,
+                    "line": 7,
+                    "offset": 165,
+                  },
+                },
+                "type": "Decimal",
+                "value": "1",
+              },
+            ],
+            "callee": Object {
+              "computed": false,
+              "object": Object {
+                "location": Object {
+                  "end": Object {
+                    "column": 30,
+                    "line": 7,
+                    "offset": 161,
+                  },
+                  "start": Object {
+                    "column": 24,
+                    "line": 7,
+                    "offset": 155,
+                  },
+                },
+                "name": "Result",
+                "type": "Id",
+              },
+              "property": Object {
+                "location": Object {
+                  "end": Object {
+                    "column": 33,
+                    "line": 7,
+                    "offset": 164,
+                  },
+                  "start": Object {
+                    "column": 31,
+                    "line": 7,
+                    "offset": 162,
+                  },
+                },
+                "name": "Ok",
+                "type": "Id",
+              },
+              "type": "Member",
+            },
+            "type": "Call",
+          },
+          "type": "Binary",
+        },
+      ],
+      "callee": Object {
+        "location": Object {
+          "end": Object {
+            "column": 4,
+            "line": 7,
+            "offset": 135,
+          },
+          "start": Object {
+            "column": 1,
+            "line": 7,
+            "offset": 132,
+          },
+        },
+        "name": "put",
+        "type": "Id",
+      },
+      "type": "Call",
+    },
+    Object {
+      "args": Array [
+        Object {
+          "left": Object {
+            "args": Array [
+              Object {
+                "location": Object {
+                  "end": Object {
+                    "column": 16,
+                    "line": 8,
+                    "offset": 184,
+                  },
+                  "start": Object {
+                    "column": 15,
+                    "line": 8,
+                    "offset": 183,
+                  },
+                },
+                "type": "Decimal",
+                "value": "1",
+              },
+            ],
+            "callee": Object {
+              "computed": false,
+              "object": Object {
+                "location": Object {
+                  "end": Object {
+                    "column": 11,
+                    "line": 8,
+                    "offset": 179,
+                  },
+                  "start": Object {
+                    "column": 5,
+                    "line": 8,
+                    "offset": 173,
+                  },
+                },
+                "name": "Result",
+                "type": "Id",
+              },
+              "property": Object {
+                "location": Object {
+                  "end": Object {
+                    "column": 14,
+                    "line": 8,
+                    "offset": 182,
+                  },
+                  "start": Object {
+                    "column": 12,
+                    "line": 8,
+                    "offset": 180,
+                  },
+                },
+                "name": "Ok",
+                "type": "Id",
+              },
+              "type": "Member",
+            },
+            "type": "Call",
+          },
+          "operator": "==",
+          "right": Object {
+            "args": Array [
+              Object {
+                "location": Object {
+                  "end": Object {
+                    "column": 32,
+                    "line": 8,
+                    "offset": 200,
+                  },
+                  "start": Object {
+                    "column": 31,
+                    "line": 8,
+                    "offset": 199,
+                  },
+                },
+                "type": "Decimal",
+                "value": "2",
+              },
+            ],
+            "callee": Object {
+              "computed": false,
+              "object": Object {
+                "location": Object {
+                  "end": Object {
+                    "column": 27,
+                    "line": 8,
+                    "offset": 195,
+                  },
+                  "start": Object {
+                    "column": 21,
+                    "line": 8,
+                    "offset": 189,
+                  },
+                },
+                "name": "Result",
+                "type": "Id",
+              },
+              "property": Object {
+                "location": Object {
+                  "end": Object {
+                    "column": 30,
+                    "line": 8,
+                    "offset": 198,
+                  },
+                  "start": Object {
+                    "column": 28,
+                    "line": 8,
+                    "offset": 196,
+                  },
+                },
+                "name": "Ok",
+                "type": "Id",
+              },
+              "type": "Member",
+            },
+            "type": "Call",
+          },
+          "type": "Binary",
+        },
+      ],
+      "callee": Object {
+        "location": Object {
+          "end": Object {
+            "column": 4,
+            "line": 8,
+            "offset": 172,
+          },
+          "start": Object {
+            "column": 1,
+            "line": 8,
+            "offset": 169,
+          },
+        },
+        "name": "put",
+        "type": "Id",
+      },
+      "type": "Call",
+    },
+    Object {
+      "args": Array [
+        Object {
+          "left": Object {
+            "args": Array [
+              Object {
+                "location": Object {
+                  "end": Object {
+                    "column": 19,
+                    "line": 9,
+                    "offset": 221,
+                  },
+                  "start": Object {
+                    "column": 18,
+                    "line": 9,
+                    "offset": 220,
+                  },
+                },
+                "type": "Decimal",
+                "value": "1",
+              },
+            ],
+            "callee": Object {
+              "computed": false,
+              "object": Object {
+                "location": Object {
+                  "end": Object {
+                    "column": 11,
+                    "line": 9,
+                    "offset": 213,
+                  },
+                  "start": Object {
+                    "column": 5,
+                    "line": 9,
+                    "offset": 207,
+                  },
+                },
+                "name": "Result",
+                "type": "Id",
+              },
+              "property": Object {
+                "location": Object {
+                  "end": Object {
+                    "column": 17,
+                    "line": 9,
+                    "offset": 219,
+                  },
+                  "start": Object {
+                    "column": 12,
+                    "line": 9,
+                    "offset": 214,
+                  },
+                },
+                "name": "Error",
+                "type": "Id",
+              },
+              "type": "Member",
+            },
+            "type": "Call",
+          },
+          "operator": "==",
+          "right": Object {
+            "args": Array [
+              Object {
+                "location": Object {
+                  "end": Object {
+                    "column": 38,
+                    "line": 9,
+                    "offset": 240,
+                  },
+                  "start": Object {
+                    "column": 37,
+                    "line": 9,
+                    "offset": 239,
+                  },
+                },
+                "type": "Decimal",
+                "value": "2",
+              },
+            ],
+            "callee": Object {
+              "computed": false,
+              "object": Object {
+                "location": Object {
+                  "end": Object {
+                    "column": 30,
+                    "line": 9,
+                    "offset": 232,
+                  },
+                  "start": Object {
+                    "column": 24,
+                    "line": 9,
+                    "offset": 226,
+                  },
+                },
+                "name": "Result",
+                "type": "Id",
+              },
+              "property": Object {
+                "location": Object {
+                  "end": Object {
+                    "column": 36,
+                    "line": 9,
+                    "offset": 238,
+                  },
+                  "start": Object {
+                    "column": 31,
+                    "line": 9,
+                    "offset": 233,
+                  },
+                },
+                "name": "Error",
+                "type": "Id",
+              },
+              "type": "Member",
+            },
+            "type": "Call",
+          },
+          "type": "Binary",
+        },
+      ],
+      "callee": Object {
+        "location": Object {
+          "end": Object {
+            "column": 4,
+            "line": 9,
+            "offset": 206,
+          },
+          "start": Object {
+            "column": 1,
+            "line": 9,
+            "offset": 203,
+          },
+        },
+        "name": "put",
+        "type": "Id",
+      },
+      "type": "Call",
+    },
+  ],
+  "location": Object {
+    "end": Object {
+      "column": 40,
+      "line": 9,
+      "offset": 242,
+    },
+    "start": Object {
+      "column": 1,
+      "line": 1,
+      "offset": 0,
+    },
+  },
+  "type": "Program",
+}
+`;
+
 exports[`parse succeeds for spreads.ion 1`] = `
 Object {
   "body": Array [
@@ -22267,9 +22925,9 @@ Object {
       "left": Object {
         "location": Object {
           "end": Object {
-            "column": 9,
+            "column": 5,
             "line": 3,
-            "offset": 32,
+            "offset": 28,
           },
           "start": Object {
             "column": 1,
@@ -22277,409 +22935,19 @@ Object {
             "offset": 24,
           },
         },
-        "name": "readFile",
+        "name": "read",
         "type": "Id",
       },
       "location": Object {
         "end": Object {
-          "column": 35,
-          "line": 6,
-          "offset": 179,
+          "column": 13,
+          "line": 11,
+          "offset": 203,
         },
         "start": Object {
           "column": 1,
           "line": 3,
           "offset": 24,
-        },
-      },
-      "right": Object {
-        "body": Object {
-          "args": Array [
-            Object {
-              "body": Object {
-                "args": Array [
-                  Object {
-                    "args": Array [
-                      Object {
-                        "location": Object {
-                          "end": Object {
-                            "column": 38,
-                            "line": 5,
-                            "offset": 107,
-                          },
-                          "start": Object {
-                            "column": 30,
-                            "line": 5,
-                            "offset": 99,
-                          },
-                        },
-                        "name": "filename",
-                        "type": "Id",
-                      },
-                    ],
-                    "callee": Object {
-                      "computed": false,
-                      "object": Object {
-                        "location": Object {
-                          "end": Object {
-                            "column": 21,
-                            "line": 5,
-                            "offset": 90,
-                          },
-                          "start": Object {
-                            "column": 17,
-                            "line": 5,
-                            "offset": 86,
-                          },
-                        },
-                        "name": "path",
-                        "type": "Id",
-                      },
-                      "property": Object {
-                        "location": Object {
-                          "end": Object {
-                            "column": 29,
-                            "line": 5,
-                            "offset": 98,
-                          },
-                          "start": Object {
-                            "column": 22,
-                            "line": 5,
-                            "offset": 91,
-                          },
-                        },
-                        "name": "resolve",
-                        "type": "Id",
-                      },
-                      "type": "Member",
-                    },
-                    "type": "Call",
-                  },
-                  Object {
-                    "properties": Array [
-                      Object {
-                        "key": Object {
-                          "location": Object {
-                            "end": Object {
-                              "column": 50,
-                              "line": 5,
-                              "offset": 119,
-                            },
-                            "start": Object {
-                              "column": 42,
-                              "line": 5,
-                              "offset": 111,
-                            },
-                          },
-                          "name": "encoding",
-                          "type": "Id",
-                        },
-                        "kind": "init",
-                        "value": Object {
-                          "location": Object {
-                            "end": Object {
-                              "column": 58,
-                              "line": 5,
-                              "offset": 127,
-                            },
-                            "start": Object {
-                              "column": 52,
-                              "line": 5,
-                              "offset": 121,
-                            },
-                          },
-                          "type": "String",
-                          "value": "utf8",
-                        },
-                      },
-                    ],
-                    "type": "Object",
-                  },
-                  Object {
-                    "body": Object {
-                      "alternate": Object {
-                        "args": Array [
-                          Object {
-                            "location": Object {
-                              "end": Object {
-                                "column": 32,
-                                "line": 6,
-                                "offset": 176,
-                              },
-                              "start": Object {
-                                "column": 28,
-                                "line": 6,
-                                "offset": 172,
-                              },
-                            },
-                            "name": "data",
-                            "type": "Id",
-                          },
-                        ],
-                        "callee": Object {
-                          "location": Object {
-                            "end": Object {
-                              "column": 27,
-                              "line": 6,
-                              "offset": 171,
-                            },
-                            "start": Object {
-                              "column": 24,
-                              "line": 6,
-                              "offset": 168,
-                            },
-                          },
-                          "name": "res",
-                          "type": "Id",
-                        },
-                        "type": "Call",
-                      },
-                      "consequent": Object {
-                        "args": Array [
-                          Object {
-                            "location": Object {
-                              "end": Object {
-                                "column": 20,
-                                "line": 6,
-                                "offset": 164,
-                              },
-                              "start": Object {
-                                "column": 17,
-                                "line": 6,
-                                "offset": 161,
-                              },
-                            },
-                            "name": "err",
-                            "type": "Id",
-                          },
-                        ],
-                        "callee": Object {
-                          "location": Object {
-                            "end": Object {
-                              "column": 16,
-                              "line": 6,
-                              "offset": 160,
-                            },
-                            "start": Object {
-                              "column": 13,
-                              "line": 6,
-                              "offset": 157,
-                            },
-                          },
-                          "name": "rej",
-                          "type": "Id",
-                        },
-                        "type": "Call",
-                      },
-                      "location": Object {
-                        "end": Object {
-                          "column": 33,
-                          "line": 6,
-                          "offset": 177,
-                        },
-                        "start": Object {
-                          "column": 7,
-                          "line": 6,
-                          "offset": 151,
-                        },
-                      },
-                      "test": Object {
-                        "location": Object {
-                          "end": Object {
-                            "column": 10,
-                            "line": 6,
-                            "offset": 154,
-                          },
-                          "start": Object {
-                            "column": 7,
-                            "line": 6,
-                            "offset": 151,
-                          },
-                        },
-                        "name": "err",
-                        "type": "Id",
-                      },
-                      "type": "Ternary",
-                    },
-                    "params": Array [
-                      Object {
-                        "location": Object {
-                          "end": Object {
-                            "column": 65,
-                            "line": 5,
-                            "offset": 134,
-                          },
-                          "start": Object {
-                            "column": 62,
-                            "line": 5,
-                            "offset": 131,
-                          },
-                        },
-                        "name": "err",
-                        "type": "Id",
-                      },
-                      Object {
-                        "location": Object {
-                          "end": Object {
-                            "column": 71,
-                            "line": 5,
-                            "offset": 140,
-                          },
-                          "start": Object {
-                            "column": 67,
-                            "line": 5,
-                            "offset": 136,
-                          },
-                        },
-                        "name": "data",
-                        "type": "Id",
-                      },
-                    ],
-                    "type": "Lambda",
-                  },
-                ],
-                "callee": Object {
-                  "computed": false,
-                  "object": Object {
-                    "location": Object {
-                      "end": Object {
-                        "column": 7,
-                        "line": 5,
-                        "offset": 76,
-                      },
-                      "start": Object {
-                        "column": 5,
-                        "line": 5,
-                        "offset": 74,
-                      },
-                    },
-                    "name": "fs",
-                    "type": "Id",
-                  },
-                  "property": Object {
-                    "location": Object {
-                      "end": Object {
-                        "column": 16,
-                        "line": 5,
-                        "offset": 85,
-                      },
-                      "start": Object {
-                        "column": 8,
-                        "line": 5,
-                        "offset": 77,
-                      },
-                    },
-                    "name": "readFile",
-                    "type": "Id",
-                  },
-                  "type": "Member",
-                },
-                "type": "Call",
-              },
-              "params": Array [
-                Object {
-                  "location": Object {
-                    "end": Object {
-                      "column": 12,
-                      "line": 4,
-                      "offset": 60,
-                    },
-                    "start": Object {
-                      "column": 9,
-                      "line": 4,
-                      "offset": 57,
-                    },
-                  },
-                  "name": "rej",
-                  "type": "Id",
-                },
-                Object {
-                  "location": Object {
-                    "end": Object {
-                      "column": 17,
-                      "line": 4,
-                      "offset": 65,
-                    },
-                    "start": Object {
-                      "column": 14,
-                      "line": 4,
-                      "offset": 62,
-                    },
-                  },
-                  "name": "res",
-                  "type": "Id",
-                },
-              ],
-              "type": "Lambda",
-            },
-          ],
-          "callee": Object {
-            "location": Object {
-              "end": Object {
-                "column": 7,
-                "line": 4,
-                "offset": 55,
-              },
-              "start": Object {
-                "column": 3,
-                "line": 4,
-                "offset": 51,
-              },
-            },
-            "name": "Task",
-            "type": "Id",
-          },
-          "type": "Call",
-        },
-        "params": Array [
-          Object {
-            "location": Object {
-              "end": Object {
-                "column": 21,
-                "line": 3,
-                "offset": 44,
-              },
-              "start": Object {
-                "column": 13,
-                "line": 3,
-                "offset": 36,
-              },
-            },
-            "name": "filename",
-            "type": "Id",
-          },
-        ],
-        "type": "Lambda",
-      },
-      "type": "Assignment",
-    },
-    Object {
-      "left": Object {
-        "location": Object {
-          "end": Object {
-            "column": 12,
-            "line": 8,
-            "offset": 192,
-          },
-          "start": Object {
-            "column": 1,
-            "line": 8,
-            "offset": 181,
-          },
-        },
-        "name": "concatFiles",
-        "type": "Id",
-      },
-      "location": Object {
-        "end": Object {
-          "column": 19,
-          "line": 14,
-          "offset": 328,
-        },
-        "start": Object {
-          "column": 1,
-          "line": 8,
-          "offset": 181,
         },
       },
       "right": Object {
@@ -22689,52 +22957,175 @@ Object {
               "left": Object {
                 "left": Object {
                   "left": Object {
-                    "location": Object {
-                      "end": Object {
-                        "column": 23,
-                        "line": 8,
-                        "offset": 203,
+                    "left": Object {
+                      "left": Object {
+                        "computed": false,
+                        "object": Object {
+                          "location": Object {
+                            "end": Object {
+                              "column": 12,
+                              "line": 3,
+                              "offset": 35,
+                            },
+                            "start": Object {
+                              "column": 8,
+                              "line": 3,
+                              "offset": 31,
+                            },
+                          },
+                          "name": "path",
+                          "type": "Id",
+                        },
+                        "property": Object {
+                          "location": Object {
+                            "end": Object {
+                              "column": 20,
+                              "line": 3,
+                              "offset": 43,
+                            },
+                            "start": Object {
+                              "column": 13,
+                              "line": 3,
+                              "offset": 36,
+                            },
+                          },
+                          "name": "resolve",
+                          "type": "Id",
+                        },
+                        "type": "Member",
                       },
-                      "start": Object {
-                        "column": 15,
-                        "line": 8,
-                        "offset": 195,
+                      "operator": "|",
+                      "right": Object {
+                        "computed": false,
+                        "object": Object {
+                          "location": Object {
+                            "end": Object {
+                              "column": 7,
+                              "line": 4,
+                              "offset": 50,
+                            },
+                            "start": Object {
+                              "column": 5,
+                              "line": 4,
+                              "offset": 48,
+                            },
+                          },
+                          "name": "fs",
+                          "type": "Id",
+                        },
+                        "property": Object {
+                          "location": Object {
+                            "end": Object {
+                              "column": 16,
+                              "line": 4,
+                              "offset": 59,
+                            },
+                            "start": Object {
+                              "column": 8,
+                              "line": 4,
+                              "offset": 51,
+                            },
+                          },
+                          "name": "readFile",
+                          "type": "Id",
+                        },
+                        "type": "Member",
                       },
+                      "type": "Binary",
                     },
-                    "name": "readFile",
-                    "type": "Id",
+                    "operator": "|",
+                    "right": Object {
+                      "args": Array [
+                        Object {
+                          "location": Object {
+                            "end": Object {
+                              "column": 17,
+                              "line": 5,
+                              "offset": 76,
+                            },
+                            "start": Object {
+                              "column": 9,
+                              "line": 5,
+                              "offset": 68,
+                            },
+                          },
+                          "name": "toString",
+                          "type": "Id",
+                        },
+                      ],
+                      "callee": Object {
+                        "location": Object {
+                          "end": Object {
+                            "column": 8,
+                            "line": 5,
+                            "offset": 67,
+                          },
+                          "start": Object {
+                            "column": 5,
+                            "line": 5,
+                            "offset": 64,
+                          },
+                        },
+                        "name": "map",
+                        "type": "Id",
+                      },
+                      "type": "Call",
+                    },
+                    "type": "Binary",
                   },
                   "operator": "|",
                   "right": Object {
                     "args": Array [
                       Object {
-                        "location": Object {
-                          "end": Object {
-                            "column": 13,
-                            "line": 9,
-                            "offset": 216,
+                        "args": Array [
+                          Object {
+                            "location": Object {
+                              "end": Object {
+                                "column": 19,
+                                "line": 6,
+                                "offset": 96,
+                              },
+                              "start": Object {
+                                "column": 15,
+                                "line": 6,
+                                "offset": 92,
+                              },
+                            },
+                            "type": "String",
+                            "value": "
+",
                           },
-                          "start": Object {
-                            "column": 9,
-                            "line": 9,
-                            "offset": 212,
+                        ],
+                        "callee": Object {
+                          "location": Object {
+                            "end": Object {
+                              "column": 14,
+                              "line": 6,
+                              "offset": 91,
+                            },
+                            "start": Object {
+                              "column": 9,
+                              "line": 6,
+                              "offset": 86,
+                            },
                           },
+                          "name": "split",
+                          "type": "Id",
                         },
-                        "name": "trim",
-                        "type": "Id",
+                        "type": "Call",
                       },
                     ],
                     "callee": Object {
                       "location": Object {
                         "end": Object {
                           "column": 8,
-                          "line": 9,
-                          "offset": 211,
+                          "line": 6,
+                          "offset": 85,
                         },
                         "start": Object {
                           "column": 5,
-                          "line": 9,
-                          "offset": 208,
+                          "line": 6,
+                          "offset": 82,
                         },
                       },
                       "name": "map",
@@ -22750,37 +23141,56 @@ Object {
                     Object {
                       "args": Array [
                         Object {
-                          "location": Object {
-                            "end": Object {
-                              "column": 19,
-                              "line": 10,
-                              "offset": 236,
+                          "computed": false,
+                          "object": Object {
+                            "location": Object {
+                              "end": Object {
+                                "column": 15,
+                                "line": 7,
+                                "offset": 113,
+                              },
+                              "start": Object {
+                                "column": 13,
+                                "line": 7,
+                                "offset": 111,
+                              },
                             },
-                            "start": Object {
-                              "column": 15,
-                              "line": 10,
-                              "offset": 232,
-                            },
+                            "name": "fs",
+                            "type": "Id",
                           },
-                          "type": "String",
-                          "value": "
-",
+                          "property": Object {
+                            "location": Object {
+                              "end": Object {
+                                "column": 24,
+                                "line": 7,
+                                "offset": 122,
+                              },
+                              "start": Object {
+                                "column": 16,
+                                "line": 7,
+                                "offset": 114,
+                              },
+                            },
+                            "name": "readFile",
+                            "type": "Id",
+                          },
+                          "type": "Member",
                         },
                       ],
                       "callee": Object {
                         "location": Object {
                           "end": Object {
-                            "column": 14,
-                            "line": 10,
-                            "offset": 231,
+                            "column": 12,
+                            "line": 7,
+                            "offset": 110,
                           },
                           "start": Object {
                             "column": 9,
-                            "line": 10,
-                            "offset": 226,
+                            "line": 7,
+                            "offset": 107,
                           },
                         },
-                        "name": "split",
+                        "name": "map",
                         "type": "Id",
                       },
                       "type": "Call",
@@ -22790,13 +23200,13 @@ Object {
                     "location": Object {
                       "end": Object {
                         "column": 8,
-                        "line": 10,
-                        "offset": 225,
+                        "line": 7,
+                        "offset": 106,
                       },
                       "start": Object {
                         "column": 5,
-                        "line": 10,
-                        "offset": 222,
+                        "line": 7,
+                        "offset": 103,
                       },
                     },
                     "name": "map",
@@ -22810,57 +23220,56 @@ Object {
               "right": Object {
                 "args": Array [
                   Object {
-                    "args": Array [
-                      Object {
-                        "location": Object {
-                          "end": Object {
-                            "column": 21,
-                            "line": 11,
-                            "offset": 259,
-                          },
-                          "start": Object {
-                            "column": 13,
-                            "line": 11,
-                            "offset": 251,
-                          },
-                        },
-                        "name": "readFile",
-                        "type": "Id",
-                      },
-                    ],
-                    "callee": Object {
+                    "computed": false,
+                    "object": Object {
                       "location": Object {
                         "end": Object {
-                          "column": 12,
-                          "line": 11,
-                          "offset": 250,
+                          "column": 15,
+                          "line": 8,
+                          "offset": 139,
                         },
                         "start": Object {
-                          "column": 9,
-                          "line": 11,
-                          "offset": 247,
+                          "column": 11,
+                          "line": 8,
+                          "offset": 135,
                         },
                       },
-                      "name": "map",
+                      "name": "task",
                       "type": "Id",
                     },
-                    "type": "Call",
+                    "property": Object {
+                      "location": Object {
+                        "end": Object {
+                          "column": 23,
+                          "line": 8,
+                          "offset": 147,
+                        },
+                        "start": Object {
+                          "column": 16,
+                          "line": 8,
+                          "offset": 140,
+                        },
+                      },
+                      "name": "waitAll",
+                      "type": "Id",
+                    },
+                    "type": "Member",
                   },
                 ],
                 "callee": Object {
                   "location": Object {
                     "end": Object {
-                      "column": 8,
-                      "line": 11,
-                      "offset": 246,
+                      "column": 10,
+                      "line": 8,
+                      "offset": 134,
                     },
                     "start": Object {
                       "column": 5,
-                      "line": 11,
-                      "offset": 243,
+                      "line": 8,
+                      "offset": 129,
                     },
                   },
-                  "name": "map",
+                  "name": "chain",
                   "type": "Id",
                 },
                 "type": "Call",
@@ -22873,56 +23282,36 @@ Object {
                 Object {
                   "args": Array [
                     Object {
-                      "computed": false,
-                      "object": Object {
-                        "location": Object {
-                          "end": Object {
-                            "column": 24,
-                            "line": 12,
-                            "offset": 285,
-                          },
-                          "start": Object {
-                            "column": 20,
-                            "line": 12,
-                            "offset": 281,
-                          },
+                      "location": Object {
+                        "end": Object {
+                          "column": 21,
+                          "line": 9,
+                          "offset": 169,
                         },
-                        "name": "Task",
-                        "type": "Id",
-                      },
-                      "property": Object {
-                        "location": Object {
-                          "end": Object {
-                            "column": 27,
-                            "line": 12,
-                            "offset": 288,
-                          },
-                          "start": Object {
-                            "column": 25,
-                            "line": 12,
-                            "offset": 286,
-                          },
+                        "start": Object {
+                          "column": 13,
+                          "line": 9,
+                          "offset": 161,
                         },
-                        "name": "of",
-                        "type": "Id",
                       },
-                      "type": "Member",
+                      "name": "toString",
+                      "type": "Id",
                     },
                   ],
                   "callee": Object {
                     "location": Object {
                       "end": Object {
-                        "column": 19,
-                        "line": 12,
-                        "offset": 280,
+                        "column": 12,
+                        "line": 9,
+                        "offset": 160,
                       },
                       "start": Object {
-                        "column": 11,
-                        "line": 12,
-                        "offset": 272,
+                        "column": 9,
+                        "line": 9,
+                        "offset": 157,
                       },
                     },
-                    "name": "sequence",
+                    "name": "map",
                     "type": "Id",
                   },
                   "type": "Call",
@@ -22931,17 +23320,17 @@ Object {
               "callee": Object {
                 "location": Object {
                   "end": Object {
-                    "column": 10,
-                    "line": 12,
-                    "offset": 271,
+                    "column": 8,
+                    "line": 9,
+                    "offset": 156,
                   },
                   "start": Object {
                     "column": 5,
-                    "line": 12,
-                    "offset": 266,
+                    "line": 9,
+                    "offset": 153,
                   },
                 },
-                "name": "chain",
+                "name": "map",
                 "type": "Id",
               },
               "type": "Call",
@@ -22957,33 +23346,33 @@ Object {
                     "location": Object {
                       "end": Object {
                         "column": 17,
-                        "line": 13,
-                        "offset": 307,
+                        "line": 10,
+                        "offset": 188,
                       },
                       "start": Object {
-                        "column": 13,
-                        "line": 13,
-                        "offset": 303,
+                        "column": 14,
+                        "line": 10,
+                        "offset": 185,
                       },
                     },
-                    "name": "trim",
-                    "type": "Id",
+                    "type": "String",
+                    "value": ",",
                   },
                 ],
                 "callee": Object {
                   "location": Object {
                     "end": Object {
-                      "column": 12,
-                      "line": 13,
-                      "offset": 302,
+                      "column": 13,
+                      "line": 10,
+                      "offset": 184,
                     },
                     "start": Object {
                       "column": 9,
-                      "line": 13,
-                      "offset": 299,
+                      "line": 10,
+                      "offset": 180,
                     },
                   },
-                  "name": "map",
+                  "name": "join",
                   "type": "Id",
                 },
                 "type": "Call",
@@ -22993,13 +23382,13 @@ Object {
               "location": Object {
                 "end": Object {
                   "column": 8,
-                  "line": 13,
-                  "offset": 298,
+                  "line": 10,
+                  "offset": 179,
                 },
                 "start": Object {
                   "column": 5,
-                  "line": 13,
-                  "offset": 295,
+                  "line": 10,
+                  "offset": 176,
                 },
               },
               "name": "map",
@@ -23013,54 +23402,33 @@ Object {
         "right": Object {
           "args": Array [
             Object {
-              "args": Array [
-                Object {
-                  "location": Object {
-                    "end": Object {
-                      "column": 17,
-                      "line": 14,
-                      "offset": 326,
-                    },
-                    "start": Object {
-                      "column": 14,
-                      "line": 14,
-                      "offset": 323,
-                    },
-                  },
-                  "type": "String",
-                  "value": ",",
+              "location": Object {
+                "end": Object {
+                  "column": 12,
+                  "line": 11,
+                  "offset": 202,
                 },
-              ],
-              "callee": Object {
-                "location": Object {
-                  "end": Object {
-                    "column": 13,
-                    "line": 14,
-                    "offset": 322,
-                  },
-                  "start": Object {
-                    "column": 9,
-                    "line": 14,
-                    "offset": 318,
-                  },
+                "start": Object {
+                  "column": 9,
+                  "line": 11,
+                  "offset": 199,
                 },
-                "name": "join",
-                "type": "Id",
               },
-              "type": "Call",
+              "name": "put",
+              "type": "Id",
             },
           ],
           "callee": Object {
             "location": Object {
               "end": Object {
                 "column": 8,
-                "line": 14,
-                "offset": 317,
+                "line": 11,
+                "offset": 198,
               },
               "start": Object {
                 "column": 5,
-                "line": 14,
-                "offset": 314,
+                "line": 11,
+                "offset": 195,
               },
             },
             "name": "map",
@@ -23073,156 +23441,7 @@ Object {
       "type": "Assignment",
     },
     Object {
-      "args": Array [
-        Object {
-          "body": Object {
-            "args": Array [
-              Object {
-                "location": Object {
-                  "end": Object {
-                    "column": 25,
-                    "line": 17,
-                    "offset": 400,
-                  },
-                  "start": Object {
-                    "column": 16,
-                    "line": 17,
-                    "offset": 391,
-                  },
-                },
-                "type": "String",
-                "value": "Error: ",
-              },
-              Object {
-                "location": Object {
-                  "end": Object {
-                    "column": 30,
-                    "line": 17,
-                    "offset": 405,
-                  },
-                  "start": Object {
-                    "column": 27,
-                    "line": 17,
-                    "offset": 402,
-                  },
-                },
-                "name": "err",
-                "type": "Id",
-              },
-            ],
-            "callee": Object {
-              "location": Object {
-                "end": Object {
-                  "column": 15,
-                  "line": 17,
-                  "offset": 390,
-                },
-                "start": Object {
-                  "column": 12,
-                  "line": 17,
-                  "offset": 387,
-                },
-              },
-              "name": "put",
-              "type": "Id",
-            },
-            "type": "Call",
-          },
-          "params": Array [
-            Object {
-              "location": Object {
-                "end": Object {
-                  "column": 7,
-                  "line": 17,
-                  "offset": 382,
-                },
-                "start": Object {
-                  "column": 4,
-                  "line": 17,
-                  "offset": 379,
-                },
-              },
-              "name": "err",
-              "type": "Id",
-            },
-          ],
-          "type": "Lambda",
-        },
-        Object {
-          "body": Object {
-            "args": Array [
-              Object {
-                "location": Object {
-                  "end": Object {
-                    "column": 27,
-                    "line": 18,
-                    "offset": 434,
-                  },
-                  "start": Object {
-                    "column": 17,
-                    "line": 18,
-                    "offset": 424,
-                  },
-                },
-                "type": "String",
-                "value": "Result: ",
-              },
-              Object {
-                "location": Object {
-                  "end": Object {
-                    "column": 33,
-                    "line": 18,
-                    "offset": 440,
-                  },
-                  "start": Object {
-                    "column": 29,
-                    "line": 18,
-                    "offset": 436,
-                  },
-                },
-                "name": "data",
-                "type": "Id",
-              },
-            ],
-            "callee": Object {
-              "location": Object {
-                "end": Object {
-                  "column": 16,
-                  "line": 18,
-                  "offset": 423,
-                },
-                "start": Object {
-                  "column": 13,
-                  "line": 18,
-                  "offset": 420,
-                },
-              },
-              "name": "put",
-              "type": "Id",
-            },
-            "type": "Call",
-          },
-          "params": Array [
-            Object {
-              "location": Object {
-                "end": Object {
-                  "column": 8,
-                  "line": 18,
-                  "offset": 415,
-                },
-                "start": Object {
-                  "column": 4,
-                  "line": 18,
-                  "offset": 411,
-                },
-              },
-              "name": "data",
-              "type": "Id",
-            },
-          ],
-          "type": "Lambda",
-        },
-      ],
+      "args": Array [],
       "callee": Object {
         "computed": false,
         "object": Object {
@@ -23230,52 +23449,93 @@ Object {
             Object {
               "location": Object {
                 "end": Object {
-                  "column": 39,
-                  "line": 16,
-                  "offset": 368,
+                  "column": 63,
+                  "line": 13,
+                  "offset": 267,
                 },
                 "start": Object {
-                  "column": 13,
-                  "line": 16,
-                  "offset": 342,
+                  "column": 60,
+                  "line": 13,
+                  "offset": 264,
                 },
               },
-              "type": "String",
-              "value": "./samples/task/index.txt",
+              "name": "put",
+              "type": "Id",
             },
           ],
           "callee": Object {
-            "location": Object {
-              "end": Object {
-                "column": 12,
-                "line": 16,
-                "offset": 341,
+            "computed": false,
+            "object": Object {
+              "args": Array [
+                Object {
+                  "location": Object {
+                    "end": Object {
+                      "column": 46,
+                      "line": 13,
+                      "offset": 250,
+                    },
+                    "start": Object {
+                      "column": 6,
+                      "line": 13,
+                      "offset": 210,
+                    },
+                  },
+                  "type": "String",
+                  "value": "./test/fixtures/samples/task/index.txt",
+                },
+              ],
+              "callee": Object {
+                "location": Object {
+                  "end": Object {
+                    "column": 5,
+                    "line": 13,
+                    "offset": 209,
+                  },
+                  "start": Object {
+                    "column": 1,
+                    "line": 13,
+                    "offset": 205,
+                  },
+                },
+                "name": "read",
+                "type": "Id",
               },
-              "start": Object {
-                "column": 1,
-                "line": 16,
-                "offset": 330,
-              },
+              "type": "Call",
             },
-            "name": "concatFiles",
-            "type": "Id",
+            "property": Object {
+              "location": Object {
+                "end": Object {
+                  "column": 59,
+                  "line": 13,
+                  "offset": 263,
+                },
+                "start": Object {
+                  "column": 48,
+                  "line": 13,
+                  "offset": 252,
+                },
+              },
+              "name": "mapRejected",
+              "type": "Id",
+            },
+            "type": "Member",
           },
           "type": "Call",
         },
         "property": Object {
           "location": Object {
             "end": Object {
-              "column": 45,
-              "line": 16,
-              "offset": 374,
+              "column": 68,
+              "line": 13,
+              "offset": 272,
             },
             "start": Object {
-              "column": 41,
-              "line": 16,
-              "offset": 370,
+              "column": 65,
+              "line": 13,
+              "offset": 269,
             },
           },
-          "name": "fork",
+          "name": "run",
           "type": "Id",
         },
         "type": "Member",
@@ -23285,9 +23545,9 @@ Object {
   ],
   "location": Object {
     "end": Object {
-      "column": 2,
-      "line": 19,
-      "offset": 443,
+      "column": 70,
+      "line": 13,
+      "offset": 274,
     },
     "start": Object {
       "column": 1,
@@ -23303,122 +23563,7 @@ exports[`parse succeeds for task-simple.ion 1`] = `
 Object {
   "body": Array [
     Object {
-      "args": Array [
-        Object {
-          "left": Object {
-            "args": Array [
-              Object {
-                "location": Object {
-                  "end": Object {
-                    "column": 17,
-                    "line": 2,
-                    "offset": 34,
-                  },
-                  "start": Object {
-                    "column": 10,
-                    "line": 2,
-                    "offset": 27,
-                  },
-                },
-                "type": "String",
-                "value": "Err! ",
-              },
-            ],
-            "callee": Object {
-              "location": Object {
-                "end": Object {
-                  "column": 9,
-                  "line": 2,
-                  "offset": 26,
-                },
-                "start": Object {
-                  "column": 3,
-                  "line": 2,
-                  "offset": 20,
-                },
-              },
-              "name": "concat",
-              "type": "Id",
-            },
-            "type": "Call",
-          },
-          "operator": "|",
-          "right": Object {
-            "location": Object {
-              "end": Object {
-                "column": 24,
-                "line": 2,
-                "offset": 41,
-              },
-              "start": Object {
-                "column": 21,
-                "line": 2,
-                "offset": 38,
-              },
-            },
-            "name": "put",
-            "type": "Id",
-          },
-          "type": "Binary",
-        },
-        Object {
-          "left": Object {
-            "args": Array [
-              Object {
-                "location": Object {
-                  "end": Object {
-                    "column": 16,
-                    "line": 3,
-                    "offset": 58,
-                  },
-                  "start": Object {
-                    "column": 10,
-                    "line": 3,
-                    "offset": 52,
-                  },
-                },
-                "type": "String",
-                "value": "Ok! ",
-              },
-            ],
-            "callee": Object {
-              "location": Object {
-                "end": Object {
-                  "column": 9,
-                  "line": 3,
-                  "offset": 51,
-                },
-                "start": Object {
-                  "column": 3,
-                  "line": 3,
-                  "offset": 45,
-                },
-              },
-              "name": "concat",
-              "type": "Id",
-            },
-            "type": "Call",
-          },
-          "operator": "|",
-          "right": Object {
-            "location": Object {
-              "end": Object {
-                "column": 23,
-                "line": 3,
-                "offset": 65,
-              },
-              "start": Object {
-                "column": 20,
-                "line": 3,
-                "offset": 62,
-              },
-            },
-            "name": "put",
-            "type": "Id",
-          },
-          "type": "Binary",
-        },
-      ],
+      "args": Array [],
       "callee": Object {
         "computed": false,
         "object": Object {
@@ -23426,52 +23571,93 @@ Object {
             Object {
               "location": Object {
                 "end": Object {
-                  "column": 11,
+                  "column": 20,
                   "line": 1,
-                  "offset": 10,
+                  "offset": 19,
                 },
                 "start": Object {
-                  "column": 9,
+                  "column": 17,
                   "line": 1,
-                  "offset": 8,
+                  "offset": 16,
                 },
               },
-              "type": "Decimal",
-              "value": "10",
+              "name": "put",
+              "type": "Id",
             },
           ],
           "callee": Object {
             "computed": false,
             "object": Object {
-              "location": Object {
-                "end": Object {
-                  "column": 5,
-                  "line": 1,
-                  "offset": 4,
+              "args": Array [
+                Object {
+                  "location": Object {
+                    "end": Object {
+                      "column": 11,
+                      "line": 1,
+                      "offset": 10,
+                    },
+                    "start": Object {
+                      "column": 9,
+                      "line": 1,
+                      "offset": 8,
+                    },
+                  },
+                  "type": "Decimal",
+                  "value": "10",
                 },
-                "start": Object {
-                  "column": 1,
-                  "line": 1,
-                  "offset": 0,
+              ],
+              "callee": Object {
+                "computed": false,
+                "object": Object {
+                  "location": Object {
+                    "end": Object {
+                      "column": 5,
+                      "line": 1,
+                      "offset": 4,
+                    },
+                    "start": Object {
+                      "column": 1,
+                      "line": 1,
+                      "offset": 0,
+                    },
+                  },
+                  "name": "task",
+                  "type": "Id",
                 },
+                "property": Object {
+                  "location": Object {
+                    "end": Object {
+                      "column": 8,
+                      "line": 1,
+                      "offset": 7,
+                    },
+                    "start": Object {
+                      "column": 6,
+                      "line": 1,
+                      "offset": 5,
+                    },
+                  },
+                  "name": "of",
+                  "type": "Id",
+                },
+                "type": "Member",
               },
-              "name": "Task",
-              "type": "Id",
+              "type": "Call",
             },
             "property": Object {
               "location": Object {
                 "end": Object {
-                  "column": 8,
+                  "column": 16,
                   "line": 1,
-                  "offset": 7,
+                  "offset": 15,
                 },
                 "start": Object {
-                  "column": 6,
+                  "column": 13,
                   "line": 1,
-                  "offset": 5,
+                  "offset": 12,
                 },
               },
-              "name": "of",
+              "name": "map",
               "type": "Id",
             },
             "type": "Member",
@@ -23481,17 +23667,17 @@ Object {
         "property": Object {
           "location": Object {
             "end": Object {
-              "column": 17,
+              "column": 25,
               "line": 1,
-              "offset": 16,
+              "offset": 24,
             },
             "start": Object {
-              "column": 13,
+              "column": 22,
               "line": 1,
-              "offset": 12,
+              "offset": 21,
             },
           },
-          "name": "fork",
+          "name": "run",
           "type": "Id",
         },
         "type": "Member",
@@ -23501,9 +23687,9 @@ Object {
   ],
   "location": Object {
     "end": Object {
-      "column": 2,
-      "line": 4,
-      "offset": 67,
+      "column": 27,
+      "line": 1,
+      "offset": 26,
     },
     "start": Object {
       "column": 1,
