@@ -1,10 +1,29 @@
 const prettify = require('./prettify')
-const colors = require('colors/safe')
+const CompileError = require('./CompileError')
+const {bold, red, dim} = require('colors/safe')
+const R = require('ramda')
 
+module.exports = (code, e) => {
+  const descriptions = e.expected
+    ? R.map(R.prop('description'), e.expected)
+    : []
 
-module.exports = (program, e) => {
-  console.log("\n", colors.bold.red(e.name), colors.dim(e.message))
-  console.log(prettify(program, e.location))
+  let result = ''
+  const {line, column} = e.location.start
 
-  process.exit(1)
+  errorType = e instanceof CompileError ? 'Compile error' : 'Parsing error'
+  result += bold(red(`${errorType} on line ${line}, column ${column}: `))
+  result += dim(e.message) + '\n'
+
+  if(R.contains('statement', descriptions)) {
+    const lines = code.split('\n')
+    // TODO: explain to the user what is a statement and why everything in
+    // ion is a statement.
+    result += `"${lines[line - 1]}" is not a statement.\n`
+  } else {
+    result += '\n'
+  }
+  result += prettify(code, e)
+
+  return result
 }
