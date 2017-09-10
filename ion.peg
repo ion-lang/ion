@@ -346,8 +346,8 @@ PropertyAssignment =
 PropertyName = IdName / StringLiteral
 
 /* Ops */
-UnaryOp = "!" / "->>"
-FunctionalOp = "@?" / "|>" / "<|" / "!@" / "@s" / "@=" / $("@" ![?]) / "->" / "<-"
+UnaryOp = "!"
+FunctionalOp =  $("|" ![>|]) / "@?" / "!@" / "@s" / "@=" / $("@" ![?]) / "->" / "<-"
 MathOp = "**" / "*" / "/" / "%" / "+" / "-"
 RelationalOp = "<=" / ">=" / "<" / ">"
 EqualityOp = "==" / "!="
