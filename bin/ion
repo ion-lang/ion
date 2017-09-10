@@ -1,30 +1,4 @@
 #!/usr/bin/env node
+const bin = require('./bin')
 
-const fs = require('fs')
-const parser = require('../parser')
-const compiler = require('../es5-compiler')
-const prettyjson = require('prettyjson')
-const program = require('commander')
-
-program
-  .version('0.0.1')
-  .usage('[options] <file ...>')
-  .option('-c --compile', 'compiles an ion script to es5')
-  .option('-a --ast', 'returns an AST')
-  .option('-e --exec', 'compiles and runs the program using node')
-  .parse(process.argv)
-
-const code = fs.readFileSync(program.args[0], 'utf8')
-
-switch (true) {
-  case program.ast:
-    const ast = parser(code)
-    console.log(prettyjson.render(ast))
-    break
-  case program.exec:
-    eval(compiler(code))
-    break
-  case program.compile:
-  default:
-    console.log(compiler(code))
-}
+bin()
