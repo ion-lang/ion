@@ -234,15 +234,6 @@ function c(e, assignmentContext = {id:'global', line:1}) {
       return ''
     case 'WrongHeader':
       throw new CompileError(`Wrong header '${e.path}'. A correct header would be '#!/usr/bin/env ion'`, e)
-    case 'Cond':
-      const block = R.map(
-        caze =>
-          (caze.test
-            ? `if(${c(caze.test)}(${c(e.discriminant)})){return ${c(caze.consequent)}}`
-            : `return ${c(caze.consequent)};`),
-        e.cases
-      ).join('')
-      return wrap(block)
     default:
       console.log('Missing', e.type, e)
       return ''

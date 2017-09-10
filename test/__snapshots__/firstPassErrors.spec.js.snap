@@ -1,0 +1,43 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`compile error for alreadyDeclaredVarGlobal.ion 1`] = `
+"[1m[31mCompile error on line 2, column 1: [39m[22m[2mVariable 'a' has already been declared globally.[22m
+
+...
+[90m 1 | [39ma = 1
+[31m 2 | [39m[31m[7ma = 2[27m[39m
+     ^
+..."
+`;
+
+exports[`compile error for alreadyDeclaredVarWhere.ion 1`] = `
+"[1m[31mCompile error on line 3, column 3: [39m[22m[2mVariable 'a' has already been declared in context started on line 1.[22m
+
+...
+[90m 1 | [39mx = a + b where
+[90m 2 | [39m  a = 1,
+[31m 3 |   [39m[31m[7ma = 2[27m[39m[31m,[39m
+     [2m..[22m^
+[90m 4 | [39m  b = 3
+[90m 5 | [39m
+..."
+`;
+
+exports[`compile error for multipleExports.ion 1`] = `
+"[1m[31mCompile error on line 2, column 1: [39m[22m[2mMultiple exports[22m
+
+...
+[90m 1 | [39mexport 1
+[31m 2 | [39m[31m[7mexport 2[27m[39m
+     ^
+..."
+`;
+
+exports[`compile error for wrongHeader.ion 1`] = `
+"[1m[31mCompile error on line 1, column 1: [39m[22m[2mWrong header 'boo'. A correct header would be '#!/usr/bin/env ion'[22m
+
+...
+[31m 1 | [39m[31m[7m#!/usr/bin/env boo[27m[39m
+     ^
+..."
+`;
