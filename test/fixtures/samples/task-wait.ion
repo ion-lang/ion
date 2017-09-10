@@ -1,0 +1,7 @@
+wait = (s) =>
+  task.task((resolver) =>
+    resolver.cleanup(() => clearTimeout(timer)) where
+      timer = setTimeout(() => resolver.resolve(s), s * 1000))
+
+
+task.waitAny([wait(2), wait(1)]).map(put).run()

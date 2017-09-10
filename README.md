@@ -17,28 +17,22 @@ more. It relies heavily on libraries supporting
 The following example is a solution to the
 ["async problem"](https://github.com/plaid/async-problem), using the same tools
 behind the scenes as the
-[Task solution](https://github.com/plaid/async-problem/blob/master/tasks.js).
+[task solution](https://github.com/plaid/async-problem/blob/master/tasks.js).
 
 ```js
 path = require('path')
 
-readFile = (filename) =>
-  Task((rej, res) =>
-    fs.readFile(path.resolve(filename), {encoding: 'utf8'}, (err, data) =>
-      err ? rej(err) : res(data)))
-
-concatFiles = fs.readFile
-  | map(trim)
+read = path.resolve
+  | fs.readFile
+  | map(toString)
   | map(split('\n'))
   | map(map(fs.readFile))
-  | chain(sequence(Task.of))
-  | map(map(trim))
+  | chain(task.waitAll)
+  | map(map(toString))
   | map(join(','))
+  | map(put)
 
-concatFiles('./samples/task/index.txt').fork(
-  (err) => put('Error: ', err),
-  (data) => put('Result: ', data)
-)
+read('./test/fixtures/samples/task/index.txt').mapRejected(put).run()
 ```
 
 ##### Features
@@ -165,33 +159,35 @@ foo = (x) =>
 ```js
 // Maybe
 
-Maybe.of(undefined).getOrElse('anonymous') // 'anonymous'
+Maybe.fromNullable(undefined) // Nothing
+Maybe.fromNullable('john')    // Just(john)
 
-Maybe.of('john').getOrElse('anonymous') // 'john'
+// Result
 
-// Either
+Result.Ok(5)
+Result.Error('Ooops')
 
-Either.of(null).map(+(1)).getOrElse(1) // 1
+// task (equivalent of Promise)
 
-Either.of(5).map(+(1)).getOrElse(1) // 6
+wait = (secs) =>
+  task.task((resolver) =>
+    resolver.cleanup(() => clearTimeout(timer)) where
+      timer = setTimeout(() => resolver.resolve(secs), secs * 1000))
 
-// Task (equivalent of Promise)
-
-Task.of(10).fork(
-  concat('Error: ') | put,
-  concat('Result: ') | put
-)
-
+// gets first task to succeed and automatically cleans up others
+task.waitAny([wait(2), wait(1)]).map(put).run()
 ```
 
 ## Usage
 
 ```
-ion -h                 // help
-ion file.ion           // compiles to JS, returns to stdout
-ion file.ion > file.js // compiles to JS, writes to file.js
-ion -e file.ion        // compiles to JS, executes with node (4+ will work)
-ion -a file.ion        // returns ion's AST
+ion -h                    // help
+ion -c file.ion           // compiles to JS, returns to stdout
+ion -c file.ion > file.js // compiles to JS, writes to file.js
+ion -e file.ion           // compiles to JS, executes with node (4+ will work)
+ion -a file.ion           // returns ion's AST
+ion -r 'put("Hello")'     // executes some arbitrary code
+ion -t file.ion           // simply tries parsing and return true or error
 ```
 
 ## Credits
