@@ -1,0 +1,25 @@
+put(
+  Either
+    .of(null)
+    .map(+(1))
+    .getOrElse(1)
+)
+
+put(
+  Either
+    .of(5)
+    .map(+(1))
+    .getOrElse(1)
+)
+
+put(
+  Either
+    .of(null)
+    .bimap(() => 0, (x) => x * 2)
+)
+
+put(
+  Either
+    .of(5)
+    .bimap(() => 0, (x) => x * 2)
+)

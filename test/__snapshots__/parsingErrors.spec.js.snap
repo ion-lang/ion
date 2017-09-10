@@ -1,0 +1,158 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`parse error for invalidOctal.ion 1`] = `
+"[1m[31mParsing error on line 1, column 16: [39m[22m[2mExpected \\"!\\", \\"!=\\", \\"!@\\", \\"%\\", \\"&\\", \\"&&\\", \\"(\\", \\"*\\", \\"**\\", \\"+\\", \\"-\\", \\"->\\", \\"->>\\", \\"/\\", \\"<\\", \\"<-\\", \\"<=\\", \\"<|\\", \\"==\\", \\">\\", \\">=\\", \\">>\\", \\"@\\", \\"@=\\", \\"@?\\", \\"@s\\", \\"[\\", \\"^\\", \\"false\\", \\"if\\", \\"null\\", \\"true\\", \\"{\\", \\"|\\", \\"|>\\", \\"||\\", comment, end of line, identifier, number, range, regular expression, string or whitespace but \\"0\\" found.[22m
+
+...
+[31m 1 | invalidOctal = [39m[31m[7m0[27m[39m[31m12345678[39m
+     [2m...............[22m^
+..."
+`;
+
+exports[`parse error for missingParen.ion 1`] = `
+"[1m[31mParsing error on line 1, column 8: [39m[22m[2mExpected \\")\\", \\",\\", \\"?\\", \\"where\\", comment, end of line or whitespace but end of input found.[22m
+
+...
+[31m 1 | put(\\"A\\"[39m
+     [2m.......[22m^
+..."
+`;
+
+exports[`parse error for missingQuote.ion 1`] = `
+"[1m[31mParsing error on line 1, column 5: [39m[22m[2mExpected \\"!\\", \\"!=\\", \\"!@\\", \\"%\\", \\"&\\", \\"&&\\", \\"(\\", \\")\\", \\"*\\", \\"**\\", \\"+\\", \\"-\\", \\"->\\", \\"->>\\", \\"/\\", \\"<\\", \\"<-\\", \\"<=\\", \\"<|\\", \\"==\\", \\">\\", \\">=\\", \\">>\\", \\"@\\", \\"@=\\", \\"@?\\", \\"@s\\", \\"[\\", \\"^\\", \\"false\\", \\"if\\", \\"null\\", \\"true\\", \\"{\\", \\"|\\", \\"|>\\", \\"||\\", comment, end of line, identifier, number, range, regular expression, string or whitespace but \\"\\\\\\"\\" found.[22m
+
+...
+[31m 1 | put([39m[31m[7m\\"[27m[39m[31mA[39m
+     [2m....[22m^
+..."
+`;
+
+exports[`parse error for missingStatement.ion 1`] = `
+"[1m[31mParsing error on line 1, column 1: [39m[22m[2mExpected \\"export\\", \\"if\\", comment, end of input, end of line, identifier or whitespace but \\"1\\" found.[22m
+
+...
+[31m 1 | [39m[31m[7m1[27m[39m
+     ^
+..."
+`;
+
+exports[`parse error for missingTernaryColon.ion 1`] = `
+"[1m[31mParsing error on line 1, column 14: [39m[22m[2mExpected \\"!=\\", \\"!@\\", \\"%\\", \\"&\\", \\"&&\\", \\"*\\", \\"**\\", \\"+\\", \\"-\\", \\"->\\", \\"/\\", \\":\\", \\"<\\", \\"<-\\", \\"<=\\", \\"<|\\", \\"==\\", \\">\\", \\">=\\", \\">>\\", \\"?\\", \\"@\\", \\"@=\\", \\"@?\\", \\"@s\\", \\"^\\", \\"where\\", \\"|\\", \\"|>\\", \\"||\\", comment, end of line or whitespace but \\"2\\" found.[22m
+
+...
+[31m 1 | put(true ? 1 [39m[31m[7m2[27m[39m[31m)[39m
+     [2m.............[22m^
+..."
+`;
+
+exports[`parse error for missingTernaryQuestionmark.ion 1`] = `
+"[1m[31mParsing error on line 1, column 10: [39m[22m[2mExpected \\"!=\\", \\"!@\\", \\"%\\", \\"&\\", \\"&&\\", \\")\\", \\"*\\", \\"**\\", \\"+\\", \\",\\", \\"-\\", \\"->\\", \\"/\\", \\"<\\", \\"<-\\", \\"<=\\", \\"<|\\", \\"==\\", \\">\\", \\">=\\", \\">>\\", \\"?\\", \\"@\\", \\"@=\\", \\"@?\\", \\"@s\\", \\"^\\", \\"where\\", \\"|\\", \\"|>\\", \\"||\\", comment, end of line or whitespace but \\"1\\" found.[22m
+
+...
+[31m 1 | put(true [39m[31m[7m1[27m[39m[31m : 2)[39m
+     [2m.........[22m^
+..."
+`;
+
+exports[`parse error for noDanglingCommas.ion 1`] = `
+"[1m[31mParsing error on line 1, column 13: [39m[22m[2mExpected \\"...\\", comment, end of line, identifier, string or whitespace but \\"}\\" found.[22m
+
+...
+[31m 1 | obj = {a: 1,[39m[31m[7m}[27m[39m
+     [2m............[22m^
+..."
+`;
+
+exports[`parse error for noDivideEqual.ion 1`] = `
+"[1m[31mParsing error on line 2, column 3: [39m[22m[2mExpected \\".\\", \\"=\\", \\"[\\", comment, end of line or whitespace but \\"/\\" found.[22m
+
+...
+[90m 1 | [39ma = 1
+[31m 2 | a [39m[31m[7m/[27m[39m[31m= 1[39m
+     [2m..[22m^
+..."
+`;
+
+exports[`parse error for noFunction.ion 1`] = `
+"[1m[31mParsing error on line 1, column 10: [39m[22m[2mExpected \\".\\", \\"=\\", \\"[\\", comment, end of line or whitespace but \\"f\\" found.[22m
+
+...
+[31m 1 | function [39m[31m[7mf[27m[39m[31moo() {}[39m
+     [2m.........[22m^
+..."
+`;
+
+exports[`parse error for noGetters.ion 1`] = `
+"[1m[31mParsing error on line 1, column 13: [39m[22m[2mExpected \\":\\", comment, end of line or whitespace but \\"f\\" found.[22m
+
+...
+[31m 1 | obj = { get [39m[31m[7mf[27m[39m[31moo () { 1 } }[39m
+     [2m............[22m^
+..."
+`;
+
+exports[`parse error for noMinusEqual.ion 1`] = `
+"[1m[31mParsing error on line 2, column 3: [39m[22m[2mExpected \\".\\", \\"=\\", \\"[\\", comment, end of line or whitespace but \\"-\\" found.[22m
+
+...
+[90m 1 | [39ma = 1
+[31m 2 | a [39m[31m[7m-[27m[39m[31m= 1[39m
+     [2m..[22m^
+..."
+`;
+
+exports[`parse error for noMissingSpaceInBinaryOps.ion 1`] = `
+"[1m[31mParsing error on line 1, column 6: [39m[22m[2mExpected \\"?\\", \\"export\\", \\"if\\", \\"where\\", comment, end of input, end of line, identifier or whitespace but \\"+\\" found.[22m
+
+...
+[31m 1 | a = 1[39m[31m[7m+[27m[39m[31m1[39m
+     [2m.....[22m^
+..."
+`;
+
+exports[`parse error for noMultiplyEqual.ion 1`] = `
+"[1m[31mParsing error on line 2, column 3: [39m[22m[2mExpected \\".\\", \\"=\\", \\"[\\", comment, end of line or whitespace but \\"*\\" found.[22m
+
+...
+[90m 1 | [39ma = 1
+[31m 2 | a [39m[31m[7m*[27m[39m[31m= 1[39m
+     [2m..[22m^
+..."
+`;
+
+exports[`parse error for noPlusEqual.ion 1`] = `
+"[1m[31mParsing error on line 2, column 3: [39m[22m[2mExpected \\".\\", \\"=\\", \\"[\\", comment, end of line or whitespace but \\"+\\" found.[22m
+
+...
+[90m 1 | [39ma = 1
+[31m 2 | a [39m[31m[7m+[27m[39m[31m= 1[39m
+     [2m..[22m^
+..."
+`;
+
+exports[`parse error for noSemicolon.ion 1`] = `
+"[1m[31mParsing error on line 1, column 6: [39m[22m[2mExpected \\"?\\", \\"export\\", \\"if\\", \\"where\\", comment, end of input, end of line, identifier or whitespace but \\";\\" found.[22m
+
+...
+[31m 1 | a = 1[39m[31m[7m;[27m[39m[31m b = 2[39m
+     [2m.....[22m^
+..."
+`;
+
+exports[`parse error for noSetters.ion 1`] = `
+"[1m[31mParsing error on line 1, column 13: [39m[22m[2mExpected \\":\\", comment, end of line or whitespace but \\"f\\" found.[22m
+
+...
+[31m 1 | obj = { set [39m[31m[7mf[27m[39m[31moo () { 1 } }[39m
+     [2m............[22m^
+..."
+`;
+
+exports[`parse error for noVar.ion 1`] = `
+"[1m[31mParsing error on line 1, column 5: [39m[22m[2mExpected \\".\\", \\"=\\", \\"[\\", comment, end of line or whitespace but \\"a\\" found.[22m
+
+...
+[31m 1 | var [39m[31m[7ma[27m[39m[31m = 1[39m
+     [2m....[22m^
+..."
+`;

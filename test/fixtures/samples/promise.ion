@@ -1,0 +1,12 @@
+returnWithDelay = (time, val) => Promise((res, rej) =>
+  setTimeout(() => res(val), time)
+)
+
+x = returnWithDelay(4000)
+  | then(+(1))
+  | then(+(1))
+  | then(+(1))
+  | then(+(1))
+  | then(put)
+
+x(1)

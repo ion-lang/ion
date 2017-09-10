@@ -1,0 +1,20 @@
+Async = require('control.async')(Task)
+
+readFile = (filename) =>
+  Task((rej, res) =>
+    fs.readFile(filename, {encoding: 'utf8'}, (err, data) =>
+      err != null ? rej(err) : res(data)))
+      
+wait = Async.delay
+
+// runs all in par
+Async.parallel([wait(5000), wait(4000), wait(3000)]).fork(put, put)
+
+// gets the first to succeed of fail
+Async.choice([wait(5000), wait(4000), wait(3000)]).fork(put, put)
+
+ok = Task.of(true)
+meh = Task.rejected(false)
+
+// one should be ok!
+Async.tryAll([meh, meh, ok]).fork(put, put)

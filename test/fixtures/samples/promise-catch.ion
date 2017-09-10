@@ -1,0 +1,12 @@
+err = (time, val) => Promise((res, rej) =>
+  throw('err')
+)
+
+x = err(4000)
+  | then(+(1))
+  | then(+(1))
+  | then(+(1))
+  | then(+(1))
+  | then(put)
+
+x(1)
