@@ -44,7 +44,7 @@ read('./test/fixtures/samples/task/index.txt').mapRejected(put).run()
 - Ramda is treated as the stdlib;
 - Operators are seen as functions;
 - Range type (only for integers so far);
-- Some new operators: `->`, `|>`, `<|`, `@`, `**`, `->>` and more;
+- Some new operators: `->`, `|`, `@`, `**` and more;
 - `where` construct;
 
 Things removed:
@@ -53,6 +53,7 @@ Things removed:
 - `function`: only lambdas;
 - `typeof`: use only `type` function;
 - `switch/case`: use `cond` function;
+- `try/catch`: use `tryCatch` function or `Result`;
 - All mutable ops, like `-=`, `*=`, `++` ...;
 - All 3 char ops, like `===`, `!==`;
 - Many unknown JS features, like `>>`, `>>>`;
