@@ -1,7 +1,6 @@
 const fs = require('fs')
 const prettyjson = require('prettyjson')
 const program = require('commander')
-const compiler = require('../compilers/es5-manual')
 const parse = require('../parse')
 
 const bin = (parser) => {
@@ -13,8 +12,10 @@ const bin = (parser) => {
     .option('-t --try', 'simply try parsing and returns true or error')
     .option('-e --exec', 'compiles and runs the program using node')
     .option('-r --run', 'compiles and runs arbitrary code using node')
+    .option('--escodegen', 'uses escodegen compiler instead of default')
     .parse(process.argv)
 
+  const compiler = program.escodegen ? require('../compilers/escodegen') : require('../compilers/es5-manual')
   const code = program.run ? program.args[0] : fs.readFileSync(program.args[0], 'utf8')
 
   switch (true) {

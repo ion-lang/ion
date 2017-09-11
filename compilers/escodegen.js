@@ -9,6 +9,10 @@ const parse = require('../parse')
 const CompileError = require('../helpers/CompileError')
 const prettier = require('prettier')
 let includedHelpers = []
+let value
+
+const gen = require('escodegen')
+// throw "!"
 
 const opCallMap = {
   '+': 'add',
@@ -25,6 +29,13 @@ const opCallMap = {
   '!=': 'diffs',
   '|': 'pipe',
   '<-': 'map',
+}
+
+const merge = (ion, updates) => {
+  const merged = R.merge(ion, updates)
+  delete merged.location
+  delete merged.args
+  return merged
 }
 
 const autoIncludes = R.fromPairs(R.map(r => [r, `ramda/src/${r}`], Object.keys(R)))
@@ -48,8 +59,8 @@ const opMap = opCallMap
 
 const specialOps = ['@', '@?']
 
-const wrap = code => `(function(){${code}})()`
-const call = (fn, args) => `${fn}(${args.join ? args.join(',') : args})`
+// const wrap = code => `(function(){${code}})()`
+// const call = (fn, args) => `${fn}(${args.join ? args.join(',') : args})`
 
 let exportCount = 0
 // TODO: declared vars may be only in some context...
@@ -60,25 +71,26 @@ let mapTo = null
 function c(e, assignmentContext = {id:'global', line:1}) {
   switch (e.type) {
     case 'Assignment':
-      if (e.left.type === 'Id') {
-        // TODO: save the initial variable declaration location,
-        // then show in the error both lines.
-        if (~declaredVars[assignmentContext.id].indexOf(e.left.name)) {
-          if(assignmentContext.id === 'global') {
-            throw new CompileError(`Variable '${e.left.name}' has already been declared globally.`, e)
-          } else {
-            throw new CompileError(`Variable '${e.left.name}' has already been declared in context started on line ${assignmentContext.line}.`, e)
-          }
-        }
-
-        declaredVars[assignmentContext.id].push(e.left.name)
-
-        var _assignmentId = c(e.left)
-        return `const ${_assignmentId} = ${c(e.right, _assignmentId)}`
-      } else {
-        var _assignmentId = c(e.left)
-        return `${_assignmentId} = ${c(e.right, _assignmentId)}`
-      }
+      return merge(e, {type: 'AssignmentExpression', operator: '=', left: c(e.left), right: c(e.right)})
+      // if (e.left.type === 'Id') {
+      //   // TODO: save the initial variable declaration location,
+      //   // then show in the error both lines.
+      //   if (~declaredVars[assignmentContext.id].indexOf(e.left.name)) {
+      //     if(assignmentContext.id === 'global') {
+      //       throw new CompileError(`Variable '${e.left.name}' has already been declared globally.`, e)
+      //     } else {
+      //       throw new CompileError(`Variable '${e.left.name}' has already been declared in context started on line ${assignmentContext.line}.`, e)
+      //     }
+      //   }
+      //
+      //   declaredVars[assignmentContext.id].push(e.left.name)
+      //
+      //   var _assignmentId = c(e.left)
+      //   return `const ${_assignmentId} = ${c(e.right, _assignmentId)}`
+      // } else {
+      //   var _assignmentId = c(e.left)
+      //   return `${_assignmentId} = ${c(e.right, _assignmentId)}`
+      // }
     case 'Export':
       if (exportCount > 0) {
         throw new CompileError('Multiple exports', e)
@@ -96,7 +108,11 @@ function c(e, assignmentContext = {id:'global', line:1}) {
 
       return wrap(`${cAll(e.assignments, newAssignmentContext).join(';')};return ${c(e.expression)}`)
     case 'Program':
-      return cAll(e.body)
+    // throw '0'
+      return merge(e, {body: R.map(expression => ({
+        type: 'ExpressionStatement',
+        expression
+      }),cAll(e.body))})
     case 'Member':
       return e.computed ? `${c(e.object)}[${c(e.property)}]` : `${c(e.object)}.${c(e.property)}`
     case 'If':
@@ -104,25 +120,51 @@ function c(e, assignmentContext = {id:'global', line:1}) {
         ? `${c(e.test)}?${c(e.then)}:${c(e.else)}`
         : wrap(`if(${c(e.test)})return ${c(e.then)}`)
     case 'Object':
-      if (R.any(p => p.type === 'Spread', e.properties)) {
-        includedHelpers.push('mergeAll')
-
-        return `mergeAll([${R.map(p => (p.type === 'Spread' ? c(p) : `{${c(p.key)}: ${c(p.value)}}`), e.properties).join(', ')}])`
-      } else {
-        const props = R.map(p => `${c(p.key)}: ${c(p.value)}`, e.properties)
-        return `{${props.join(',')}}`
-      }
+    // console.log('>>>', e.properties)
+      return merge(e, {type: 'ObjectPattern', properties: R.map(p => {
+        console.log('P>>>', p)
+        return  {
+          type: 'Property',
+          // start: 5,
+          // end: 8,
+          method: false,
+          shorthand: false,
+          computed: false,
+          key: c(p.key),
+          value: c(p.value),
+          kind: 'init'
+        }
+      }, e.properties)})
+      // TODO
+      // if (R.any(p => p.type === 'Spread', e.properties)) {
+      //   includedHelpers.push('mergeAll')
+      //
+      //   return `mergeAll([${R.map(p => (p.type === 'Spread' ? c(p) : `{${c(p.key)}: ${c(p.value)}}`), e.properties).join(', ')}])`
+      // } else {
+      //   const props = R.map(p => `${c(p.key)}: ${c(p.value)}`, e.properties)
+      //   return `{${props.join(',')}}`
+      // }
 
     case 'Lambda':
-      const params = cAll(e.params).join(',')
-      if (e.params.length > 1) {
-        includedHelpers.push('curry')
-        return `curry(function(${params}) {return ${c(e.body)}})`
-      } else {
-        return `function(${params}) {return ${c(e.body)}}`
-      }
+      return merge(e, {type: 'ArrowFunctionExpression', params: cAll(e.params), body: {
+        type: 'BlockStatement', body: [
+          {
+            type: 'ReturnStatement',
+            argument: c(e.body)
+          }
+        ]
+      }})
+      // TODO:
+      // const params = cAll(e.params).join(',')
+      // if (e.params.length > 1) {
+      //   includedHelpers.push('curry')
+      //   return `curry(function(${params}) {return ${c(e.body)}})`
+      // } else {
+      //   return `function(${params}) {return ${c(e.body)}}`
+      // }
     case 'Call':
-      return call(c(e.callee), cAll(e.args))
+    // throw "1"
+      return merge(e, {type: 'CallExpression', callee: c(e.callee), arguments: cAll(e.args), args: undefined})
     case 'OpCall':
       if (e.op === '@') {
         let path
@@ -153,31 +195,27 @@ function c(e, assignmentContext = {id:'global', line:1}) {
       includedHelpers.push('range')
       return call('range', [e.from, parseInt(e.to) + 1])
     case 'Id':
-      if (!~declaredVars.global.indexOf(e.name)) {
-        if (autoIncludes[e.name]) {
-          includedHelpers.push(e.name)
-        }
-      }
+      // if (!~declaredVars.global.indexOf(e.name)) {
+      //   if (autoIncludes[e.name]) {
+      //     includedHelpers.push(e.name)
+      //   }
+      // }
 
-      return e.name
+      return merge(e, {type: 'Identifier'})
     case 'True':
-      return 'true'
+      return merge(e, {type: 'Literal', value: true})
     case 'False':
-      return 'false'
+      return merge(e, {type: 'Literal', value: false})
     case 'Null':
-      return 'null'
+      return merge(e, {type: 'Literal', value: null})
     case 'RegExp':
-      try {
-        new RegExp(e.value)
-      } catch (error) {
-        throw new CompileError('Invalid regexp', e)
-      }
+      return merge(e, {type: 'Literal', value: e.value})
     case 'Octal':
     case 'Decimal':
     case 'Hex':
-      return e.value
+      return merge(e, {type: 'Literal', value: parseFloat(e.value)})
     case 'String':
-      return JSON.stringify(e.value)
+      return merge(e, {type: 'Literal', value: e.value})
     case 'Unary':
       mapTo = opMap[e.operator]
 
@@ -191,22 +229,25 @@ function c(e, assignmentContext = {id:'global', line:1}) {
       }
 
     case 'Binary':
+
+      return merge(e, {type: 'BinaryExpression', left: c(e.left), right: c(e.right)})
       const l = c(e.left)
       const r = c(e.right)
       mapTo = opMap[e.operator]
 
-      if (e.operator === '@') {
-        if (e.left.type === 'Array') {
-          includedHelpers.push('lensPath')
-          includedHelpers.push('view')
-
-          return call('view', [call('lensPath', l), r])
-        } else {
-          includedHelpers.push('prop')
-
-          return call('prop', [l, r])
-        }
-      }
+      // TODO:
+      // if (e.operator === '@') {
+      //   if (e.left.type === 'Array') {
+      //     includedHelpers.push('lensPath')
+      //     includedHelpers.push('view')
+      //
+      //     return call('view', [call('lensPath', l), r])
+      //   } else {
+      //     includedHelpers.push('prop')
+      //
+      //     return call('prop', [l, r])
+      //   }
+      // }
 
       if (mapTo) {
         includedHelpers.push(mapTo)
@@ -217,14 +258,16 @@ function c(e, assignmentContext = {id:'global', line:1}) {
         return `${l}${e.operator}${r}`
       }
     case 'Array':
-      if (R.any(el => el.type === 'Spread', e.elements)) {
-        includedHelpers.push('reduce')
-        includedHelpers.push('concat')
-
-        return `reduce(concat, [], [${R.map(el => (el.type === 'Spread' ? c(el) : `[${c(el)}]`), e.elements)}])`
-      } else {
-        return `[${cAll(e.elements).join(', ')}]`
-      }
+      return merge(e, {type: 'ArrayPattern', elements: cAll(e.elements)})
+      // TODO:
+      // if (R.any(el => el.type === 'Spread', e.elements)) {
+      //   includedHelpers.push('reduce')
+      //   includedHelpers.push('concat')
+      //
+      //   return `reduce(concat, [], [${R.map(el => (el.type === 'Spread' ? c(el) : `[${c(el)}]`), e.elements)}])`
+      // } else {
+      //   return `[${cAll(e.elements).join(', ')}]`
+      // }
     case 'Spread':
       return c(e.spreaded)
     case 'Ternary':
@@ -239,8 +282,7 @@ function c(e, assignmentContext = {id:'global', line:1}) {
   }
 }
 
-const cAll = (list, assignmentContext) =>
-  R.map(item => c(item, assignmentContext), list)
+const cAll = R.map(c)
 
 const MAIN_FUNCTIONS = ['const put = console.log']
 function compile(code, parser) {
@@ -266,7 +308,17 @@ function compile(code, parser) {
     R.uniq(includedHelpers)
   )
 
-  return prettier.format(MAIN_FUNCTIONS.concat(includes).concat(compiled).join(';\n'))
+
+  return prettier.format(gen.generate(compiled, {
+    format: {
+      indent: {
+        style: '  '
+      },
+      parentheses: false
+    }
+  }))
+  return JSON.stringify(compiled, null, 1)
+  // return MAIN_FUNCTIONS.concat(includes).concat(compiled).join(';\n')
 }
 
 module.exports = compile
