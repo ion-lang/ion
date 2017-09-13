@@ -1,6 +1,6 @@
 {
   "name": "@ion-lang/ion",
-  "version": "0.0.2",
+  "version": "0.3.0",
   "description": "Ion programming language",
   "main": "index.js",
   "scripts": {
