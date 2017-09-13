@@ -32,7 +32,7 @@ read = path.resolve
   | map(join(','))
   | map(put)
 
-read('./test/fixtures/samples/task/index.txt').mapRejected(put).run()
+read('./index.txt').mapRejected(put).run()
 ```
 
 ##### Features
